@@ -1,0 +1,13 @@
+*.DS_Store
+.DS_Store
+.DS_Storenode_modules/
+.TemporaryItems
+.Trashes
+.build
+.bundle
+.conche/
+.fseventsd
+Packages
+xcshareddata
+xcuserdata
+Utils

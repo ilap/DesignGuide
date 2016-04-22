@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gRNA Design Tool</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <link rel="stylesheet"
+          href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" type="text/css">
+    {% include "css.stencil" %}
+</head>
+<body>
+    {% for nuclease in nucleases %}
+    {{ nuclease.id }} alma {{ nuclease.nuclease_name }}
+    {% endfor %}
+    <div class="page-header">
+        <h1><a href="/">CRISPR/Cas9 gRNA Design Tool</a></h1>
+    </div>
+    <div class="content container">
+        {% include "main.stencil" %}
+    </div>
+    {% include "js.stencil" %}
+</body>
+</html>
