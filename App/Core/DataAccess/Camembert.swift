@@ -155,9 +155,11 @@ class Camembert {
                 let columName :String = NSString(CString: sqlite3_column_name(ptrRequest,
                     CInt(index)), encoding: NSUTF8StringEncoding)! as String
                 
-                //print ("FORKEY: \(columName) \(query) \(ptrRequest)")
+
+                let casev = sqlite3_column_type(ptrRequest, CInt(index))
+                //ILAP: print ("FORKEY: \(columName) \(query) \(ptrRequest) Type value: \(casev)")
                 
-                switch sqlite3_column_type(ptrRequest, CInt(index)) {
+                switch  casev {
                 case SQLITE_INTEGER:
                     let A = (Int(sqlite3_column_int(ptrRequest,
                         CInt(index))) as AnyObject)
@@ -169,8 +171,15 @@ class Camembert {
                         CInt(index))) as AnyObject), forKey: columName)
                 case SQLITE_TEXT:
                     let stringValue = String.fromCString(UnsafePointer<CChar>(sqlite3_column_text(ptrRequest, CInt(index))))
-                    currentObject.setValue(stringValue, forKey: columName)
+                    if let boolValue = stringValue?.toBool() {
+                        currentObject.setValue(boolValue, forKey: columName)
+                    } else {
+                        currentObject.setValue(stringValue, forKey: columName)
+                    }
+                    
                 default: Void()
+                    
+
                 }
             }
             objects.append(currentObject)

@@ -20,26 +20,56 @@
  */
 
 import SwiftCLI
+import Foundation
+
+extension DefaultsKeys {
+    // For List command
+    static let listNuclease = DefaultsKey<Bool>("listNuclease")
+    static let listExperiment = DefaultsKey<Bool>("listExperiment")
+}
+
 
 class CommandLineListCommand: OptionCommandType {
     
+    init () {
+        Defaults[.listNuclease] = false
+        Defaults[.listExperiment] = false
+        
+    }
+
     var commandName: String  {
         return "list"
     }
     
     var commandSignature: String  {
-        return "<cas9|species|targets>"
+        return ""
     }
     
     var commandShortDescription: String  {
-        return "List base database items"
+        return "List base database - items = cas9, experiments, targets, sources"
     }
 
+    
     func setupOptions(options: Options) {
+        options.onFlags(["-e", "--experiments"], usage: "List experiments by users and date") {(flag) in
+            Defaults[.listExperiment] = true
+        }
+        options.onFlags(["-n", "--nucleases"], usage: "List nucleases with known PAMs") {(flag) in
+
+            Defaults[.listNuclease] = true
+        }
         
     }
     
     func execute(arguments: CommandArguments) throws  {
-        
+        if Defaults[.listExperiment] {
+            print ("Conducted experiments")
+        } else if Defaults[.listNuclease] {
+            print("Available nucleases with PAMs and PAMs' default affinity:")
+            Variant.showWithOriginEndPAM()
+        } else {
+            print("CSH \(self.commandShortcut)")
+        }
+                
     }
 }

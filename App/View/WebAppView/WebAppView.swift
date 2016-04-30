@@ -59,20 +59,23 @@ public class WebAppView: GeneralView {
             var pams: [Any] = []
             
             
-            
             for pam in PAM.findAll () { //select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM] {
+                print ("FINDALL")
                 pams.append(self.createDictFromInstance(pam))
             }
             
-            var nucleases: [Any] = []
+            var variants: [Any] = []
             
             
-            for nuclease in Nuclease.findAll () { //select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM] {
-                nucleases.append(self.createDictFromInstance(nuclease))
+            for variant in Variant.findAll () { //select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM] {
+                print ("FINDALL VARIANT")
+                variants.append(self.createDictFromInstance(variant))
             }
             
-            let context:[String: Any] = ["pams": pams, "nucleases": nucleases]
+            let context:[String: Any] = ["pams": pams, "nucleases": variants]
             
+            print ("PAMS \(pams)")
+            print ("Nucelases \(variants)")
             
             
             return Action.render("index", context: context)
@@ -97,7 +100,7 @@ public class WebAppView: GeneralView {
         print ("Starting webapp on port \(port)")
         
         webApp.listen(port).onSuccess { server in
-            print("Design Guide is running on port \(server.port)")
+            print("Design Guide is running on http://127.0.0.1:\(server.port)")
             
         }
         webApp.run()

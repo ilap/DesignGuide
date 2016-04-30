@@ -40,12 +40,84 @@ enum Direction: Int8 {
 // due to the table structure changes in the database would affect our 
 // Business logic layer.
 //
+
+protocol CamembertModelType {
+    associatedtype T
+    static func findAll() -> [T]
+}
+
+
 // Base Tables
 class Species: CamembertModel {
-    var name: TEXT = ""
-    var sequence_file: TEXT = ""
-    var length: INTEGER = 0
+    var genus: TEXT = ""
+    var species: TEXT = ""
+    var descr: TEXT = ""
+    class func findAll() -> [Species] {
+        return Species.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [Species]
+    }
+
 }
+
+class Endonuclease: CamembertModel, CamembertModelType {
+    var name: TEXT = ""
+    var descr: TEXT = ""
+    class func findAll() -> [Endonuclease] {
+        return Endonuclease.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [Endonuclease]
+    }
+}
+
+class Variant: CamembertModel, CamembertModelType {
+    var species_id: INTEGER = 0
+    var endonuclease_id: INTEGER = 0
+    var name: TEXT = ""
+    var seed_length: INTEGER = 0
+    var spacer_length: INTEGER = 0
+    var sense_cut_offset: INTEGER = 0
+    var antisense_cut_offset: INTEGER = 0
+    
+    // TODO: Make Camambert using enums
+    var guide_target_position: BIT = true // true downstream false upstream relatove to PAM
+    var descr: TEXT = ""
+    class func findAll() -> [Variant] {
+        return Variant.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [Variant]
+    }
+    
+    class func showWithOriginEndPAM () {
+        let variants = Variant.findAll()// select(selectRequest: Select.Where("endonuclease_id", .EqualsTo, s.id!, .Ascending, "1"))! as! [Variant]
+
+        for variant in variants {
+            let pams = PAM.select(selectRequest:  Select.Where("variant_id", .EqualsTo, variant.id!, .Ascending, "1"))! as! [PAM]
+            if pams.isEmpty {
+                continue
+            }
+            var spams: String = ""
+            for pam in pams {
+                spams += " "
+                spams += pam.sequence
+                spams += "("
+                spams += String(pam.survival*100)
+                spams += "%)"
+            }
+            print("\t\(variant.name) - \(spams)")
+            
+        }
+    }
+}
+
+
+class PAM: CamembertModel, CamembertModelType  {
+    var variant_id: INTEGER = 0
+    var sequence: TEXT = ""
+    var survival: REAL =  0.0
+    
+    class func findAll() -> [PAM] {
+        return PAM.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM]
+    }
+}
+
+
+
+// Experimental Tables
 
 class Target: CamembertModel {
     var name: TEXT = ""
@@ -54,40 +126,6 @@ class Target: CamembertModel {
     var downstream: INTEGER = 0
 }
 
-class TargetHit: CamembertModel {
-    var species_id: INTEGER = 0
-    var target_id: INTEGER = 0
-    var position: INTEGER = 0
-    var length: INTEGER = 0
-    // TODO: Make Camambert using enums
-    var strand: BIT = true
-    var score: REAL = 0.0
-}
-
-class PAM: CamembertModel {
-    var nuclease_name: TEXT = ""
-    var nuclease_origin: TEXT = ""
-    var pam: TEXT = ""
-    
-    class func findAll() -> [PAM] {
-        return PAM.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM]
-    }
-}
-
-class Nuclease: CamembertModel {
-    var name: TEXT = ""
-    var origin: TEXT = ""
-    var pam: TEXT = ""
-    var type: INTEGER = 0
-    var seed_length: INTEGER = 0
-    // TODO: Make Camambert using enums for pam direction e.g. up/down stream.
-    var pam_direction: INTEGER = 0
-    var cut_offset: INTEGER = 0
-    
-    class func findAll() -> [Nuclease] {
-        return Nuclease.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [Nuclease]
-    }
-}
 
 // Guide Tables (generated}
 class Guide: CamembertModel {

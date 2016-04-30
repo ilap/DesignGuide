@@ -43,7 +43,8 @@ class SQLiteDataStore {
         // TODO: fix for Linux
         if var path = NSBundle.mainBundle().resourcePath {
             path +=  "/database"
-            self.initialised = Camembert.initDataBase(path, nameDatabase: "base.sqlite")
+            self.initialised = Camembert.initDataBase(path, nameDatabase: "design_guide.sqlite") //"base.sqlite")
+            //ILAP: print ("Database is set on:  \(path)/design_guide.sqlite")
         }
     }
     

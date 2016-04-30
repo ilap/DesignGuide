@@ -1,3 +1,5 @@
+PRAGMA foreign_keys=ON;
+
 insert into Nuclease (name, origin, type, seed_length, pam_direction, cut_offset) VALUES ("Cas9", "S. pyogenes", 0, 12, 0, 4);
 insert into Nuclease (name, origin, type, seed_length, pam_direction, cut_offset) VALUES ("Cas9", "S. pyogenes", 1, 12, 0, 4);
 

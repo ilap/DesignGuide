@@ -52,6 +52,8 @@
 		EE8D23591CCADFAA00D2704B /* CamembertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D23531CCADFAA00D2704B /* CamembertModel.swift */; };
 		EE8D235A1CCADFAA00D2704B /* ExtensionsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D23541CCADFAA00D2704B /* ExtensionsClass.swift */; };
 		EE8D235B1CCADFAA00D2704B /* CamembertMisc.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8D23571CCADFAA00D2704B /* CamembertMisc.m */; };
+		EE99406B1CD4F4570034DE6D /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE99406A1CD4F4570034DE6D /* SwiftyUserDefaults.swift */; };
+		EEA8C1B31CD0D1DA004F4990 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA8C1B21CD0D1DA004F4990 /* Extensions.swift */; };
 		EEAC63791C9AFF4D00164943 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAC63771C9AFF4100164943 /* main.swift */; };
 		EEBFFDD51CA0582A00CC992B /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE991C9B101E002E5DCA /* BrightFutures.framework */; };
 		EEBFFDD61CA0582A00CC992B /* ExecutionContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9A1C9B101E002E5DCA /* ExecutionContext.framework */; };
@@ -125,6 +127,8 @@
 		EE8D23551CCADFAA00D2704B /* DesignGuide-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DesignGuide-Bridging-Header.h"; path = "Core/DataAccess/DesignGuide-Bridging-Header.h"; sourceTree = "<group>"; };
 		EE8D23561CCADFAA00D2704B /* Camembert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camembert.h; path = Core/DataAccess/Camembert.h; sourceTree = "<group>"; };
 		EE8D23571CCADFAA00D2704B /* CamembertMisc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CamembertMisc.m; path = Core/DataAccess/CamembertMisc.m; sourceTree = "<group>"; };
+		EE99406A1CD4F4570034DE6D /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
+		EEA8C1B21CD0D1DA004F4990 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EEAC63561C9AF9CD00164943 /* DesignGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAC63771C9AFF4100164943 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		EEFD834B1CA4A0D400B7B540 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -293,6 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				EEB849A91CA58B330004BD7C /* DataAccess */,
+				EEA8C1B21CD0D1DA004F4990 /* Extensions.swift */,
+				EE99406A1CD4F4570034DE6D /* SwiftyUserDefaults.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE8D235B1CCADFAA00D2704B /* CamembertMisc.m in Sources */,
+				EEA8C1B31CD0D1DA004F4990 /* Extensions.swift in Sources */,
 				EE8D23471CCADF7100D2704B /* GraphicalUserInterfaceCommand.swift in Sources */,
 				EE8D23591CCADFAA00D2704B /* CamembertModel.swift in Sources */,
 				EE8D23511CCADF8900D2704B /* WebAppView.swift in Sources */,
@@ -397,6 +404,7 @@
 				EE8D234C1CCADF7C00D2704B /* CommandLineListCommand.swift in Sources */,
 				EE7F4EA81CA07DB70035B09F /* ManagerModels.swift in Sources */,
 				EE8D234B1CCADF7C00D2704B /* CommandLineCommand.swift in Sources */,
+				EE99406B1CD4F4570034DE6D /* SwiftyUserDefaults.swift in Sources */,
 				EE7F4E9E1CA05F8C0035B09F /* DesignGuideModels.swift in Sources */,
 				EE8D22A81CCAB93800D2704B /* GeneralView.swift in Sources */,
 				EE8D23501CCADF8900D2704B /* WebAppCommand.swift in Sources */,

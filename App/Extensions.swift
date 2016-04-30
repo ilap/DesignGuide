@@ -19,41 +19,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import SwiftCLI
+import Foundation
 
-class WebAppCommand: OptionCommandType {
-
-    private var port: Int = 9000
-
-    
-    var commandName: String  {
-        return "webapp"
-    }
-    
-    var commandSignature: String  {
-        return ""
-    }
-    
-    var commandShortDescription: String  {
-        return "Run Design Guide RNA Tool as Web Application"
-    }
-    
-    func setupOptions(options: Options) {
-        options.onKeys(["-p", "--listen-port"], usage: "Webapp's listening port - default 8000") {(key, value) in
+extension String {
+    func toBool() -> Bool? {
+        
+        var result: Bool?
+        
+        switch self.lowercaseString {
+            case "true", "yes":
+                result = true
+            case "false", "no":
+                result = false
+            default:
+                result = nil
             
-            if let port = Int(value) {
-                self.port = port
-            }
         }
-    }
-    
-    func execute(arguments: CommandArguments) throws  {
         
-        print ("Starting as Web Application...")
-        let webApp = WebAppView()
-        webApp.execute()
-        
+        return result
     }
-    
-    
 }

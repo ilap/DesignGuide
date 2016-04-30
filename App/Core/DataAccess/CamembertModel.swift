@@ -457,9 +457,12 @@ class CamembertModel : NSObject {
             break;
         }
         CamembertModel.openConnection()
-        print ("REQUEST SELECT: \(requestSelect) \(table)")
+        // DEBUG: print ("REQUEST SELECT: \(requestSelect) \(table!)")
+        
         if let ret = camembert.getObjectsWithQuery(requestSelect!, table: table!) {
+            //ILAP: print ("RET: \(ret)")
             return ret
+            
         }
         return nil
     }

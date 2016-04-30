@@ -1,3 +1,5 @@
 <script type="application/javascript" src="/assets/js/jquery.min.js"></script>
 <script type="application/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script type="application/javascript" src="/assets/js/highlight.pack.js"></script>
+<script type="application/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+<script type="application/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>

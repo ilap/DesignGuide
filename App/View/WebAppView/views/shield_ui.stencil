@@ -1,0 +1,79 @@
+<strong>Master Grid</strong>
+<div id="grid1"></div>
+<br />
+<br />
+<strong>Details Grid</strong>
+<div id="grid2"></div>
+<script src="/assets/js/gridData.js"></script>
+<script type="text/javascript">
+var firstGridData = createFirstGridData(10);
+var secondGridData = createSecondGridData(10);
+function createFirstGridData(count) {
+var data = [];
+for (var i = 0; i < count; i++) {
+data.push({
+id: i,
+year: 2000 + i,
+price: 1000 - i
+});
+}
+return data;
+}
+function createSecondGridData(count) {
+var data = [];
+for (var i = 0; i < count; i++) {
+for (var j = 0; j < count; j++) {
+data.push({
+id: j + i,
+productsCount: (j + i + i),
+parentID: i
+});
+}
+}
+return data;
+}
+$(document).ready(function () {
+$("#grid1").shieldGrid({
+dataSource: {
+data: firstGridData
+},
+paging: {
+pageSize: 5
+},
+selection: {
+type: "row",
+multiple: false
+},
+events: {
+selectionChanged: onSelectionChanged
+},
+columns: [
+{ field: "id", width: "70px", title: "ID" },
+{ field: "year", title: "Year" },
+{ field: "price", title: "Price" }
+]
+});
+});
+function onSelectionChanged(e) {
+var selectedItemID = $("#grid1").swidget().contentTable.find(".sui-selected").get(0).cells[0].innerHTML;
+var secondGrid = $("#grid2").swidget();
+if (secondGrid) {
+secondGrid.dataSource.filter.value = selectedItemID;
+secondGrid.refresh();
+}
+else {
+$("#grid2").shieldGrid({
+dataSource: {
+data: secondGridData,
+filter: { path: "id", filter: "eq", value: selectedItemID }
+},
+paging: true,
+columns: [
+{ field: "id", width: "100px", title: "ID" },
+{ field: "productsCount", title: "Products Count" },
+{ field: "parentID", title: "Parent ID" }
+]
+});
+}
+}
+</script>

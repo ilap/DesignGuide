@@ -1,23 +1,23 @@
-<script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-</script>
-<!-- # Upload file form, planned for the future features...
-    <form  method="post" enctype="multipart/form-data">
-    <p>{{ form.non_field_errors }}</p>
-    <p>{{ form.fasta_file.label_tag }}</p>
-    <p>{{ form.fasta_file.help_text }}</p>
-    <p>{{ form.fasta_file.errors }}</p>
-    <p>{{ form.fasta_file }}</p>
-    <p><input type="submit" value="Upload"/></p>
-</form>
--->
 <!-- Good infield and other examples
 http://codepen.io/willthemoor/pen/dooRag
 http://plnkr.co/edit/fAedI6CCurweavYN5iNS?p=preview
 http://getbootstrap.com/javascript/#tabs
 http://www.chidgilovitz.com/displaying-django-form-field-help-text-in-a-bootstrap-3-popover/
+-->
+<script>
+$(function () {
+$('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+<!-- # Upload file form, planned for the future features...
+<form  method="post" enctype="multipart/form-data">
+<p>{{ form.non_field_errors }}</p>
+<p>{{ form.fasta_file.label_tag }}</p>
+<p>{{ form.fasta_file.help_text }}</p>
+<p>{{ form.fasta_file.errors }}</p>
+<p>{{ form.fasta_file }}</p>
+<p><input type="submit" value="Upload"/></p>
+</form>
 -->
 
 <form id="query_form" class="form-horizontal" method="post"
@@ -82,7 +82,7 @@ http://www.chidgilovitz.com/displaying-django-form-field-help-text-in-a-bootstra
             <input type="hidden" value="{{ nuclease.id }}" name="nuclease">
             <select class="form-control" name="pam">
                 {% for pam in pams %}
-                <option value="{{ pam.id }}">{{ pam.pam }}</option>
+<option value="{{ pam.id }}">{{ pam.sequence }} ({{ pam.survival}} * 100 %}%)</option>
                 {% endfor %}
                 <option value="-1">Try all of the above </option>
             </select>
