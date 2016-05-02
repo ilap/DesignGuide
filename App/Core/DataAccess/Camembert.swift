@@ -157,13 +157,13 @@ class Camembert {
                 
 
                 let casev = sqlite3_column_type(ptrRequest, CInt(index))
-                //ILAP: print ("FORKEY: \(columName) \(query) \(ptrRequest) Type value: \(casev)")
+                //ILAP:  print ("FORKEY: \(columName) \(query) \(ptrRequest) Type value: \(casev)")
                 
                 switch  casev {
                 case SQLITE_INTEGER:
                     let A = (Int(sqlite3_column_int(ptrRequest,
                         CInt(index))) as AnyObject)
-                    //print ("AAAAAA \(A)")
+                    // ILAP: print ("AAAAAA \(columName) \(A) \(currentObject.getValue)")
                     currentObject.getValue
                     currentObject.setValue(A, forKey: columName)
                 case SQLITE_FLOAT:
@@ -176,6 +176,9 @@ class Camembert {
                     } else {
                         currentObject.setValue(stringValue, forKey: columName)
                     }
+                case SQLITE_NULL:
+                    Void()
+                    //print("NUUUUUUULLLLLL")
                     
                 default: Void()
                     

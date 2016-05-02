@@ -22,24 +22,26 @@
 import BioSwift
 
 public class CommandLineView: GeneralView {
-    var conf : NSUserDefaults?
+    let parameters = RuntimeParameters.sharedInstance
     
-    
-    public func execute() {
+    public func execute() throws {
         let start = NSDate()
         //var seqIO = SeqIO(path: "/Users/ilap/Developer/Dissertation/DesignGuide/Utils/Sequences/Bacillus_subtilis-ATCC6051_whole_genome/sequence.fasta.txt")
-        //let sr = seqIO!.parse()
-        let seqrecords = try SeqIO.parse("/Users/ilap/Developer/Dissertation/Sequences/Source1/sequence.fasta.txt")
+        guard let seqrecords = try SeqIO.parse(parameters.source) else { return }
+        
+        //print("SEQRECORD.... \(seqrecords)")
+        let seqRecord = seqrecords[0]!
         
         let end = NSDate()
         let timeInterval: Double = end.timeIntervalSinceDate(start)
+        
         
         print("Timeinterval \(timeInterval)")
         
         
         
-        print ("GC Content \(seqrecords[0]!.gcContent.format(".2"))")
-        print ("Bases \(seqrecords[0]!.bases)")
-        print ("Length \(seqrecords[0]!.length)")
+        print ("GC Content \(seqRecord.gcContent.format(".2"))")
+        print ("Bases \(seqRecord.bases)")
+        print ("Length \(seqRecord.length)")
     }
 }

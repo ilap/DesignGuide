@@ -72,8 +72,8 @@ class Variant: CamembertModel, CamembertModelType {
     var name: TEXT = ""
     var seed_length: INTEGER = 0
     var spacer_length: INTEGER = 0
-    var sense_cut_offset: INTEGER = 0
-    var antisense_cut_offset: INTEGER = 0
+    var sense_cut_offset: INTEGER = Int.min
+    var antisense_cut_offset: INTEGER = Int.min
     
     // TODO: Make Camambert using enums
     var guide_target_position: BIT = true // true downstream false upstream relatove to PAM
@@ -82,7 +82,7 @@ class Variant: CamembertModel, CamembertModelType {
         return Variant.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [Variant]
     }
     
-    class func showWithOriginEndPAM () {
+    class func printWithOriginEndPAM () {
         let variants = Variant.findAll()// select(selectRequest: Select.Where("endonuclease_id", .EqualsTo, s.id!, .Ascending, "1"))! as! [Variant]
 
         for variant in variants {
@@ -98,7 +98,7 @@ class Variant: CamembertModel, CamembertModelType {
                 spams += String(pam.survival*100)
                 spams += "%)"
             }
-            print("\t\(variant.name) - \(spams)")
+            print("\t\"\(variant.name)\" - \(spams)")
             
         }
     }

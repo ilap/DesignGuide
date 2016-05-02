@@ -24,65 +24,9 @@ import SQLite
 
 
 class CommandLineCommand: OptionCommandType {
+    
+    let parameters = RuntimeParameters.sharedInstance
 
-    // The mandatory options are 
-    // 1. -s: Source sequence (dir including sequence or sequence file) -s "/Users/ilap/sequence/Sources"
-    // 2. -t: Target in the source that can be either of:
-    //      2.1 Sequence file includes one or more sequences e.g. -t "/tmp/Targers.fasta"
-    //      2.2 gene name(s) if the source is annotated  e.g. -t "lacZ" or -t "lacZ dacA"
-    //      2.3 start and end position or start and length in the Source sequences.
-    //           Length can be 1 for a single point mutation.
-    // 3. -e -[-p] or -p: Endonuclease and/or PAM sequence it can be derivated from either of:
-    //      3.1 endonuclease e.g. -e "wtCas9" (it has NGG, NAG, NGA and NAA), if database is used
-    //      3.2 from explcicite string separated by whitte spaces -p "NAANG NAANGGA" if custom values are used
-    //      3.3 combine both of the above -e "wtCas9" -p "NGG" only "NGG" of wtCas9 is considered, if database is used.
-    //
-    // Semi optional paramterers (based on the the settings from database or users)
-    //  1. -c "<sense cut> [antisense cut]": Cut sites to PAMs start (if RNA target is downstream) or end (if RNA target is upstream)
-    //      e.g. -c "4" (both sites are cut at the same position), relative to PAM -c "4 5" means cut site on sense strand is 4 and 5 on antisense strain
-    //  2. -n "<+|->": Nickase, means only one cut site. - Default is "+", means antisense.
-    //      Note: Not valid if two cut sites are given.
-    //  3. -d "<+|->": RNA target direction, relative to PAM, "-" - Default is "-" (downstream)
-    //
-    // Others are optional:
-    //  1. -L <17-100>: Spacer length - default 20
-    //  2. -l <0..spacer lentgth>:Seed length - default 10
-    //  3. -o <0..2000>: Target offset, means offset of up/down stream of the target start and and position - default 0
-    
-    // Custom versus database parameter eamples:
-    // cli db -s "/tmp/Sequences" -t "/tmp/Targets.fasta" -n wtCas9 -p "NGG NAG" -o 1000 // Only NGG and NAG is considered of the currently 4 PAMs of wtCas9
-    // All the semi optinal parameters (-c) are invalid
-    //
-    // cli custom -s "/tmp/Sequences" -t "/tmp/Targets.fasta" -p "NGG" -d down -c "4" -n +1 -o 2000
-    // -n is invalid if more than one cut sites are given e.g. -c "4 5"
-    
-    // Mandatory parameters
-    private var source: String? = nil
-    
-    private var target: String? = nil
-    private var targetSequence: String? = nil
-    private var targetLocation: Int = 0
-    private var targetStart: Int = 0
-    private var targetEnd:  Int = 0
-    
-    private var pam: String? = "NGG"
-
-    //Semi optional parameters
-    private var senseCutOffset: Int = 0
-    private var antisenseCutOffset: Int = 0
-    private var isNickase: Bool = false
-    
-    private var pamDirection: Bool = false // false downstream, true upstream
-    
-    
-    //Optional parameters
-    private var spacerLength: Int = 20
-    private var seedLength: Int = 10
-    private var targetOffset: Int = 0
-    
-
-    // NOT HERE: private var considerAlternatePAMsInOffTargets = true
-    private var useDatabase: Bool = false
     
     var commandName: String  {
         return "cli"
@@ -97,57 +41,125 @@ class CommandLineCommand: OptionCommandType {
     }
     
     func setupOptions(options: Options) {
+        
+        // Mandatory parameters
         options.onKeys(["-s", "--source"], usage: "Direcotry or a sequence file") {(key, value) in
-            self.source = value
+            self.parameters.source = value
         }
-        options.onKeys(["-t", "--target"], usage: "Sequence file, gene name or start position and its length.", valueSignature: "start end") {(key, value) in
-            self.target = value
+        
+        options.onKeys(["-t", "--target"], usage: "Start position, sequence file or a gene name (if the source file is annotated).", valueSignature: "target") {(key, value) in
+            self.parameters.target = value
         }
+        
+        options.onKeys(["-T", "--target-length"], usage: "Target length if the \"target\" is a position and not a gene name or sequence file", valueSignature: "length") {(key, value) in
+            self.parameters.targetEnd = Int (value)
+        }
+        
         options.onKeys(["-e", "--endonuclease"], usage: "Available endonucleases - default: \"wtCas9\", use \"see list -n\" command for Cas9 variants", valueSignature: "endonuclease" ) {(key, value) in
-            //self.spacerLength = Int(value)!
-            print("VALUE: \(value)")
+           self.parameters.endonuclease = value
         }
         
         options.onKeys(["-p", "--pam"], usage: "PAM sequence - default is \"NGG\"", valueSignature: "PAMs" ) {(key, value) in
-            //self.spacerLength = Int(value)!
-            print("VALUE: \(value)")
+            let pams = value.characters.split(" ").map(String.init)
+            self.parameters.pams = pams
         }
 
-
         
-        
-        options.onKeys(["-s", "--spacer-length"], usage: "Spacer length - default is 20", valueSignature: "length" ) {(key, value) in
-            //self.spacerLength = Int(value)!
+        // Optional/semi optionla parameters
+        //
+        // Only valid in custom mode e.g. no Sqlite is used for endonuclease parameters.
+        options.onKeys(["-c", "--cut-sites"], usage: "Cleavage sites relalive to PAM. Both valid values means DSB on different cleavage sites", valueSignature: "sense [antisense]") {(key, value) in
+            
+            
+            let cuts = value.characters.split(" ").map(String.init)
+            
+            self.parameters.senseCutOffset = Int(cuts[0])
+            // TODO: If nickase is set the first value is used for the cut site.
+            if cuts.count > 1 {
+                self.parameters.antisenseCutOffset = Int(cuts[1])
+            }
         }
+        // Optional/semi optionla parameters
+        //
+        // Only valid in custom mode e.g. no Sqlite is used for endonuclease parameters.
+        // Defaults: nil. As it's not valid if the enzyme is not a nickase.
+        options.onKeys(["-n", "--nickase-strand"], usage: "Nick strand, if the endonuclease is a Nickase, default is \"sense\" (sense strand)", valueSignature: "sense|antisense") {(key, value) in
 
-       
+            let upperCaseValue = value.uppercaseString
+            if  upperCaseValue == "SENSE" {
+                self.parameters.nickaseStrand = true
+            } else if upperCaseValue == "ANTISENSE" {
+                self.parameters.nickaseStrand = false
+            }
+            
+            
+        }
         
-        options.onKeys(["-l", "--target-location"], usage: "Target location - StrPosition of ") {(key, value)
-            in
-            if let location = Int(value) {
-                self.targetLocation = location
+        options.onKeys(["-d", "-rna-direction"], usage: "RNA target direction relative to PAM. Default: down (downstream)", valueSignature: "up|down") {(key, value) in
+            
+            // Default is false, means downstream
+            var direction = false
+            if value == "+" {
+                direction = true
+            }
+            
+            self.parameters.RNATargetDirection = direction
+        }
+        
+        options.onKeys(["-L", "--spacer-length"], usage: "RNA Spacer length, default: 17", valueSignature: "10-1000") {(key, value) in
+            
+            guard let spacer_length = Int(value) else { return }
+            
+            if spacer_length >= 0 && spacer_length <= 1000 {
+                self.parameters.spacerLength = spacer_length
             }
         }
         
-        options.onKeys(["-o", "--target-offset"], usage: "Target offset relative to target location", valueSignature: "0-10000") {(key, value) in
+        options.onKeys(["-l", "--seed-length"], usage: "Seed length, default: 10", valueSignature: "0-100") {(key, value) in
             
-            if let offset = Int(value) {
-                self.targetOffset = offset
+            guard let seed_length = Int(value) else { return }
+            
+            if seed_length >= 0 && seed_length <= 100 {
+                self.parameters.seedLength = seed_length
             }
-            
         }
+        
+        options.onKeys(["-l", "--seed-length"], usage: "Seed length, default: 10", valueSignature: "0-100") {(key, value) in
+            
+            guard let seed_length = Int(value) else { return }
+            
+            if seed_length >= 0 && seed_length <= 100 {
+                self.parameters.seedLength = seed_length
+            }
+        }
+        
+        options.onKeys(["-o", "--target-offset"], usage: "Extend target sequence size in the genome for design RNA on each sides of the target sequnce - default 0", valueSignature: "0-10000") {(key, value) in
+            
+            guard let offset = Int(value) else { return }
+            
+            if offset >= 0 && offset <= 10000 {
+                self.parameters.targetOffset = offset
+            }
+        }
+
     }
 
-    
     func execute(arguments: CommandArguments) throws  {
-        print ("Starting as CLI Application...")
+        //ILAP: print ("Starting as CLI Application...")
         
         if let _ = arguments.optionalArgument("db") {
-            useDatabase = true
+            //ILAP: print("Existing sqlite database is used for parameters")
+            self.parameters.useDatabase = true
         }
         
-        //let view = CommandLineView()
-        //view.execute()
+        try self.parameters.validateRuntimeParameters()
+        
+        
+        //ILAP: print("DESC \(parameters.desc())")
+        
+        
+        let view = CommandLineView()
+        try view.execute()
         
     }
     

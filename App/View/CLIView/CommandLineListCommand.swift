@@ -22,20 +22,13 @@
 import SwiftCLI
 import Foundation
 
-extension DefaultsKeys {
-    // For List command
-    static let listNuclease = DefaultsKey<Bool>("listNuclease")
-    static let listExperiment = DefaultsKey<Bool>("listExperiment")
-}
+
 
 
 class CommandLineListCommand: OptionCommandType {
     
-    init () {
-        Defaults[.listNuclease] = false
-        Defaults[.listExperiment] = false
-        
-    }
+    private var listNuclease: Bool = false
+    private var listExperiment: Bool = false
 
     var commandName: String  {
         return "list"
@@ -48,25 +41,23 @@ class CommandLineListCommand: OptionCommandType {
     var commandShortDescription: String  {
         return "List base database - items = cas9, experiments, targets, sources"
     }
-
     
     func setupOptions(options: Options) {
         options.onFlags(["-e", "--experiments"], usage: "List experiments by users and date") {(flag) in
-            Defaults[.listExperiment] = true
+            self.listExperiment = true
         }
         options.onFlags(["-n", "--nucleases"], usage: "List nucleases with known PAMs") {(flag) in
-
-            Defaults[.listNuclease] = true
+            self.listNuclease = true
         }
         
     }
-    
+
     func execute(arguments: CommandArguments) throws  {
-        if Defaults[.listExperiment] {
+        if listExperiment {
             print ("Conducted experiments")
-        } else if Defaults[.listNuclease] {
+        } else if listNuclease {
             print("Available nucleases with PAMs and PAMs' default affinity:")
-            Variant.showWithOriginEndPAM()
+            Variant.printWithOriginEndPAM()
         } else {
             print("CSH \(self.commandShortcut)")
         }

@@ -33,9 +33,7 @@ extension String {
                 result = false
             default:
                 result = nil
-            
         }
-        
         return result
     }
 }

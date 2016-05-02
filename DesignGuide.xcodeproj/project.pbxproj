@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE23330B1CD73162000B7624 /* DesignConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE23330A1CD73162000B7624 /* DesignConfiguration.swift */; };
 		EE36B8AA1CCAA21D00B57835 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */; };
 		EE36B8AB1CCAA28D00B57835 /* BioSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2D5C821CC546FB0073649D /* BioSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EE36B8AC1CCAA38200B57835 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */; };
@@ -95,6 +96,7 @@
 
 /* Begin PBXFileReference section */
 		EE1197551C9B04D1000065C5 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/Dip.framework"; sourceTree = "<group>"; };
+		EE23330A1CD73162000B7624 /* DesignConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignConfiguration.swift; sourceTree = "<group>"; };
 		EE2D5C821CC546FB0073649D /* BioSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BioSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/BioSwift.framework"; sourceTree = "<group>"; };
 		EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCLI.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/SwiftCLI.framework"; sourceTree = "<group>"; };
 		EE7F4E9B1CA05DD90035B09F /* ConnectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionLayer.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				EEB849A91CA58B330004BD7C /* DataAccess */,
 				EEA8C1B21CD0D1DA004F4990 /* Extensions.swift */,
 				EE99406A1CD4F4570034DE6D /* SwiftyUserDefaults.swift */,
+				EE23330A1CD73162000B7624 /* DesignConfiguration.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				EE8D234B1CCADF7C00D2704B /* CommandLineCommand.swift in Sources */,
 				EE99406B1CD4F4570034DE6D /* SwiftyUserDefaults.swift in Sources */,
 				EE7F4E9E1CA05F8C0035B09F /* DesignGuideModels.swift in Sources */,
+				EE23330B1CD73162000B7624 /* DesignConfiguration.swift in Sources */,
 				EE8D22A81CCAB93800D2704B /* GeneralView.swift in Sources */,
 				EE8D23501CCADF8900D2704B /* WebAppCommand.swift in Sources */,
 				EE7F4E9C1CA05DD90035B09F /* ConnectionLayer.swift in Sources */,

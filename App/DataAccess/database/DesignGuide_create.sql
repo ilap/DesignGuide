@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2016-04-27 10:38:59.95
+-- Last modification date: 2016-05-02 06:45:48.836
 
 -- tables
 -- Table: Endonuclease
@@ -90,7 +90,11 @@ CREATE TABLE PAM (
 INSERT INTO PAM (id, variant_id, sequence, survival)  VALUES (1, 1, "NGG", 0.68);
 INSERT INTO PAM (id, variant_id, sequence, survival)  VALUES (2, 1, "NAG", 0.0132);
 INSERT INTO PAM (id, variant_id, sequence, survival)  VALUES (3, 1, "NGA", 0.0020);
-INSERT INTO PAM (id, variant_id, sequence, survival)  VALUES (4, 1, "NAA", 0.007);;
+INSERT INTO PAM (id, variant_id, sequence, survival)  VALUES (4, 1, "NAA", 0.007);
+INSERT INTO PAM (id, variant_id, sequence, survival)  VALUES (5, 2, "NGG", 0.68);
+INSERT INTO PAM (id, variant_id, sequence, survival)  VALUES (6, 2, "NAG", 0.0132);
+INSERT INTO PAM (id, variant_id, sequence, survival)  VALUES (7, 2, "NGA", 0.0020);
+INSERT INTO PAM (id, variant_id, sequence, survival)  VALUES (8, 2, "NAA", 0.007);;
 
 -- Table: Query
 CREATE TABLE Query (
