@@ -19,13 +19,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class CommandLineView: GeneralView {
-    
-    func execute() throws {
-        
-    }
-    func show() throws {
-        
-    }
+import BioSwift
+protocol DesignManagerModel {
+    var items: [CamembertModel] { get }
+    func initialise (depends: DesignManagerModel?, parameters: DesignGuideParameters) throws  -> DesignManagerModel?
+}
 
+protocol DesignableManagerModel {
+    var sequences: [CamembertModel:SeqRecord] { get }
 }

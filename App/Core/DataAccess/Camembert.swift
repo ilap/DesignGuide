@@ -16,7 +16,7 @@ typealias BIT = Bool
 
 
 enum Operator {
-    case LargerThan, LargerOrEqual, SmallerThan,SmallerOrEqual, EqualsTo, IsNull, NotNull
+    case LargerThan, LargerOrEqual, SmallerThan, SmallerOrEqual, EqualsTo, IsNull, NotNull
 }
 
 enum OrderOperator{

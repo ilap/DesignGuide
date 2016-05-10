@@ -30,7 +30,11 @@ enum DataAccessLayerError: ErrorType {
     case NilError
 }
 
-class SQLiteDataStore {
+protocol DataStore {
+    var initialised : Bool { get }
+}
+
+class SQLiteDataStore : DataStore {
     
     var initialised : Bool = false
     //let path =  NSBundle.mainBundle().pathForResource("base", ofType: "sqlite", inDirectory: "Database")
@@ -38,16 +42,8 @@ class SQLiteDataStore {
     static let sharedInstance = SQLiteDataStore()
     
     private init() {
-        // TODO: fix for Linux
-        if var path = NSBundle.mainBundle().resourcePath {
-            
-            path +=  "/database"
-            let nameDatabase = "design_guide.sqlite"
+        if let path = Defaults[.databasePath], let nameDatabase = Defaults[.databaseFile] {
             self.initialised = Camembert.initDataBase(path, nameDatabase: nameDatabase)
-            
-            Defaults[.databasePath] = path
-            Defaults[.databaseFile] = nameDatabase
-            //ILAP: print ("Database is set on:  \(path)/design_guide.sqlite")
         }
     }
     

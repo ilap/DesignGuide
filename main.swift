@@ -19,30 +19,5 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import SwiftCLI
-
-
-CLI.setup(name: "DesignGuide", version: "0.1a", description: "Design Guide Application - CRISPR/Cas9 guide RNA design tool")
-
-let db = SQLiteDataStore.sharedInstance
-
-let defaultCommand = CommandLineCommand()
-//let defaultCommand = WebAppCommand()
-//let defaultCommand = CommandLineListCommand()
-
-CLI.registerCommand(defaultCommand)
-
-//CLI.registerCommand(CommandLineCommand())
-CLI.registerCommand(WebAppCommand())
-CLI.registerCommand(GraphicalUserInterfaceCommand())
-CLI.registerCommand(CommandLineListCommand())
-
-// Run as the default Web App
-CLI.router = DefaultRouter(defaultCommand: defaultCommand)
-
-// Initialise database before start the app...
-//TODO: Use dependency injection instead...
-
-
-let result = CLI.go()
+let result =  ApplicatonController.run()
 exit(result)

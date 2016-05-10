@@ -21,7 +21,7 @@
 
 import SwiftCLI
 
-class GraphicalUserInterfaceCommand: OptionCommandType {
+class GraphicalUserInterfaceCommand: DesignGuideCommand, OptionCommandType {
     
     
     var commandName: String  {

@@ -20,6 +20,7 @@ class CamembertModel : NSObject {
     private class func openConnection() {
         Camembert.closeDataBase()
         if let dbFolder = DataAccess.access.DbPath {
+            //TODO: debugPrint("DBFOLDER: \(dbFolder)")
             Camembert.initDataBase(dbFolder, nameDatabase: DataAccess.access.nameDataBase!)
         }else{
             Camembert.initDataBase(DataAccess.access.nameDataBase!)
@@ -93,6 +94,7 @@ class CamembertModel : NSObject {
             }
         }
         
+        print ("REQUESTPUSH: \(requestPush)\n DB: \(DataAccess.access.nameDataBase!)")
         let result = camembertExecSqlite3(UnsafeMutablePointer<Void>(DataAccess.access.dataAccess),
             requestPush.cStringUsingEncoding(NSUTF8StringEncoding)!)
         self.id = Int(sqlite3_last_insert_rowid(DataAccess.access.dataAccess))

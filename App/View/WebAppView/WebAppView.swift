@@ -26,6 +26,9 @@ import BrightFutures
 //
 public class WebAppView: GeneralView {
     
+    public func show() throws {
+    }
+    
     var port: UInt16
     var webApp = express()
     
@@ -67,9 +70,9 @@ public class WebAppView: GeneralView {
             var variants: [Any] = []
             
             
-            for variant in Variant.findAll () { //select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM] {
+            for nuclease in Nuclease.findAll () { //select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM] {
                 print ("FINDALL VARIANT")
-                variants.append(self.createDictFromInstance(variant))
+                variants.append(self.createDictFromInstance(nuclease))
             }
             
             let context:[String: Any] = ["pams": pams, "nucleases": variants]

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE23330B1CD73162000B7624 /* DesignConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE23330A1CD73162000B7624 /* DesignConfiguration.swift */; };
+		EE2602061CDB8FFA00BA791A /* ApplicationDefaultsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2602051CDB8FFA00BA791A /* ApplicationDefaultsConfiguration.swift */; };
+		EE26020A1CDBCD6000BA791A /* DesignGuideManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2602091CDBCD6000BA791A /* DesignGuideManager.swift */; };
 		EE36B8AA1CCAA21D00B57835 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */; };
 		EE36B8AB1CCAA28D00B57835 /* BioSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2D5C821CC546FB0073649D /* BioSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EE36B8AC1CCAA38200B57835 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */; };
@@ -34,6 +35,16 @@
 		EE36B8C11CCAA38200B57835 /* Express.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE981C9B101E002E5DCA /* Express.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE36B8C21CCAA38200B57835 /* Dip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE1197551C9B04D1000065C5 /* Dip.framework */; };
 		EE36B8C31CCAA38200B57835 /* Dip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE1197551C9B04D1000065C5 /* Dip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EE69C2821CDF3AA200366B31 /* RuntimeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2811CDF3AA200366B31 /* RuntimeParameters.swift */; };
+		EE69C2861CDF480C00366B31 /* OrganismManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2851CDF480C00366B31 /* OrganismManager.swift */; };
+		EE69C2881CDF481B00366B31 /* TargetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2871CDF481B00366B31 /* TargetManager.swift */; };
+		EE69C28A1CDF482C00366B31 /* VariantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2891CDF482C00366B31 /* VariantManager.swift */; };
+		EE69C28C1CDF483F00366B31 /* PamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C28B1CDF483F00366B31 /* PamManager.swift */; };
+		EE69C28E1CDF489800366B31 /* DesignManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C28D1CDF489800366B31 /* DesignManagerModel.swift */; };
+		EE69C2901CDF6A8D00366B31 /* CommandLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C28F1CDF6A8D00366B31 /* CommandLineView.swift */; };
+		EE69C2941CDFBEDF00366B31 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2931CDFBEDF00366B31 /* ApplicationController.swift */; };
+		EE7D7A651CDDF32400781568 /* DesignGuideCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7D7A641CDDF32400781568 /* DesignGuideCommand.swift */; };
+		EE7D7A671CDE46E000781568 /* CommandLineCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7D7A661CDE46E000781568 /* CommandLineCommand.swift */; };
 		EE7F4E9C1CA05DD90035B09F /* ConnectionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F4E9B1CA05DD90035B09F /* ConnectionLayer.swift */; };
 		EE7F4E9E1CA05F8C0035B09F /* DesignGuideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F4E9D1CA05F8C0035B09F /* DesignGuideModels.swift */; };
 		EE7F4EA21CA07BC30035B09F /* DataStorages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F4EA11CA07BC30035B09F /* DataStorages.swift */; };
@@ -44,9 +55,7 @@
 		EE8D233A1CCABF6A00D2704B /* views in Resources */ = {isa = PBXBuildFile; fileRef = EE8D23381CCABF6A00D2704B /* views */; };
 		EE8D233F1CCAC20400D2704B /* database in Resources */ = {isa = PBXBuildFile; fileRef = EE8D233E1CCAC20400D2704B /* database */; };
 		EE8D23471CCADF7100D2704B /* GraphicalUserInterfaceCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D23461CCADF7100D2704B /* GraphicalUserInterfaceCommand.swift */; };
-		EE8D234B1CCADF7C00D2704B /* CommandLineCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D23481CCADF7C00D2704B /* CommandLineCommand.swift */; };
 		EE8D234C1CCADF7C00D2704B /* CommandLineListCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D23491CCADF7C00D2704B /* CommandLineListCommand.swift */; };
-		EE8D234D1CCADF7C00D2704B /* CommandLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D234A1CCADF7C00D2704B /* CommandLineView.swift */; };
 		EE8D23501CCADF8900D2704B /* WebAppCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D234E1CCADF8900D2704B /* WebAppCommand.swift */; };
 		EE8D23511CCADF8900D2704B /* WebAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D234F1CCADF8900D2704B /* WebAppView.swift */; };
 		EE8D23581CCADFAA00D2704B /* Camembert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D23521CCADFAA00D2704B /* Camembert.swift */; };
@@ -96,9 +105,20 @@
 
 /* Begin PBXFileReference section */
 		EE1197551C9B04D1000065C5 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/Dip.framework"; sourceTree = "<group>"; };
-		EE23330A1CD73162000B7624 /* DesignConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignConfiguration.swift; sourceTree = "<group>"; };
+		EE2602051CDB8FFA00BA791A /* ApplicationDefaultsConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationDefaultsConfiguration.swift; sourceTree = "<group>"; };
+		EE2602091CDBCD6000BA791A /* DesignGuideManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideManager.swift; path = Managers/DesignGuideManager.swift; sourceTree = "<group>"; };
 		EE2D5C821CC546FB0073649D /* BioSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BioSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/BioSwift.framework"; sourceTree = "<group>"; };
 		EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCLI.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/SwiftCLI.framework"; sourceTree = "<group>"; };
+		EE69C2811CDF3AA200366B31 /* RuntimeParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuntimeParameters.swift; path = Core/RuntimeParameters.swift; sourceTree = "<group>"; };
+		EE69C2851CDF480C00366B31 /* OrganismManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrganismManager.swift; path = Managers/OrganismManager.swift; sourceTree = "<group>"; };
+		EE69C2871CDF481B00366B31 /* TargetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TargetManager.swift; path = Managers/TargetManager.swift; sourceTree = "<group>"; };
+		EE69C2891CDF482C00366B31 /* VariantManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VariantManager.swift; path = Managers/VariantManager.swift; sourceTree = "<group>"; };
+		EE69C28B1CDF483F00366B31 /* PamManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PamManager.swift; path = Managers/PamManager.swift; sourceTree = "<group>"; };
+		EE69C28D1CDF489800366B31 /* DesignManagerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignManagerModel.swift; path = Managers/DesignManagerModel.swift; sourceTree = "<group>"; };
+		EE69C28F1CDF6A8D00366B31 /* CommandLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineView.swift; path = CLIView/CommandLineView.swift; sourceTree = "<group>"; };
+		EE69C2931CDFBEDF00366B31 /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
+		EE7D7A641CDDF32400781568 /* DesignGuideCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideCommand.swift; path = Commands/DesignGuideCommand.swift; sourceTree = "<group>"; };
+		EE7D7A661CDE46E000781568 /* CommandLineCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandLineCommand.swift; sourceTree = "<group>"; };
 		EE7F4E9B1CA05DD90035B09F /* ConnectionLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionLayer.swift; sourceTree = "<group>"; };
 		EE7F4E9D1CA05F8C0035B09F /* DesignGuideModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignGuideModels.swift; sourceTree = "<group>"; };
 		EE7F4EA11CA07BC30035B09F /* DataStorages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStorages.swift; sourceTree = "<group>"; };
@@ -117,11 +137,9 @@
 		EE8D23371CCABF6A00D2704B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
 		EE8D23381CCABF6A00D2704B /* views */ = {isa = PBXFileReference; lastKnownFileType = folder; path = views; sourceTree = "<group>"; };
 		EE8D233E1CCAC20400D2704B /* database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = database; sourceTree = "<group>"; };
-		EE8D23461CCADF7100D2704B /* GraphicalUserInterfaceCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicalUserInterfaceCommand.swift; path = GUIView/GraphicalUserInterfaceCommand.swift; sourceTree = "<group>"; };
-		EE8D23481CCADF7C00D2704B /* CommandLineCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineCommand.swift; path = CLIView/CommandLineCommand.swift; sourceTree = "<group>"; };
-		EE8D23491CCADF7C00D2704B /* CommandLineListCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineListCommand.swift; path = CLIView/CommandLineListCommand.swift; sourceTree = "<group>"; };
-		EE8D234A1CCADF7C00D2704B /* CommandLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineView.swift; path = CLIView/CommandLineView.swift; sourceTree = "<group>"; };
-		EE8D234E1CCADF8900D2704B /* WebAppCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAppCommand.swift; sourceTree = "<group>"; };
+		EE8D23461CCADF7100D2704B /* GraphicalUserInterfaceCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicalUserInterfaceCommand.swift; path = View/GUIView/GraphicalUserInterfaceCommand.swift; sourceTree = "<group>"; };
+		EE8D23491CCADF7C00D2704B /* CommandLineListCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineListCommand.swift; path = View/CLIView/CommandLineListCommand.swift; sourceTree = "<group>"; };
+		EE8D234E1CCADF8900D2704B /* WebAppCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppCommand.swift; path = View/WebAppView/WebAppCommand.swift; sourceTree = "<group>"; };
 		EE8D234F1CCADF8900D2704B /* WebAppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAppView.swift; sourceTree = "<group>"; };
 		EE8D23521CCADFAA00D2704B /* Camembert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Camembert.swift; path = Core/DataAccess/Camembert.swift; sourceTree = "<group>"; };
 		EE8D23531CCADFAA00D2704B /* CamembertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CamembertModel.swift; path = Core/DataAccess/CamembertModel.swift; sourceTree = "<group>"; };
@@ -195,7 +213,6 @@
 		EE1DB99C1CA6FCA4007E51A3 /* WebAppView */ = {
 			isa = PBXGroup;
 			children = (
-				EE8D234E1CCADF8900D2704B /* WebAppCommand.swift */,
 				EE8D234F1CCADF8900D2704B /* WebAppView.swift */,
 				EE8D23371CCABF6A00D2704B /* public */,
 				EE8D23381CCABF6A00D2704B /* views */,
@@ -203,12 +220,35 @@
 			path = WebAppView;
 			sourceTree = "<group>";
 		};
+		EE2602071CDBCC2100BA791A /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				EE8D23461CCADF7100D2704B /* GraphicalUserInterfaceCommand.swift */,
+				EE8D23491CCADF7C00D2704B /* CommandLineListCommand.swift */,
+				EE7D7A661CDE46E000781568 /* CommandLineCommand.swift */,
+				EE8D234E1CCADF8900D2704B /* WebAppCommand.swift */,
+				EE7D7A641CDDF32400781568 /* DesignGuideCommand.swift */,
+			);
+			name = Commands;
+			sourceTree = "<group>";
+		};
+		EE2602081CDBCD0900BA791A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				EE2602091CDBCD6000BA791A /* DesignGuideManager.swift */,
+				EE69C2851CDF480C00366B31 /* OrganismManager.swift */,
+				EE69C2871CDF481B00366B31 /* TargetManager.swift */,
+				EE69C2891CDF482C00366B31 /* VariantManager.swift */,
+				EE69C28B1CDF483F00366B31 /* PamManager.swift */,
+				EE69C28D1CDF489800366B31 /* DesignManagerModel.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		EE36B8A21CCA926700B57835 /* CLIView */ = {
 			isa = PBXGroup;
 			children = (
-				EE8D23481CCADF7C00D2704B /* CommandLineCommand.swift */,
-				EE8D23491CCADF7C00D2704B /* CommandLineListCommand.swift */,
-				EE8D234A1CCADF7C00D2704B /* CommandLineView.swift */,
+				EE69C28F1CDF6A8D00366B31 /* CommandLineView.swift */,
 			);
 			name = CLIView;
 			sourceTree = "<group>";
@@ -216,7 +256,6 @@
 		EE36B8C81CCAB16E00B57835 /* GUIView */ = {
 			isa = PBXGroup;
 			children = (
-				EE8D23461CCADF7100D2704B /* GraphicalUserInterfaceCommand.swift */,
 			);
 			name = GUIView;
 			sourceTree = "<group>";
@@ -224,6 +263,9 @@
 		EE86BEBE1C9B15A9002E5DCA /* App */ = {
 			isa = PBXGroup;
 			children = (
+				EE69C2931CDFBEDF00366B31 /* ApplicationController.swift */,
+				EE2602081CDBCD0900BA791A /* Managers */,
+				EE2602071CDBCC2100BA791A /* Commands */,
 				EEFD833F1CA4A05B00B7B540 /* Core */,
 				EE86BEE21C9B1710002E5DCA /* Model */,
 				EE86BEBF1C9B15A9002E5DCA /* DataAccess */,
@@ -301,7 +343,8 @@
 				EEB849A91CA58B330004BD7C /* DataAccess */,
 				EEA8C1B21CD0D1DA004F4990 /* Extensions.swift */,
 				EE99406A1CD4F4570034DE6D /* SwiftyUserDefaults.swift */,
-				EE23330A1CD73162000B7624 /* DesignConfiguration.swift */,
+				EE2602051CDB8FFA00BA791A /* ApplicationDefaultsConfiguration.swift */,
+				EE69C2811CDF3AA200366B31 /* RuntimeParameters.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -396,24 +439,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE8D235B1CCADFAA00D2704B /* CamembertMisc.m in Sources */,
+				EE69C2821CDF3AA200366B31 /* RuntimeParameters.swift in Sources */,
 				EEA8C1B31CD0D1DA004F4990 /* Extensions.swift in Sources */,
 				EE8D23471CCADF7100D2704B /* GraphicalUserInterfaceCommand.swift in Sources */,
 				EE8D23591CCADFAA00D2704B /* CamembertModel.swift in Sources */,
 				EE8D23511CCADF8900D2704B /* WebAppView.swift in Sources */,
+				EE7D7A651CDDF32400781568 /* DesignGuideCommand.swift in Sources */,
 				EE8D23581CCADFAA00D2704B /* Camembert.swift in Sources */,
 				EE7F4EA21CA07BC30035B09F /* DataStorages.swift in Sources */,
+				EE2602061CDB8FFA00BA791A /* ApplicationDefaultsConfiguration.swift in Sources */,
 				EEAC63791C9AFF4D00164943 /* main.swift in Sources */,
 				EE8D235A1CCADFAA00D2704B /* ExtensionsClass.swift in Sources */,
 				EE8D234C1CCADF7C00D2704B /* CommandLineListCommand.swift in Sources */,
 				EE7F4EA81CA07DB70035B09F /* ManagerModels.swift in Sources */,
-				EE8D234B1CCADF7C00D2704B /* CommandLineCommand.swift in Sources */,
+				EE69C2901CDF6A8D00366B31 /* CommandLineView.swift in Sources */,
+				EE69C2881CDF481B00366B31 /* TargetManager.swift in Sources */,
+				EE7D7A671CDE46E000781568 /* CommandLineCommand.swift in Sources */,
 				EE99406B1CD4F4570034DE6D /* SwiftyUserDefaults.swift in Sources */,
 				EE7F4E9E1CA05F8C0035B09F /* DesignGuideModels.swift in Sources */,
-				EE23330B1CD73162000B7624 /* DesignConfiguration.swift in Sources */,
+				EE26020A1CDBCD6000BA791A /* DesignGuideManager.swift in Sources */,
 				EE8D22A81CCAB93800D2704B /* GeneralView.swift in Sources */,
+				EE69C2861CDF480C00366B31 /* OrganismManager.swift in Sources */,
+				EE69C28C1CDF483F00366B31 /* PamManager.swift in Sources */,
+				EE69C28A1CDF482C00366B31 /* VariantManager.swift in Sources */,
+				EE69C2941CDFBEDF00366B31 /* ApplicationController.swift in Sources */,
+				EE69C28E1CDF489800366B31 /* DesignManagerModel.swift in Sources */,
 				EE8D23501CCADF8900D2704B /* WebAppCommand.swift in Sources */,
 				EE7F4E9C1CA05DD90035B09F /* ConnectionLayer.swift in Sources */,
-				EE8D234D1CCADF7C00D2704B /* CommandLineView.swift in Sources */,
 				EE7F4EA41CA07C810035B09F /* ServiceProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,5 +21,6 @@
 
 protocol GeneralView {
     
-    func execute() throws;
+    func execute() throws
+    func show() throws
 }

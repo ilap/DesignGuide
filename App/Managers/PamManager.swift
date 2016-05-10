@@ -19,13 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class CommandLineView: GeneralView {
+class PamManager: DesignManagerModel {
     
-    func execute() throws {
+    static let sharedInstance = PamManager()
+    
+    var items: [CamembertModel] = []
+    
+    func initialise (depends: DesignManagerModel? = nil, parameters: DesignGuideParameters) throws  -> DesignManagerModel? {
         
+        return self
     }
-    func show() throws {
-        
-    }
-
 }

@@ -22,10 +22,7 @@
 import SwiftCLI
 import Foundation
 
-
-
-
-class CommandLineListCommand: OptionCommandType {
+class CommandLineListCommand: DesignGuideCommand, OptionCommandType {
     
     private var listNuclease: Bool = false
     private var listExperiment: Bool = false
@@ -57,10 +54,7 @@ class CommandLineListCommand: OptionCommandType {
             print ("Conducted experiments")
         } else if listNuclease {
             print("Available nucleases with PAMs and PAMs' default affinity:")
-            Variant.printWithOriginEndPAM()
-        } else {
-            print("CSH \(self.commandShortcut)")
+            Nuclease.printWithOriginEndPAM()
         }
-                
     }
 }

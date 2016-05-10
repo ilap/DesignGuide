@@ -21,7 +21,12 @@
 
 import SwiftCLI
 
-class WebAppCommand: OptionCommandType {
+class WebAppCommand: DesignGuideCommand, OptionCommandType {
+    
+
+    override init () {
+
+    }
 
     private var port: Int = 9000
 
