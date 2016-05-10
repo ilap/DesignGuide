@@ -38,7 +38,7 @@
 		EE69C2821CDF3AA200366B31 /* RuntimeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2811CDF3AA200366B31 /* RuntimeParameters.swift */; };
 		EE69C2861CDF480C00366B31 /* OrganismManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2851CDF480C00366B31 /* OrganismManager.swift */; };
 		EE69C2881CDF481B00366B31 /* TargetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2871CDF481B00366B31 /* TargetManager.swift */; };
-		EE69C28A1CDF482C00366B31 /* VariantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2891CDF482C00366B31 /* VariantManager.swift */; };
+		EE69C28A1CDF482C00366B31 /* NucleaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C2891CDF482C00366B31 /* NucleaseManager.swift */; };
 		EE69C28C1CDF483F00366B31 /* PamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C28B1CDF483F00366B31 /* PamManager.swift */; };
 		EE69C28E1CDF489800366B31 /* DesignManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C28D1CDF489800366B31 /* DesignManagerModel.swift */; };
 		EE69C2901CDF6A8D00366B31 /* CommandLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE69C28F1CDF6A8D00366B31 /* CommandLineView.swift */; };
@@ -112,7 +112,7 @@
 		EE69C2811CDF3AA200366B31 /* RuntimeParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuntimeParameters.swift; path = Core/RuntimeParameters.swift; sourceTree = "<group>"; };
 		EE69C2851CDF480C00366B31 /* OrganismManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrganismManager.swift; path = Managers/OrganismManager.swift; sourceTree = "<group>"; };
 		EE69C2871CDF481B00366B31 /* TargetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TargetManager.swift; path = Managers/TargetManager.swift; sourceTree = "<group>"; };
-		EE69C2891CDF482C00366B31 /* VariantManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VariantManager.swift; path = Managers/VariantManager.swift; sourceTree = "<group>"; };
+		EE69C2891CDF482C00366B31 /* NucleaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleaseManager.swift; path = Managers/NucleaseManager.swift; sourceTree = "<group>"; };
 		EE69C28B1CDF483F00366B31 /* PamManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PamManager.swift; path = Managers/PamManager.swift; sourceTree = "<group>"; };
 		EE69C28D1CDF489800366B31 /* DesignManagerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignManagerModel.swift; path = Managers/DesignManagerModel.swift; sourceTree = "<group>"; };
 		EE69C28F1CDF6A8D00366B31 /* CommandLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineView.swift; path = CLIView/CommandLineView.swift; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 				EE2602091CDBCD6000BA791A /* DesignGuideManager.swift */,
 				EE69C2851CDF480C00366B31 /* OrganismManager.swift */,
 				EE69C2871CDF481B00366B31 /* TargetManager.swift */,
-				EE69C2891CDF482C00366B31 /* VariantManager.swift */,
+				EE69C2891CDF482C00366B31 /* NucleaseManager.swift */,
 				EE69C28B1CDF483F00366B31 /* PamManager.swift */,
 				EE69C28D1CDF489800366B31 /* DesignManagerModel.swift */,
 			);
@@ -461,7 +461,7 @@
 				EE8D22A81CCAB93800D2704B /* GeneralView.swift in Sources */,
 				EE69C2861CDF480C00366B31 /* OrganismManager.swift in Sources */,
 				EE69C28C1CDF483F00366B31 /* PamManager.swift in Sources */,
-				EE69C28A1CDF482C00366B31 /* VariantManager.swift in Sources */,
+				EE69C28A1CDF482C00366B31 /* NucleaseManager.swift in Sources */,
 				EE69C2941CDFBEDF00366B31 /* ApplicationController.swift in Sources */,
 				EE69C28E1CDF489800366B31 /* DesignManagerModel.swift in Sources */,
 				EE8D23501CCADF8900D2704B /* WebAppCommand.swift in Sources */,

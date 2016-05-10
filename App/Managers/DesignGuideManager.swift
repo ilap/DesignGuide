@@ -57,8 +57,6 @@ class DesignGuideManager {
         
         for (source, seqRecord) in (organismManager as! DesignableManagerModel).sequences {
             print("SOURCE:... \((source as! ModelOrganism).name) \(seqRecord.seq)")
-            
-            
         }
         
         return []

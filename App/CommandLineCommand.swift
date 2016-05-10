@@ -29,7 +29,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
     }
     
     var commandSignature: String  {
-        return "[<db>]"
+        return ""
     }
     
     var commandShortDescription: String  {
@@ -38,7 +38,6 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
     
     func setupOptions(options: Options) {
         
-        // Mandatory parameters
         options.onKeys(["-s", "--source"], usage: "Direcotry includes sequence files or a sequence file") {(key, value) in self
             self.parameters.source = value
         }
@@ -60,52 +59,6 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             
             self.parameters.pams = pams
         }
-        
-        /*// Optional/semi optionla parameters
-        //
-        // Only valid in custom mode e.g. no Sqlite is used for endonuclease parameters.
-        options.onKeys(["-c", "--cut-sites"], usage: "Cleavage sites relalive to PAM. Both valid values means DSB on different cleavage sites", valueSignature: "sense [antisense]") {(key, value) in self
-
-            //TODO:  Value Checks...
-            
-            let sites = value.characters.split(" ").map { Int(String($0)) }
-            if sites.count <= 2 {
-                self.parameters.cutSites = sites
-                for site in sites {
-                    if site == nil {
-                        self.parameters.cutSites = []
-                    }
-                }
-            }
-        }
-        
-        // Optional/semi optionla parameters
-        //
-        // Only valid in custom mode e.g. no Sqlite is used for endonuclease parameters.
-        // Defaults: nil. As it's not valid if the enzyme is not a nickase.
-        options.onKeys(["-n", "--nickase-strand"], usage: "Nick strand, if the endonuclease is a Nickase, default is \"sense\" (sense strand)", valueSignature: "sense|antisense") {(key, value) in self
-            
-            let upperCaseValue = value.uppercaseString
-            if  upperCaseValue == "SENSE" {
-                self.parameters.nickaseStrand = true
-            } else if upperCaseValue == "ANTISENSE" {
-                self.parameters.nickaseStrand = false
-            } else {
-               self.errorMessage = "ERROR: Nisckase strand (-n) must be either \"sense\" or \"antisense\""
-            }
-            
-            
-        }
-        
-        options.onKeys(["-d", "--rna-direction"], usage: "RNA target direction relative to PAM. Default: down (downstream)", valueSignature: "up|down") {(key, value) in self
-            if value.uppercaseString == "UP" {
-               self.parameters.rnaDirection = true
-            } else if value.uppercaseString == "DOWN" {
-                self.parameters.rnaDirection = false
-            }  else {
-               self.errorMessage = "ERROR: RNA direction (-d) must be either \"up\" or \"down\"!"
-            }
-        }*/
         
         options.onKeys(["-L", "--spacer-length"], usage: "RNA Spacer length, default: 17", valueSignature: "10-100") {(key, value) in self
             
@@ -141,7 +94,6 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             } else {
                 self.errorMessage = "ERROR: Target offset (-o) must be between 0 and 10000"
             }
-           
         }
         
     }
@@ -152,6 +104,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         if let _ = self.errorMessage {
             throw CLIError.Error(self.errorMessage!)
         }
+        
         // Check required parameters and there
         if parameters.source == nil || parameters.target == nil || parameters.endoNuclease == nil {
             if !parameters.hasValidTargetWithTargetLength() {
@@ -166,7 +119,6 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             parameters.endoNuclease = "wtCas9"
             parameters.pams = ["NGG", "NAG"]
         }
-        
 
         if  parameters.endoNuclease == nil {
             throw CLIError.Error ("ERROR: Nuclease name (-e parameter) is mandatory in database mode.")

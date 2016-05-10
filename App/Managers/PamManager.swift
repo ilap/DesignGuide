@@ -25,8 +25,7 @@ class PamManager: DesignManagerModel {
     
     var items: [CamembertModel] = []
     
-    func initialise (depends: DesignManagerModel? = nil, parameters: DesignGuideParameters) throws  -> DesignManagerModel? {
-        
+    func initialise (depends: DesignManagerModel? = nil, parameters: DesignGuideParameters) throws  -> DesignManagerModel? {        
         return self
     }
 }

@@ -23,7 +23,6 @@ import SwiftCLI
 
 class GraphicalUserInterfaceCommand: DesignGuideCommand, OptionCommandType {
     
-    
     var commandName: String  {
         return "gui"
     }

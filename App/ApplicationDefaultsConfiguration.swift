@@ -21,11 +21,9 @@ extension DefaultsKeys {
 class ApplicatioinDefaultsConfiguration {
     static let sharedInstance = ApplicatioinDefaultsConfiguration()
     
-    
     private init() {
         // TODO: fix for Linux
         if var path = NSBundle.mainBundle().resourcePath {
-            
             
             path +=  "/database"
             let nameDatabase = "design_guide.sqlite"
@@ -35,9 +33,7 @@ class ApplicatioinDefaultsConfiguration {
             
             path = "sequences"
             Defaults[.blobFilesPath] = path
-            //ILAP: print ("Database is set on:  \(path)/design_guide.sqlite")
-            //
-            
+            //DEBUG: print ("Database is set on:  \(path)/design_guide.sqlite")
         }
     }
     

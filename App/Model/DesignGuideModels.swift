@@ -81,8 +81,8 @@ class Nuclease: CamembertModel, CamembertModelType {
     class func printWithOriginEndPAM () {
         let Nucleases = Nuclease.findAll()// select(selectRequest: Select.Where("endonuclease_id", .EqualsTo, s.id!, .Ascending, "1"))! as! [Nuclease]
 
-        for Nuclease in Nucleases {
-            let pams = PAM.select(selectRequest:  Select.Where("nuclease_id", .EqualsTo, Nuclease.id!, .Ascending, "1"))! as! [PAM]
+        for nuclease in Nucleases {
+            let pams = PAM.select(selectRequest:  Select.Where("nuclease_id", .EqualsTo, nuclease.id!, .Ascending, "1"))! as! [PAM]
             if pams.isEmpty {
                 continue
             }

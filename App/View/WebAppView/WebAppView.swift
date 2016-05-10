@@ -32,11 +32,9 @@ public class WebAppView: GeneralView {
     var port: UInt16
     var webApp = express()
     
-       //let basePath = "/Users/ilap/Developer/Dissertation/WebAppViews"
+    //let basePath = "/Users/ilap/Developer/Dissertation/WebAppViews"
     
-    
-    
-    
+
     init(port: UInt16 = 8000) {
         
         self.port = port
