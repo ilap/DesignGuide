@@ -22,10 +22,14 @@
 import SwiftCLI
 
 public class ApplicatonController {
-    
     static var configured: Bool = false
     
     private static func setup() {
+        // Initialise the Settings and Datastore at application level
+        let configuration = ApplicatioinDefaultsConfiguration.sharedInstance
+        let dataStore = SQLiteDataStore.sharedInstance
+
+
         let defaultCommand = CommandLineCommand()
         //let defaultCommand = WebAppCommand()
         //let defaultCommand = CommandLineListCommand()

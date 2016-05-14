@@ -32,6 +32,8 @@ protocol DesignGuideParameters {
     var spacerLength: Int? { get set }
     var seedLength: Int? { get set }
 
+    var application: Int? { get set }
+
     func parametersDescription()
     func hasValidTargetWithTargetLength() -> Bool
 }
@@ -66,6 +68,8 @@ class RuntimeParameters: DesignGuideParameters {
     
     var endoNuclease: String? = nil
     var pams: [String]? = nil
+
+    var application: Int? = nil
 
     var spacerLength: Int? = nil
     var seedLength: Int? = nil

@@ -20,7 +20,7 @@ class CamembertModel : NSObject {
     private class func openConnection() {
         Camembert.closeDataBase()
         if let dbFolder = DataAccess.access.DbPath {
-            //TODO: debugPrint("DBFOLDER: \(dbFolder)")
+            //debugPrint("DBFOLDER: \(dbFolder)")
             Camembert.initDataBase(dbFolder, nameDatabase: DataAccess.access.nameDataBase!)
         }else{
             Camembert.initDataBase(DataAccess.access.nameDataBase!)
@@ -335,7 +335,7 @@ class CamembertModel : NSObject {
         let table = getRawClassName()
         var requestSelect: String? = nil
         var m_OrderBy = "1";
-        
+
         switch select {
         case .SelectAll(let OrderOperator, let OrderBy):
             var op: String;
@@ -458,8 +458,10 @@ class CamembertModel : NSObject {
             }
             break;
         }
+
+        //print ("REQUEST SELECT: \(requestSelect) \(table!)")
         CamembertModel.openConnection()
-        // DEBUG: print ("REQUEST SELECT: \(requestSelect) \(table!)")
+
         
         if let ret = camembert.getObjectsWithQuery(requestSelect!, table: table!) {
             //ILAP: print ("RET: \(ret)")

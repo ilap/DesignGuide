@@ -27,28 +27,23 @@ class ModelTargetManager: DesignManagerModel {
     
     func initialise (depends: DesignManagerModel? = nil, parameters: DesignGuideParameters) throws  -> DesignManagerModel? {
         guard let _ = depends else {
+            //debugPrint("FATAL ERROR: Model target needs a ModelOrganism")
             throw ModelError.ParameterError("FATAL ERROR: Model target needs a ModelOrganism")
         }
         
-        debugPrint("\(__FILE__):\(__LINE__):invoked")
+        //debugPrint("\(__FILE__):\(__LINE__):invoked")
         
+        var targetOffset: Int? = parameters.targetOffset
         if let _ = parameters.target, let targetLocation = Int(parameters.target!), let targetLength = parameters.targetLength {
             // Length can be 1 as point mutation. but the offset must be set at least 20 bases
             // on both stream...
-            var targetOffset = 0
-            if targetLength < 20 {
-                if let offset = parameters.targetOffset {
-                    if offset < 20 {
-                        throw ModelError.ParameterError("FATAL: Target length and offset are less than 20")
-                    }
-                } else {
-                    // parameter's target offset must be set.
-                    //parameters.targetOffset = Int(20)
-                    targetOffset = 20
-                }
 
+            if targetLength < 20  && targetOffset < 20 {
+                // parameter's target offset must be set.
+                //parameters.targetOffset = Int(20)
+                targetOffset = 20
             }
-            
+
             //It's location target...
             for item  in depends!.items {
                 
@@ -63,20 +58,22 @@ class ModelTargetManager: DesignManagerModel {
                     target.name = "location_" + String(targetLocation)
                     target.location = targetLocation
                     target.length = targetLength
-                    target.offset = targetOffset
+                    //print ("TARGET OFFSET: \(targetOffset) DEFAULT VALUE \(target.offset)")
+                    target.offset = targetOffset ?? target.offset // Set to default
                     target.type = TargetType.Location.rawValue
                     target.descr = "Automatically generated based on Location and length"
                     
-                    print("ADD NEW TARGET \(target)")
+                    //print("ADD NEW TARGET \(target)")
                     items.append(target)
                     target.push()
                 } else {
-                    print("ADD EXISITNG TARGET \(targets.first!)")
+                    //print("ADD EXISITNG TARGET \(targets.first!)")
                     items.append(targets.first!)
                 }
             }
  
         } else {
+            //debugPrint("FATAL: Currently just the location and length supported. Given parameters are: \n Use -t <location> -T <target length> \n\(parameters.parametersDescription())")
             throw ModelError.ParameterError("FATAL: Currently just the location and length supported. Given parameters are: \n Use -t <location> -T <target length> \n\(parameters.parametersDescription())")
         }
         

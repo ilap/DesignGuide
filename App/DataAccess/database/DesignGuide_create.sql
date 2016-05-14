@@ -1,7 +1,21 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2016-05-10 17:57:48.609
+-- Last modification date: 2016-05-14 08:25:22.965
 
 -- tables
+-- Table: Application
+CREATE TABLE Application (
+    id integer NOT NULL,
+    name integer NOT NULL,
+    descr text,
+    CONSTRAINT Application_pk PRIMARY KEY (id),
+    CONSTRAINT Application_ak UNIQUE (name)
+);
+
+INSERT INTO Application (id, name)  VALUES ( 1, "Knock-Out");
+INSERT INTO Application (id, name)  VALUES ( 2, "Knock-In");
+INSERT INTO Application (id, name)  VALUES ( 3, "Activation");
+INSERT INTO Application (id, name)  VALUES ( 4, "Repression");;
+
 -- Table: Experiment
 CREATE TABLE Experiment (
     id integer NOT NULL,
@@ -46,6 +60,7 @@ CREATE TABLE ModelOrganism (
 CREATE TABLE ModelTarget (
     id integer NOT NULL,
     model_organism_id integer NOT NULL,
+    application_id integer NOT NULL DEFAULT 1,
     name integer NOT NULL,
     location integer NOT NULL,
     length integer NOT NULL,
@@ -55,7 +70,9 @@ CREATE TABLE ModelTarget (
     CONSTRAINT ModelTarget_pk PRIMARY KEY (id),
     CONSTRAINT ModelExperiment_ak UNIQUE (location, length, model_organism_id),
     CONSTRAINT ModelExperiment_ModelOrganism FOREIGN KEY (model_organism_id)
-    REFERENCES ModelOrganism (id)
+    REFERENCES ModelOrganism (id),
+    CONSTRAINT ModelTarget_Application FOREIGN KEY (application_id)
+    REFERENCES Application (id)
 );
 
 -- Table: Nuclease
@@ -159,7 +176,24 @@ INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 9, 13, "TTN", 0.
 -- AsCpf1
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (10, 14, "TTN", 0.70);
 -- LbCpf1
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (11, 15, "TTN", 0.70);;
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (11, 15, "TTN", 0.70);
+
+
+-- SpCas9 VRER
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (12, 4, "NGCG", 0.70);
+
+-- SpCas9 EQR
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (13, 5, "NGAG", 0.70);
+
+-- SpCas9 VQR
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (14, 6, "NGAN", 0.70);
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (15, 6, "NGNG", 0.70);
+
+-- NmCas9
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (16, 10, "NNNNGATT", 0.70);
+
+-- TdCas9
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (17, 12, "NAAAAC", 0.70);;
 
 -- Table: User
 CREATE TABLE "User" (
@@ -167,6 +201,7 @@ CREATE TABLE "User" (
     login text NOT NULL,
     first_name text NOT NULL,
     last_name text NOT NULL,
+    email text NOT NULL,
     CONSTRAINT User_pk PRIMARY KEY (id),
     CONSTRAINT User_ak UNIQUE (login)
 );

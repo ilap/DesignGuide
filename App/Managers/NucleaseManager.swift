@@ -31,10 +31,11 @@ class NucleaseManager: DesignManagerModel {
     
     func initialise(depends: DesignManagerModel? = nil, parameters: DesignGuideParameters) throws  -> DesignManagerModel? {
         
-        debugPrint("\(__FILE__):\(__LINE__):invoked")
+        //debugPrint("\(__FILE__):\(__LINE__):invoked")
         if let enzyme = parameters.endoNuclease {
             let nuclease = Nuclease.findByName(enzyme) as [CamembertModel]
             if nuclease.isEmpty || nuclease.count > 1 {
+                //debugPrint("DATABASE ERROR: Endonuclease variant \"\(nuclease)\" is not in or duplicated in the database")
                 throw ModelError.Error("DATABASE ERROR: Endonuclease variant \"\(nuclease)\" is not in or duplicated in the database")
             } else {
                 
@@ -50,7 +51,7 @@ class NucleaseManager: DesignManagerModel {
                     // First check whether the pam sequences provided in the parameters are exists in the Database
                     for pam in pamStrings {
                         if !pamDbSet.contains(pam) {
-                            debugPrint("ERROR: PAM sequence \(pam) is not in the Database \(pamDbSet)")
+                            //debugPrint("ERROR: PAM sequence \(pam) is not in the Database \(pamDbSet)")
                             throw ModelError.Error("ERROR: PAM sequence \(pam) is not in the Database \(pamDbSet)")
                         }
                     }
@@ -62,9 +63,10 @@ class NucleaseManager: DesignManagerModel {
                         }
                     }
                     if pams.isEmpty {
+                        //debugPrint("ERROR: No any PAMs \(pamSet) for variant \(parameters.endoNuclease!) are not found in database")
                         throw ModelError.Error("ERROR: No any PAMs \(pamSet) for variant \(parameters.endoNuclease!) are not found in database")
                     } else {
-                        print("PAMS \(pams)")
+                        //print("PAMS \(pams)")
                     }
                     
                 } else {
@@ -73,6 +75,7 @@ class NucleaseManager: DesignManagerModel {
                 
             }
         } else {
+            // debugPrint("No endonuclease specified!")
             throw ModelError.Error("No endonuclease specified!")
         }
         

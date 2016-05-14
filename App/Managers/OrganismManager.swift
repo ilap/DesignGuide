@@ -70,6 +70,7 @@ class OrganismManager: DesignManagerModel, DesignableManagerModel {
             }
         } else {
             //TODO Throw an error.
+            //debugPrint("Error parsing source file \(source)")
             throw ModelError.FileError("Error parsing source file \(source)")
         }
         
@@ -80,7 +81,7 @@ class OrganismManager: DesignManagerModel, DesignableManagerModel {
     private func processSequenceFile(sequenceFile: String?) throws {
         guard let _ = sequenceFile else { return }
         
-        debugPrint("Processing source sequence file: \(sequenceFile!).")
+        //debugPrint("Processing source sequence file: \(sequenceFile!).")
         
         guard let seqRecords = try SeqIO.parse(sequenceFile) else { return }
         
@@ -117,7 +118,7 @@ class OrganismManager: DesignManagerModel, DesignableManagerModel {
         let hash = seqRecord.seq.sequence.hash
         let results = ModelOrganism.findHash(hash)
         
-        print("RESULST: \(results)")
+        //print("RESULST: \(results)")
         if results.isEmpty {
             return nil
         } else if results.count > 1 {
@@ -128,5 +129,14 @@ class OrganismManager: DesignManagerModel, DesignableManagerModel {
             return results[0]
         }
 
+    }
+
+    func getSeqRecordById(id: Int) -> SeqRecord? {
+        if let idx = items.indexOf({$0.id == id}) {
+            print ("ORGANISM..\(sequences[items[idx]])")
+            return sequences[items[idx]]
+        } else {
+            return nil
+        }
     }
 }

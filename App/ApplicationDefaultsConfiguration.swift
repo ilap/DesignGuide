@@ -33,8 +33,7 @@ class ApplicatioinDefaultsConfiguration {
             
             path = "sequences"
             Defaults[.blobFilesPath] = path
-            //DEBUG: print ("Database is set on:  \(path)/design_guide.sqlite")
+            //print ("Database is set on:  \(Defaults[.databasePath])/\(Defaults[.databaseFile])")
         }
     }
-    
 }

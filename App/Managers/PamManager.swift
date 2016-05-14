@@ -19,11 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import BioSwift
+
 class PamManager: DesignManagerModel {
     
     static let sharedInstance = PamManager()
     
     var items: [CamembertModel] = []
+    var pams: [Seq] = []
     
     func initialise (depends: DesignManagerModel? = nil, parameters: DesignGuideParameters) throws  -> DesignManagerModel? {        
         return self

@@ -75,8 +75,8 @@ public class WebAppView: GeneralView {
             
             let context:[String: Any] = ["pams": pams, "nucleases": variants]
             
-            print ("PAMS \(pams)")
-            print ("Nucelases \(variants)")
+            // print ("PAMS \(pams)")
+            //print ("Nucelases \(variants)")
             
             
             return Action.render("index", context: context)

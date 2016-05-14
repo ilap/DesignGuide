@@ -39,11 +39,10 @@ class DesignGuideCommand {
     }
     
     internal func initialiseAndExecute() throws {
-        
-        debugPrint("\(__FILE__):\(__LINE__): invoked")
+        //debugPrint("\(__FILE__):\(__LINE__): invoked")
         try guideManager.initialiseFromParameters(parameters)
         
-        guideManager.design()
+        try guideManager.design()
     }
     
 }

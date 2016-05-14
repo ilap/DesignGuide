@@ -38,29 +38,29 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
     
     func setupOptions(options: Options) {
         
-        options.onKeys(["-s", "--source"], usage: "Direcotry includes sequence files or a sequence file") {(key, value) in self
+        options.onKeys(["-s", "--source"], usage: "Directory includes sequence file(s) or a sequence file") {(key, value) in self
             self.parameters.source = value
         }
         
-        options.onKeys(["-t", "--target"], usage: "Start position, sequence file or a gene name (if the source genome/file is annotated).", valueSignature: "target") {(key, value) in self
+        options.onKeys(["-t", "--target"], usage: "Start position, sequence file or a gene name (if the source genome/file is annotated (has not implemented yet)).", valueSignature: "target") {(key, value) in self
             self.parameters.target = value
         }
         
-        options.onKeys(["-T", "--target-length"], usage: "Only valid if the target is a location.", valueSignature: "length") {(key, value) in self
+        options.onKeys(["-T", "--target-length"], usage: "Only valid if the target is a location e.g. start position.", valueSignature: "length") {(key, value) in self
             self.parameters.targetLength =  Int (value)
         }
         
-        options.onKeys(["-e", "--endonuclease"], usage: "Available endonucleases - default is \"wtCas9\". Only valid with \"db\" parameter, use \"list -n\" command for Cas9/Cpf1 variants", valueSignature: "endonuclease" ) {(key, value) in self
+        options.onKeys(["-e", "--endonuclease"], usage: "Available endonucleases - default is \"wtCas9\", use \"list -n\" command for obtaining supported Cas9/Cpf1 variants", valueSignature: "endonuclease" ) {(key, value) in self
             self.parameters.endoNuclease = value
         }
         
-        options.onKeys(["-p", "--pam"], usage: "PAM sequence(s) e.g. \"NGG NAG\" - default is \"NGG\"", valueSignature: "PAMs" ) {(key, value) in self
+        options.onKeys(["-p", "--pam"], usage: "PAM sequence(s) e.g. \"NGG NAG\", must be a subset of the chosen nuclease's PAMs - default is all the PAMs of the chosen nuclease", valueSignature: "PAMs" ) {(key, value) in self
             let pams = value.characters.split(" ").map(String.init)
             
             self.parameters.pams = pams
         }
         
-        options.onKeys(["-L", "--spacer-length"], usage: "RNA Spacer length, default: 17", valueSignature: "10-100") {(key, value) in self
+        options.onKeys(["-L", "--spacer-length"], usage: "RNA Spacer length - default is 17", valueSignature: "10-100") {(key, value) in self
             
             guard let spacer_length = Int(value) else { return }
             
@@ -71,7 +71,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             }
         }
         
-        options.onKeys(["-l", "--seed-length"], usage: "Seed length, default: 10", valueSignature: "0-100") {(key, value) in self
+        options.onKeys(["-l", "--seed-length"], usage: "Seed length - default is 10", valueSignature: "0-100") {(key, value) in self
 
             guard let seedLength = Int(value) else { return }
             
@@ -82,7 +82,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             }
         }
         
-        options.onKeys(["-o", "--target-offset"], usage: "Extend target sequence size in the genome for design RNA on each sides of the target sequnce - default 0", valueSignature: "0-10000") {(key, value) in self
+        options.onKeys(["-o", "--target-offset"], usage: "Extend target sequence size in the genome for design RNA on each sides of the target sequnce - default is 0", valueSignature: "0-10000") {(key, value) in self
             
             guard let offset = Int(value) else {
                 self.errorMessage = "ERROR: The target offset (\(value)) value is nut a number!"
@@ -96,6 +96,12 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             }
         }
         
+        options.onKeys(["-a", "--application"], usage: "Application e.g. [\"KO\", \"KI\", \"Activation\" or \"Repression\" - default is \"KO\"", valueSignature: "application" ) {(key, value) in self
+
+            let pams = value.characters.split(" ").map(String.init)
+
+            self.parameters.pams = pams
+        }
     }
     
     
@@ -113,11 +119,13 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             
             // TODO: remove after testing...
             //parameters.source = "/Users/ilap/Developer/Dissertation/Sequences/Source1/sequence.fasta"
-            parameters.source = "/Users/ilap/Developer/Dissertation/Sequences/Source2"
+            parameters.source = "/Users/ilap/Developer/Dissertation/Sequences/Source1in2"
             parameters.target = "250000"
-            parameters.targetLength = 1
+            parameters.targetLength = 3000
+            parameters.targetOffset = 2000
             parameters.endoNuclease = "wtCas9"
             parameters.pams = ["NGG", "NAG"]
+            parameters.spacerLength = 20
         }
 
         if  parameters.endoNuclease == nil {

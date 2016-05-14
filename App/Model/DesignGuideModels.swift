@@ -79,9 +79,9 @@ class Nuclease: CamembertModel, CamembertModelType {
     }
     
     class func printWithOriginEndPAM () {
-        let Nucleases = Nuclease.findAll()// select(selectRequest: Select.Where("endonuclease_id", .EqualsTo, s.id!, .Ascending, "1"))! as! [Nuclease]
+        let nucleases = Nuclease.findAll()// select(selectRequest: Select.Where("endonuclease_id", .EqualsTo, s.id!, .Ascending, "1"))! as! [Nuclease]
 
-        for nuclease in Nucleases {
+        for nuclease in nucleases {
             let pams = PAM.select(selectRequest:  Select.Where("nuclease_id", .EqualsTo, nuclease.id!, .Ascending, "1"))! as! [PAM]
             if pams.isEmpty {
                 continue
@@ -94,7 +94,7 @@ class Nuclease: CamembertModel, CamembertModelType {
                 spams += String(pam.survival*100)
                 spams += "%)"
             }
-            print("\t\"\(Nuclease.name)\" - \(spams)")
+            print("\t\"\(nuclease.name)\" - \(spams)")
             
         }
     }
@@ -133,15 +133,16 @@ class ModelOrganism: CamembertModel {
         let fileManager = NSFileManager.defaultManager()
         
         if fileManager.fileExistsAtPath(toPath) {
-            debugPrint("DATABASE ERROR: \"\(toPath)\" \(DataAccess.access.DbPath)")
+            //debugPrint("DATABASE ERROR: \"\(toPath)\" \(DataAccess.access.DbPath)")
             throw ModelError.Error ("DATABASE ERROR: Inconsistent database, \"\(toPath)\" already exist without any reference record in the database")
         } else {
             do {
-                print("Copying \(fromPath) to \(toPath)")
+               // print("Copying \(fromPath) to \(toPath)")
                 try fileManager.copyItemAtPath(fromPath, toPath: toPath)
                 
             }
             catch let error as NSError {
+                //debugPrint("Cannot copy \(fromPath) to \(toPath): \(error)")
                 throw ModelError.Error("Cannot copy \(fromPath) to \(toPath): \(error)")
             }
         }

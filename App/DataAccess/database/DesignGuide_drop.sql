@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2016-05-10 17:57:48.609
+-- Last modification date: 2016-05-14 08:25:22.965
 
 -- foreign keys
 -- ALTER TABLE DROP CONSTRAINT not supported
@@ -18,7 +18,11 @@
 
 -- ALTER TABLE DROP CONSTRAINT not supported
 
+-- ALTER TABLE DROP CONSTRAINT not supported
+
 -- tables
+DROP TABLE Application;
+
 DROP TABLE Experiment;
 
 DROP TABLE ExperimentGuideRNA;

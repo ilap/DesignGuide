@@ -92,9 +92,11 @@ class Camembert {
         let ret = sqlite3_open(databaseFolder.cStringUsingEncoding(NSUTF8StringEncoding)!,
             &DataAccess.access.dataAccess)
         if ret != SQLITE_OK {
+            //debugPrint("DATABASE ERROR: cannot open database \(DataAccess.access.DbPath) ")
             return createDataBase(databaseFolder, nameDatabase: nameDatabase)
         }
         DataAccess.access.nameDataBase = nameDatabase
+        //print("INFO: \(databaseFolder), \(nameDatabase)")
         return true;
     }
 
