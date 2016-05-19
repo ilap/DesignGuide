@@ -24,11 +24,8 @@ import BrightFutures
 
 // Express example: https://github.com/crossroadlabs/Express/blob/master/Demo/main.swift
 //
-public class WebAppView: GeneralView {
-    
-    public func show() throws {
-    }
-    
+public class WebAppView: BaseView {
+
     var port: UInt16
     var webApp = express()
     
@@ -61,7 +58,7 @@ public class WebAppView: GeneralView {
             
             
             for pam in PAM.findAll () { //select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM] {
-                print ("FINDALL")
+                //print ("FINDALL")
                 pams.append(self.createDictFromInstance(pam))
             }
             
@@ -69,7 +66,7 @@ public class WebAppView: GeneralView {
             
             
             for nuclease in Nuclease.findAll () { //select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM] {
-                print ("FINDALL VARIANT")
+                //print ("FINDALL VARIANT")
                 variants.append(self.createDictFromInstance(nuclease))
             }
             
@@ -97,12 +94,14 @@ public class WebAppView: GeneralView {
         return dict
     }
     
-    public func execute() {
+    public func show() {
         print ("Starting webapp on port \(port)")
-        
+
+        // FIXME: Refactor Webapp to use SqliteContext
+        let _ = SqliteContext()
+
         webApp.listen(port).onSuccess { server in
             print("Design Guide is running on http://127.0.0.1:\(server.port)")
-            
         }
         webApp.run()
     }

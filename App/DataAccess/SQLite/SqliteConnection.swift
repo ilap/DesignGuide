@@ -10,7 +10,7 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ *  This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
@@ -20,8 +20,23 @@
  */
 
 
-let result =  ApplicatonController.run()
+class SqliteContext: DataContext {
 
-exit(result)
+    let initialised: Bool
+
+    init() {
+        if  let path = Defaults[.databasePath],
+            let nameDatabase = Defaults[.databaseFile] {
+
+            initialised = Camembert.initDataBase(path, nameDatabase: nameDatabase)
+            if !initialised {
+                assertionFailure("Cannot initialise the database:\"\(path)\"!")
+            }
+        } else {
+            initialised = false
+            assertionFailure("The databasepatht \"\(Defaults[.databasePath])\" and/or database file \"\(Defaults[.databaseFile])\" is not set up properly!")
+        }
+    }
+}
 
 

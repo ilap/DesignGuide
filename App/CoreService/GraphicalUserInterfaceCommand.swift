@@ -19,9 +19,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import SwiftCLI
 
-let result =  ApplicatonController.run()
 
-exit(result)
-
+class GraphicalUserInterfaceCommand: DesignGuideCommand, OptionCommandType {
+    
+    var commandName: String  {
+        return "gui"
+    }
+    
+    var commandSignature: String  {
+        return ""
+    }
+    
+    var commandShortDescription: String  {
+        return "Run Design Guide RNA Tool as Standalone GUI"
+    }
+    
+    func setupOptions(options: Options) {
+    
+    }
+    
+    func execute(arguments: CommandArguments) throws  {
+        print("GUI Application is not implemented yet!")
+    }
+}
 

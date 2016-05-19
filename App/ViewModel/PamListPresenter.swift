@@ -20,8 +20,24 @@
  */
 
 
-let result =  ApplicatonController.run()
+public class PamListPresenter  {
 
-exit(result)
+    var listCommand : Command? = nil
+
+    // model as Repository e.g. implements CRUD
+    let model: AnyRepository<PAM>
+    //let repository = SqliteRepository<PAM> = SqliteRepository<PAM>(dataContext: DataContext())
+
+    init (model:  AnyRepository<PAM>) {
+        self.model = model
+        //self.canExecute = true
+        self.listCommand = RelayCommand(action: listItems/*, canExecute: canExecute*/)
+    }
 
 
+    func listItems() -> Void {
+        for i in model.getAll() as [PAM] {
+            print (" \(i.id) \(i.sequence)")
+        }
+    }
+}

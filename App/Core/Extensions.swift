@@ -20,8 +20,21 @@
  */
 
 
-let result =  ApplicatonController.run()
+import Foundation
 
-exit(result)
-
-
+extension String {
+    func toBool() -> Bool? {
+        
+        var result: Bool?
+        
+        switch self.lowercaseString {
+            case "true", "yes":
+                result = true
+            case "false", "no":
+                result = false
+            default:
+                result = nil
+        }
+        return result
+    }
+}

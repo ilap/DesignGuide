@@ -10,7 +10,7 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
@@ -19,27 +19,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 import SwiftCLI
 
 public class ApplicatonController {
     static var configured: Bool = false
+
+    // TODO: Use dependency injection instead
+    // Singleton for initialising the Settings application level
+    let configuration = ApplicatioinDefaultsConfiguration.sharedInstance
     
     private static func setup() {
-        // Initialise the Settings and Datastore at application level
-        let configuration = ApplicatioinDefaultsConfiguration.sharedInstance
-        let dataStore = SQLiteDataStore.sharedInstance
 
+        let envService = DesignGuideEnvironmentService()
 
-        let defaultCommand = CommandLineCommand()
+        let defaultCommand = CommandLineCommand(service: envService)
+        //let defaultCommand = CommandLineListCommand(service: envService)
         //let defaultCommand = WebAppCommand()
-        //let defaultCommand = CommandLineListCommand()
+        //let defaultCommand = GraphicalUserInterfaceCommand(service: envService)
         CLI.registerCommand(defaultCommand)
+
         
-        //CLI.registerCommand(CommandLineCommand())
+        //CLI.registerCommand(CommandLineCommand(service: envService))
+        CLI.registerCommand(CommandLineListCommand(service: envService))
         CLI.registerCommand(WebAppCommand())
         CLI.registerCommand(GraphicalUserInterfaceCommand())
-        CLI.registerCommand(CommandLineListCommand())
-        
+
         // Run as the default Web App
         CLI.router = DefaultRouter(defaultCommand: defaultCommand)
         

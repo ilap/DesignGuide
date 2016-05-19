@@ -10,7 +10,7 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ *  This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
@@ -19,9 +19,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+///
+/// Initial simple command pattern for the communication between
+/// View -> ViewModel
+///
+protocol Command {
+    // TODO: Enhance the pattern.
+    func execute() -> Void
+}
 
-let result =  ApplicatonController.run()
+typealias CommandClosure = () -> Void
 
-exit(result)
+// TODO: Implements this
+// http://audreyli.me/2015/07/03/a-design-pattern-story-in-swift-chapter-6-command/
+class RelayCommand: Command {
+    var action: CommandClosure
+    var canExecute: Bool
 
+    init(action: CommandClosure, canExecute: Bool = true) {
+        self.action = action
+        self.canExecute = canExecute
+    }
 
+    func execute() {
+        if canExecute {
+            self.action()
+        }
+        
+    }
+    
+}
