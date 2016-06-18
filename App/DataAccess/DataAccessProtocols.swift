@@ -20,12 +20,12 @@
  */
 
 
-enum DataAccessLayerError: ErrorType {
-    case ConnectionError
-    case InsertError
-    case Deleterror
-    case FindError
-    case NilError
+enum DataAccessLayerError: ErrorProtocol {
+    case connectionError
+    case insertError
+    case deleterror
+    case findError
+    case nilError
 }
 
 
@@ -38,8 +38,8 @@ protocol DataContext {
 public protocol DataServiceProtocol {
     associatedtype T
     static func findAll() -> [T]
-    static func findByValue(column: String, value: Any) -> [T]
-    static func findByValues(queries: [String:Any]) -> [T]
+    static func findByValue(_ column: String, value: Any) -> [T]
+    static func findByValues(_ queries: [String:Any]) -> [T]
     func save() -> Void
 
     init()
@@ -50,11 +50,11 @@ protocol RepositoryProtocol{
     associatedtype T
 
     func create() -> T?
-    func add(item: T) -> Void
+    func add(_ item: T) -> Void
 
     func getAll<T: DataServiceProtocol where T.T == T>() -> [T]
-    func getByValue<T: DataServiceProtocol where T.T ==T>(column: String, value: Any) -> [T]
-    func getByValues<T: DataServiceProtocol where T.T ==T>(queries: [String:Any]) -> [T]
+    func getByValue<T: DataServiceProtocol where T.T ==T>(_ column: String, value: Any) -> [T]
+    func getByValues<T: DataServiceProtocol where T.T ==T>(_ queries: [String:Any]) -> [T]
 
     init(context: DataContext)
 }

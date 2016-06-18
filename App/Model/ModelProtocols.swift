@@ -21,12 +21,12 @@
 
 import BioSwift
 
-public enum ModelError: ErrorType {
-    case Error(String)
-    case FileError(String)
-    case DatabaseError(String)
-    case ParameterError(String)
-    case EmptyError
+public enum ModelError: ErrorProtocol {
+    case error(String)
+    case fileError(String)
+    case databaseError(String)
+    case parameterError(String)
+    case emptyError
 }
 
 protocol DesignableManagerModel {

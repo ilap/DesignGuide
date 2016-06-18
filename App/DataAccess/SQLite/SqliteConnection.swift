@@ -34,7 +34,7 @@ class SqliteContext: DataContext {
             }
         } else {
             initialised = false
-            assertionFailure("The databasepatht \"\(Defaults[.databasePath])\" and/or database file \"\(Defaults[.databaseFile])\" is not set up properly!")
+            assertionFailure("The databasepath \"\(Defaults[.databasePath])\" and/or database file \"\(Defaults[.databaseFile])\" is not set up properly!")
         }
     }
 }

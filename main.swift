@@ -23,5 +23,3 @@
 let result =  ApplicatonController.run()
 
 exit(result)
-
-

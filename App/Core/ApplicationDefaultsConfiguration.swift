@@ -32,7 +32,7 @@ class ApplicatioinDefaultsConfiguration {
     
     private init() {
         // TODO: fix for Linux
-        if var path = NSBundle.mainBundle().resourcePath {
+        if var path = Bundle.main().resourcePath {
             
             path +=  "/database"
             let nameDatabase = "design_guide.sqlite"
@@ -42,7 +42,7 @@ class ApplicatioinDefaultsConfiguration {
             
             path += "/sequences"
             Defaults[.blobFilesPath] = path
-            //debugPrint ("Database is set on:  \(Defaults[.databasePath])/\(Defaults[.databaseFile])")
+            debugPrint ("Database is set on:  \(Defaults[.databasePath])/\(Defaults[.databaseFile])")
         }
     }
 }

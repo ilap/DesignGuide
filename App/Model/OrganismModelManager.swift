@@ -23,6 +23,8 @@ import BioSwift
 
 
 class OrganismModelManager: AnyRepository<ModelOrganism>, DesignableManagerModel {
+    // Using BioSwift's File Utils
+    let fileUtil = BioSwiftFileUtil()
 
     // TODO: should use properties for items
     var organismSequence: [CamembertModel:SeqRecord] = [:]
@@ -31,46 +33,8 @@ class OrganismModelManager: AnyRepository<ModelOrganism>, DesignableManagerModel
         super.init(context: context)
         self.context = context
     }
-    private func isDirectory(path: String) -> Bool {
-        var isDir: ObjCBool = false
-        NSFileManager().fileExistsAtPath(path, isDirectory: &isDir)
-        return Bool(isDir)
-    }
-    
-    func parseSource(source: String) throws -> [String]  {
-    
-        var result: [String] = []
-        let fileManager = NSFileManager.defaultManager()
-    
-        var isDir: ObjCBool = false
-        if fileManager.fileExistsAtPath(source, isDirectory:  &isDir) {
-            if isDir {
-                //let enumerator:NSDirectoryEnumerator = fileManager.enumeratorAtPath(source)
-                //while let element = enumerator?.nextObject() as? String {
-                let files = try fileManager.contentsOfDirectoryAtPath(source)
-                for file in files {
-                    //Add all files but direcotries from the path...
-                    // Handle Unix hidden files..
-                    let fileName = source+"/"+file
-                    if !isDirectory(fileName) && !file.hasPrefix(".") {
-                        //print("ITIS FILE: \(fileName)")
-                        result.append(fileName)
-                    }
-                }
-                
-            } else {
-                result.append(source)
-            }
-        } else {
-            //TODO Throw an error.
-            assertionFailure("Error parsing source file \(source)")
-        }
-        
-        return result
-    }
 
-    
-    private func processSequenceFile(sequenceFile: String?) throws -> [CamembertModel] {
+    private func processSequenceFile(_ sequenceFile: String?) throws -> [CamembertModel] {
         guard let _ = sequenceFile else { return [] }
         
         //debugPrint("Processing source sequence file: \(sequenceFile!).")
@@ -110,7 +74,7 @@ class OrganismModelManager: AnyRepository<ModelOrganism>, DesignableManagerModel
     }
 
 
-    func getModelOrganism(seqRecord: SeqRecord) -> CamembertModel? {
+    func getModelOrganism(_ seqRecord: SeqRecord) -> CamembertModel? {
 
         let hash = seqRecord.seq.sequence.hash
         let results = ModelOrganism.findHash(hash)
@@ -129,24 +93,19 @@ class OrganismModelManager: AnyRepository<ModelOrganism>, DesignableManagerModel
     }
 
 
-    func getOrganismsFromFileOrDB(source: String?) ->  [CamembertModel] {
+    func getOrganismsFromFileOrDB(_ source: String?) throws ->  [CamembertModel] {
 
         var result: [CamembertModel] = []
 
-        do {
-            if let _ = source {
-                for sequenceFile in try parseSource(source!) {
-                    result += try processSequenceFile(sequenceFile)
-                }
+        if let _ = source {
+            for sequenceFile in try fileUtil.getFilesFromPath(source!) {
+                result += try processSequenceFile(sequenceFile)
             }
-        } catch {
-            assertionFailure("Cannot parse file \(source)")
         }
         return result
     }
 
-
-    func getOrgaismAndSequenceById(id: Int) -> (CamembertModel, SeqRecord)? {
+    func getOrgaismAndSequenceById(_ id: Int) -> (CamembertModel, SeqRecord)? {
 
         for (organism, sequence) in organismSequence {
             if organism.id == id {

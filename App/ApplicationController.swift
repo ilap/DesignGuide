@@ -24,12 +24,11 @@ import SwiftCLI
 
 public class ApplicatonController {
     static var configured: Bool = false
-
-    // TODO: Use dependency injection instead
-    // Singleton for initialising the Settings application level
-    let configuration = ApplicatioinDefaultsConfiguration.sharedInstance
     
     private static func setup() {
+        // TODO: Use dependency injection instead
+        // Singleton for initialising the Settings application level
+        let configuration = ApplicatioinDefaultsConfiguration.sharedInstance
 
         let envService = DesignGuideEnvironmentService()
 
@@ -42,7 +41,8 @@ public class ApplicatonController {
         
         //CLI.registerCommand(CommandLineCommand(service: envService))
         CLI.registerCommand(CommandLineListCommand(service: envService))
-        CLI.registerCommand(WebAppCommand())
+        // FIXME: Add this when Express is available for Swift 3
+        // CLI.registerCommand(WebAppCommand())
         CLI.registerCommand(GraphicalUserInterfaceCommand())
 
         // Run as the default Web App

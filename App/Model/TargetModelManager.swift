@@ -28,7 +28,7 @@ class TargetModelManager: AnyRepository<ModelTarget> {
         self.context = context
     }
 
-    func getOrCreateTargetsFromLocation(organism_id: Int, location: Int, length: Int, offset: Int? = nil) -> [CamembertModel] {
+    func getOrCreateTargetsFromLocation(_ organism_id: Int, location: Int, length: Int, offset: Int? = nil) -> [CamembertModel] {
 
         let modelId = organism_id
 

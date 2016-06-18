@@ -22,6 +22,7 @@
 
 
 import BioSwift
+
 public class GuideRNAPresenter {
 
     ///
@@ -45,7 +46,9 @@ public class GuideRNAPresenter {
 
     private var _nuclease: Nuclease? = nil
     private var _targets: [ModelTarget] = []
+    private var _allPAMs: [PAM] = []
     private var _usedPAMs: [PAM] = []
+
     private var _pamLength: Int = 0
 
     private var _location: Int? = nil
@@ -78,7 +81,22 @@ public class GuideRNAPresenter {
         }
     }
 
-    var usedPAMs: [String]  {
+    var allPAMs: [String] {
+        get {
+            if let _ = _nuclease {
+
+                self._allPAMs = pamManager.getByValue("nuclease_id", value: _nuclease!.id!) as [PAM]
+                assert(!_allPAMs.isEmpty, "DATABASE ERROR: There is no PAM for nuclease ID:\(_nuclease!.id!)")
+                return self._allPAMs.map { $0.sequence }
+
+            } else {
+                return []
+            }
+        }
+
+    }
+
+    var usedPAMSequences: [String]  {
         get {
             if !_usedPAMs.isEmpty {
                 return _usedPAMs.map { $0.sequence }
@@ -89,8 +107,37 @@ public class GuideRNAPresenter {
         set {
             //debugPrint ("NEWVALUE: \(newValue)")
             //assert(!newValue.isEmpty, "ERROR: At least one sequence must be chosen.")
+            let pams = self.allPAMs
 
-            if let _ = _nuclease {
+            self._pamLength = pams.first!.characters.count
+            if newValue == [] {
+                _usedPAMs = _allPAMs
+                return
+            } else {
+                let pamSet = Set(newValue)
+                let pamDbSet = Set(_allPAMs.map { $0.sequence} )
+
+                // First check whether the pam sequences provided in the parameters are exists in the Database
+                for pam in newValue {
+                    if !pamDbSet.contains(pam) {
+                        // Invalid parameter
+                        _usedPAMs = []
+                        return
+                    }
+                }
+
+                // Then add the existing PAM object to the PAM array
+                // everything sems good
+                _usedPAMs = []
+                for pam in _allPAMs {
+                    if pamSet.contains (pam.sequence) {
+                        _usedPAMs.append(pam)
+                    }
+                }
+            }
+
+
+            /*if let _ = _nuclease {
                 let allPAMs = pamManager.getByValue("nuclease_id", value: _nuclease!.id!) as [PAM]
                 assert(!allPAMs.isEmpty, "DATABASE ERROR: There is no PAM for nuclease ID:\(_nuclease!.id!)")
 
@@ -125,7 +172,7 @@ public class GuideRNAPresenter {
 
                 //pamSequences.first?.characters.count
                 //print( _usedPAMs.map{ $0.sequence})
-            }
+                */
 
         }
     }
@@ -149,12 +196,12 @@ public class GuideRNAPresenter {
 
     func initialiseComponents() throws {
 
-        if usedPAMs.isEmpty {
-            throw ModelError.ParameterError("FATAL ERROR: Improper values in used PAMs (empty or bad)!")
+        if usedPAMSequences.isEmpty {
+            throw ModelError.parameterError("FATAL ERROR: Improper values in used PAMs (empty or bad)!")
         }
         let om = organismManager as! OrganismModelManager
 
-        self._organisms = om.getOrganismsFromFileOrDB(sourceFile) as! [ModelOrganism]
+        self._organisms = try om.getOrganismsFromFileOrDB(sourceFile) as! [ModelOrganism]
 
         let tm = targetManager as! TargetModelManager
 
@@ -168,7 +215,7 @@ public class GuideRNAPresenter {
 
             if self._location >= organism.sequence_length -
                 (self.targetOffset! + self.targetLength! + 1) {
-                throw ModelError.ParameterError("FATAL ERROR: The location \(self._location!) is beyond the size of the source sequence!")
+                throw ModelError.parameterError("FATAL ERROR: The location \(self._location!) is beyond the size \(organism.sequence_length) of the source sequence!")
             }
 
             if self._location != nil {
@@ -186,13 +233,11 @@ public class GuideRNAPresenter {
         if self.spacerLength == nil {
             self.spacerLength = getNuclease(self.nuclease!).spacer_length
         }
-
         //debugPrint("Organisms \(self._organisms), TARGETS: \(self._targets)")
-
     }
 
 
-    func getNuclease(name: String) -> Nuclease {
+    func getNuclease(_ name: String) -> Nuclease {
         let nucleaseArray = nucleaseManager.getByValue("name", value: name) as [Nuclease]
         assert(!nucleaseArray.isEmpty, "DATABASE ERROR: There is no nuclease in name:\(name)")
         assert(nucleaseArray.count == 1, "DATABASE ERROR: There is more than one nuclease in name:\(name)")
@@ -202,11 +247,11 @@ public class GuideRNAPresenter {
     func listGuideRNA() {
         do {
             try initialiseComponents()
-        } catch ModelError.ParameterError(let message) {
+        } catch ModelError.parameterError(let message) {
             print ("Error: \(message)")
             return
-        } catch {
-            print("Unknown Error!")
+        } catch let error {
+            print ("External error: \(error)")
         }
 
         ///
@@ -217,15 +262,15 @@ public class GuideRNAPresenter {
 
             //print("AAA \(target.name) \(target.location) \(self.spacerLength)")
             if let (organism, genome) = om.getOrgaismAndSequenceById(target.model_organism_id) {
-                print ("GENOME LENGTH \(genome.length), \(targetLength)")
+                print ("Source sequence length \(genome.length), \(targetLength)")
 
                 // FIXME: handle spacerLEngth and seedLength
                 let start = target.location - self.spacerLength!
                 let end=target.location+target.length+target.offset
-                let tstart = NSDate()
-                let rnaTargets = genome.seq.getOnTargets(self.usedPAMs, start: start, end: end)
-                let tend = NSDate()
-                let timeInterval: Double = tend.timeIntervalSinceDate(tstart)
+                let tstart = Date()
+                let rnaTargets = genome.seq.getOnTargets(self.usedPAMSequences, start: start, end: end)
+                let tend = Date()
+                let timeInterval: Double = tend.timeIntervalSince(tstart)
                 print("Time to evaluate designing gRNA \(timeInterval) seconds")
 
                 if let _ = rnaTargets {
@@ -235,7 +280,7 @@ public class GuideRNAPresenter {
         }
     }
 
-    private func printGuideRNAs(targets: [Int], sequence: Seq, name: String? = nil) {
+    private func printGuideRNAs(_ rnaTargets: [Int], sequence: Seq, name: String? = nil) {
 
         var organismName = ""
         if let _ = name {
@@ -248,8 +293,8 @@ public class GuideRNAPresenter {
         var s = 0
         var e = 0
 
-        let tstart = NSDate()
-        for pamLocation in targets {
+        let tstart = Date()
+        for pamLocation in rnaTargets {
 
             //print ("PAMLOCATION \(pamLocation)")
             if  pamLocation >= 0 {
@@ -258,17 +303,18 @@ public class GuideRNAPresenter {
                 strand = "+"
                 s=Int(pamPos) - spacerLength!
                 e=Int(pamPos) + _pamLength-1
+                result.append("\(organismName):\(strand):\(s)-\(e):\(sequence[s...e])")
             } else {
                 validLocation = -pamLocation
                 pamPos = validLocation + _pamLength
                 strand = "-"
                 s=Int(pamPos) - _pamLength
                 e=Int(pamPos) + spacerLength! - 1
+                result.append("\(organismName):\(strand):\(s)-\(e):\(sequence[s...e].complement())")
             }
-            result.append("\(organismName):\(strand):\(s)-\(e):\(sequence[s...e])")
         }
-        let tend = NSDate()
-        let timeInterval = tend.timeIntervalSinceDate(tstart)
+        let tend = Date()
+        let timeInterval = tend.timeIntervalSince(tstart)
         print("Time to evaluate printing gRNA \(timeInterval) seconds")
 
         dump(result)

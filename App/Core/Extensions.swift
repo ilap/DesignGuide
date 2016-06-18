@@ -27,7 +27,7 @@ extension String {
         
         var result: Bool?
         
-        switch self.lowercaseString {
+        switch self.lowercased() {
             case "true", "yes":
                 result = true
             case "false", "no":

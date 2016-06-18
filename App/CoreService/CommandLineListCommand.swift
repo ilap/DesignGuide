@@ -43,7 +43,7 @@ class CommandLineListCommand: DesignGuideCommand, OptionCommandType {
         return "List base database - items = cas9, experiments, targets, sources"
     }
     
-    func setupOptions(options: Options) {
+    func setupOptions(_ options: Options) {
         options.onFlags(["-e", "--experiments"], usage: "List experiments by users and date") {(flag) in
             self.service.commandLineArgs[.ListExperiment] = true
         }
@@ -53,7 +53,7 @@ class CommandLineListCommand: DesignGuideCommand, OptionCommandType {
 
     }
 
-    func execute(arguments: CommandArguments) throws  {
+    func execute(_ arguments: CommandArguments) throws  {
 
         // TODO: Remove this in production...
         //self.service.commandLineArgs[.ListNucleaseWithPAMs] = true

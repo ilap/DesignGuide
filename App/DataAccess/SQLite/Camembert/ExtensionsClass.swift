@@ -9,7 +9,7 @@
 import Foundation
 
 extension Array {
-    func Take(number: Int) -> Array{
+    func Take(_ number: Int) -> Array{
         var resultArray = Array()
         for i in 0 ..< number {
             resultArray.append(self[i])
@@ -17,7 +17,7 @@ extension Array {
         return resultArray
     }
     
-    func TakeRange(startIndex: Int, offset: Int) -> Array{
+    func TakeRange(_ startIndex: Int, offset: Int) -> Array{
         var resultArray = Array()
         var m_offset = offset
         if m_offset > self.count {
@@ -45,7 +45,7 @@ extension Array {
         }
     }
     
-    func Union(arr: Array) -> Array{
+    func Union(_ arr: Array) -> Array{
         var resultArray = self
         for i in 0 ..< arr.count {
             resultArray.append(arr[i])

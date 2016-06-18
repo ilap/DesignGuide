@@ -19,24 +19,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import BioSwift
+
 ///
 /// Base tables
 ///
-class PAM: CamembertModel, DataServiceProtocol {
+class PAM: CamembertModel, PAMProtocol, DataServiceProtocol {
     var nuclease_id: INTEGER = 0
     var sequence: TEXT = ""
     var survival: REAL =  0.0
     
     class func findAll() -> [PAM] {
-        return PAM.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [PAM]
+        return PAM.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [PAM]
     }
     
-    class func findByValue(column: String, value: Any) -> [PAM] {
-        let records = PAM.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [PAM]
+    class func findByValue(_ column: String, value: Any) -> [PAM] {
+        let records = PAM.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [PAM]
         return records
     }
 
-    class func findByValues(queries: [String:Any]) -> [PAM] {
+    class func findByValues(_ queries: [String:Any]) -> [PAM] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -54,7 +56,7 @@ class PAM: CamembertModel, DataServiceProtocol {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = PAM.select(selectRequest:  Select.CustomRequest(customRequest))! as! [PAM]
+        let records = PAM.select(selectRequest:  Select.customRequest(customRequest))! as! [PAM]
 
         return records
     }
@@ -82,16 +84,16 @@ class Nuclease: CamembertModel, DataServiceProtocol  {
     var descr: TEXT = ""
     
     class func findAll() -> [Nuclease] {
-        return Nuclease.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [Nuclease]
+        return Nuclease.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [Nuclease]
     }
 
-    class func findByValue(column: String, value: Any) -> [Nuclease] {
-        let records = Nuclease.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [Nuclease]
+    class func findByValue(_ column: String, value: Any) -> [Nuclease] {
+        let records = Nuclease.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [Nuclease]
         return records
     }
 
 
-    class func findByValues(queries: [String:Any]) -> [Nuclease] {
+    class func findByValues(_ queries: [String:Any]) -> [Nuclease] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -109,13 +111,13 @@ class Nuclease: CamembertModel, DataServiceProtocol  {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = Nuclease.select(selectRequest:  Select.CustomRequest(customRequest))! as! [Nuclease]
+        let records = Nuclease.select(selectRequest:  Select.customRequest(customRequest))! as! [Nuclease]
 
         return records
     }
 
-    class func findkkkByName(name: String) -> [Nuclease] {
-        let nuclease = Nuclease.select(selectRequest:  Select.Where("name", .EqualsTo, name, .Ascending, "1"))! as! [Nuclease]
+    class func findkkkByName(_ name: String) -> [Nuclease] {
+        let nuclease = Nuclease.select(selectRequest:  Select.where("name", .equalsTo, name, .ascending, "1"))! as! [Nuclease]
         return nuclease
     }
 
@@ -136,16 +138,16 @@ class ModelOrganism: CamembertModel, DataServiceProtocol {
     var sequence_hash: INTEGER = 0
     
     class func findAll() -> [ModelOrganism] {
-        return ModelOrganism.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [ModelOrganism]
+        return ModelOrganism.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [ModelOrganism]
         
     }
 
-    class func findByValue(column: String, value: Any) -> [ModelOrganism] {
-        let records = ModelOrganism.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [ModelOrganism]
+    class func findByValue(_ column: String, value: Any) -> [ModelOrganism] {
+        let records = ModelOrganism.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [ModelOrganism]
         return records
     }
 
-    class func findByValues(queries: [String:Any]) -> [ModelOrganism] {
+    class func findByValues(_ queries: [String:Any]) -> [ModelOrganism] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -163,38 +165,38 @@ class ModelOrganism: CamembertModel, DataServiceProtocol {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = ModelOrganism.select(selectRequest:  Select.CustomRequest(customRequest))! as! [ModelOrganism]
+        let records = ModelOrganism.select(selectRequest:  Select.customRequest(customRequest))! as! [ModelOrganism]
 
         return records
     }
 
-    class func findHash(hash: Int) -> [ModelOrganism] {
-        return ModelOrganism.select(selectRequest:  Select.Where("sequence_hash", .EqualsTo, hash, .Ascending, "1"))! as! [ModelOrganism]
+    class func findHash(_ hash: Int) -> [ModelOrganism] {
+        return ModelOrganism.select(selectRequest:  Select.where("sequence_hash", .equalsTo, hash, .ascending, "1"))! as! [ModelOrganism]
     }
     
-    func copySequenceToDatabase(fromPath: String, createNewFile: Bool) throws {
+    func copySequenceToDatabase(_ fromPath: String, createNewFile: Bool) throws {
         
         
         if self.path == "", let path = Defaults[.databasePath] , let blobPath = Defaults[.blobFilesPath] {
             self.path = path + "/" + blobPath
         }
         
-        let toPath = self.path + "/" + String(UInt(bitPattern:self.sequence_hash), radix:16).uppercaseString + ".fasta"
+        let toPath = self.path + "/" + String(UInt(bitPattern:self.sequence_hash), radix:16).uppercased() + ".fasta"
         
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default()
         
-        if fileManager.fileExistsAtPath(toPath) {
+        if fileManager.fileExists(atPath: toPath) {
             debugPrint("DATABASE ERROR: \"\(toPath)\" \(DataAccess.access.DbPath)")
-            throw ModelError.Error ("DATABASE ERROR: Inconsistent database, \"\(toPath)\" already exist without any reference record in the database")
+            throw ModelError.error ("DATABASE ERROR: Inconsistent database, \"\(toPath)\" already exist without any reference record in the database")
         } else {
             do {
                // print("Copying \(fromPath) to \(toPath)")
-                try fileManager.copyItemAtPath(fromPath, toPath: toPath)
+                try fileManager.copyItem(atPath: fromPath, toPath: toPath)
                 
             }
             catch let error as NSError {
                 debugPrint("Cannot copy \(fromPath) to \(toPath): \(error)")
-                throw ModelError.Error("Cannot copy \(fromPath) to \(toPath): \(error)")
+                throw ModelError.error("Cannot copy \(fromPath) to \(toPath): \(error)")
             }
         }
     }
@@ -220,15 +222,15 @@ class DesignApplication: CamembertModel, DataServiceProtocol {
     var descr: TEXT = ""
 
     class func findAll() -> [DesignApplication] {
-        return DesignApplication.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [DesignApplication]
+        return DesignApplication.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [DesignApplication]
     }
 
-    class func findByValue(column: String, value: Any) -> [DesignApplication] {
-        let records = DesignApplication.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [DesignApplication]
+    class func findByValue(_ column: String, value: Any) -> [DesignApplication] {
+        let records = DesignApplication.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [DesignApplication]
         return records
     }
 
-    class func findByValues(queries: [String:Any]) -> [DesignApplication] {
+    class func findByValues(_ queries: [String:Any]) -> [DesignApplication] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -246,7 +248,7 @@ class DesignApplication: CamembertModel, DataServiceProtocol {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = DesignApplication.select(selectRequest:  Select.CustomRequest(customRequest))! as! [DesignApplication]
+        let records = DesignApplication.select(selectRequest:  Select.customRequest(customRequest))! as! [DesignApplication]
 
         return records
     }
@@ -271,22 +273,22 @@ class ModelTarget: CamembertModel, DataServiceProtocol {
     var type: TEXT = "L"
     var descr: TEXT = ""
     
-    class func findForModelOrganism(column: [String], value: [Any]) -> [ModelTarget] {
+    class func findForModelOrganism(_ column: [String], value: [Any]) -> [ModelTarget] {
         let customRequest = "SELECT * FROM ModelTarget WHERE \(column[0]) = \(value[0]) AND \(column[1]) = \(value[1]) AND \(column[2]) = \(value[2]);"
-        let modelTarget = ModelTarget.select(selectRequest:  Select.CustomRequest(customRequest))! as! [ModelTarget]
+        let modelTarget = ModelTarget.select(selectRequest:  Select.customRequest(customRequest))! as! [ModelTarget]
         return modelTarget
     }
 
     class func findAll() -> [ModelTarget] {
-        return ModelTarget.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [ModelTarget]
+        return ModelTarget.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [ModelTarget]
     }
 
-    class func findByValue(column: String, value: Any) -> [ModelTarget] {
-        let records = ModelTarget.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [ModelTarget]
+    class func findByValue(_ column: String, value: Any) -> [ModelTarget] {
+        let records = ModelTarget.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [ModelTarget]
         return records
     }
 
-    class func findByValues(queries: [String:Any]) -> [ModelTarget] {
+    class func findByValues(_ queries: [String:Any]) -> [ModelTarget] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -305,7 +307,7 @@ class ModelTarget: CamembertModel, DataServiceProtocol {
         let customRequest = prefix + parameters + postfix
         //print("CUSTOMREQUEST: \(customRequest)")
 
-        let records = ModelTarget.select(selectRequest:  Select.CustomRequest(customRequest))! as! [ModelTarget]
+        let records = ModelTarget.select(selectRequest:  Select.customRequest(customRequest))! as! [ModelTarget]
 
         return records
     }
@@ -339,15 +341,15 @@ class OnTarget: CamembertModel, DataServiceProtocol {
     }
 
     class func findAll() -> [OnTarget] {
-        return OnTarget.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [OnTarget]
+        return OnTarget.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [OnTarget]
     }
 
-    class func findByValue(column: String, value: Any) -> [OnTarget] {
-        let records = OnTarget.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [OnTarget]
+    class func findByValue(_ column: String, value: Any) -> [OnTarget] {
+        let records = OnTarget.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [OnTarget]
         return records
     }
 
-    class func findByValues(queries: [String:Any]) -> [OnTarget] {
+    class func findByValues(_ queries: [String:Any]) -> [OnTarget] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -365,7 +367,7 @@ class OnTarget: CamembertModel, DataServiceProtocol {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = OnTarget.select(selectRequest:  Select.CustomRequest(customRequest))! as! [OnTarget]
+        let records = OnTarget.select(selectRequest:  Select.customRequest(customRequest))! as! [OnTarget]
 
         return records
     }
@@ -385,19 +387,19 @@ class OffTarget: CamembertModel, DataServiceProtocol {
     var at_on_target: BIT = false
 
     class func findAll() -> [OffTarget] {
-        return OffTarget.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [OffTarget]
+        return OffTarget.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [OffTarget]
     }
 
     required override init() {
         super.init()
     }
 
-    class func findByValue(column: String, value: Any) -> [OffTarget] {
-        let records = OffTarget.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [OffTarget]
+    class func findByValue(_ column: String, value: Any) -> [OffTarget] {
+        let records = OffTarget.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [OffTarget]
         return records
     }
 
-    class func findByValues(queries: [String:Any]) -> [OffTarget] {
+    class func findByValues(_ queries: [String:Any]) -> [OffTarget] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -415,7 +417,7 @@ class OffTarget: CamembertModel, DataServiceProtocol {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = OffTarget.select(selectRequest:  Select.CustomRequest(customRequest))! as! [OffTarget]
+        let records = OffTarget.select(selectRequest:  Select.customRequest(customRequest))! as! [OffTarget]
 
         return records
     }
@@ -435,15 +437,15 @@ class User: CamembertModel, DataServiceProtocol {
     var last_name: TEXT = ""
 
     class func findAll() -> [User] {
-        return User.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [User]
+        return User.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [User]
     }
 
-    class func findByValue(column: String, value: Any) -> [User] {
-        let records = User.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [User]
+    class func findByValue(_ column: String, value: Any) -> [User] {
+        let records = User.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [User]
         return records
     }
 
-    class func findByValues(queries: [String:Any]) -> [User] {
+    class func findByValues(_ queries: [String:Any]) -> [User] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -461,7 +463,7 @@ class User: CamembertModel, DataServiceProtocol {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = User.select(selectRequest:  Select.CustomRequest(customRequest))! as! [User]
+        let records = User.select(selectRequest:  Select.customRequest(customRequest))! as! [User]
 
         return records
     }
@@ -477,20 +479,20 @@ class User: CamembertModel, DataServiceProtocol {
 class Experiment: CamembertModel, DataServiceProtocol {
     var user_id: INTEGER = 0
     var title: TEXT = ""
-    var date: DATE_TIME = NSDate(timeIntervalSince1970: 0)
-    var validated: DATE_TIME = NSDate(timeIntervalSince1970: 0)
+    var date: DATE_TIME = Date(timeIntervalSince1970: 0)
+    var validated: DATE_TIME = Date(timeIntervalSince1970: 0)
     var descr: TEXT = ""
 
     class func findAll() -> [Experiment] {
-        return Experiment.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [Experiment]
+        return Experiment.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [Experiment]
     }
 
-    class func findByValue(column: String, value: Any) -> [Experiment] {
-        let records = Experiment.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [Experiment]
+    class func findByValue(_ column: String, value: Any) -> [Experiment] {
+        let records = Experiment.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [Experiment]
         return records
     }
 
-    class func findByValues(queries: [String:Any]) -> [Experiment] {
+    class func findByValues(_ queries: [String:Any]) -> [Experiment] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -508,7 +510,7 @@ class Experiment: CamembertModel, DataServiceProtocol {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = Experiment.select(selectRequest:  Select.CustomRequest(customRequest))! as! [Experiment]
+        let records = Experiment.select(selectRequest:  Select.customRequest(customRequest))! as! [Experiment]
 
         return records
     }
@@ -526,18 +528,18 @@ class ExperimentGuideRNA: CamembertModel, DataServiceProtocol {
     var experment_id: INTEGER = 0
     var on_target_id: INTEGER = 0
     var title: TEXT = ""
-    var validated: DATE_TIME = NSDate(timeIntervalSince1970: 0)
+    var validated: DATE_TIME = Date(timeIntervalSince1970: 0)
 
     class func findAll() -> [ExperimentGuideRNA] {
-        return ExperimentGuideRNA.select(selectRequest: Select.SelectAll( OrderOperator.Ascending, ""))! as! [ExperimentGuideRNA]
+        return ExperimentGuideRNA.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [ExperimentGuideRNA]
     }
 
-    class func findByValue(column: String, value: Any) -> [ExperimentGuideRNA] {
-        let records = ExperimentGuideRNA.select(selectRequest:  Select.Where(column, .EqualsTo, value, .Ascending, "1"))! as! [ExperimentGuideRNA]
+    class func findByValue(_ column: String, value: Any) -> [ExperimentGuideRNA] {
+        let records = ExperimentGuideRNA.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [ExperimentGuideRNA]
         return records
     }
 
-    class func findByValues(queries: [String:Any]) -> [ExperimentGuideRNA] {
+    class func findByValues(_ queries: [String:Any]) -> [ExperimentGuideRNA] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -555,7 +557,7 @@ class ExperimentGuideRNA: CamembertModel, DataServiceProtocol {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = ExperimentGuideRNA.select(selectRequest:  Select.CustomRequest(customRequest))! as! [ExperimentGuideRNA]
+        let records = ExperimentGuideRNA.select(selectRequest:  Select.customRequest(customRequest))! as! [ExperimentGuideRNA]
 
         return records
     }

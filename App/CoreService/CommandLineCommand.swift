@@ -42,7 +42,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         self.service = service
     }
     
-    func setupOptions(options: Options) {
+    func setupOptions(_ options: Options) {
         
         options.onKeys(["-s", "--source"], usage: "Directory includes sequence file(s) or a sequence file") {(key, value) in self
 
@@ -79,7 +79,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         }
         
         options.onKeys(["-p", "--pam"], usage: "PAM sequence(s) e.g. \"NGG NAG\", must be a subset of the chosen nuclease's PAMs - default is all the PAMs of the chosen nuclease", valueSignature: "PAMs" ) {(key, value) in self
-            let pams = value.characters.split(" ").map(String.init)
+            let pams = value.characters.split(separator: " ").map(String.init)
 
             self.service.commandLineArgs[.UsedPAMs] = pams
 
@@ -151,15 +151,15 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
     internal func validateRuntimeParameters () throws {
 
         if let _ = self.errorMessage {
-            throw CLIError.Error(self.errorMessage!)
+            throw CLIError.error(self.errorMessage!)
         }
 
         // TODO: remove after testing...
-        //self.service.commandLineArgs[.Source] = "/Users/ilap/Developer/Dissertation/Sequences/Source1in2"
-        //self.service.commandLineArgs[.Endonuclease] = "wtCas9"
-        //self.service.commandLineArgs[.Target] = "25000000000"
+        self.service.commandLineArgs[.Source] = "/Users/ilap/Developer/Dissertation/Sequences/Source1in1"
+        self.service.commandLineArgs[.Endonuclease] = "wtCas9"
+        self.service.commandLineArgs[.Target] = "250000"
         //self.service.commandLineArgs[.TargetOffset] = 20
-        //self.service.commandLineArgs[.TargetLength] = 1
+        self.service.commandLineArgs[.TargetLength] = 100
 
         //self.service.commandLineArgs[.UsedPAMs] = ["NAG"]
 
@@ -167,7 +167,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             self.service.commandLineArgs[.Target] == nil ||
             self.service.commandLineArgs[.Endonuclease] == nil {
 
-            throw CLIError.Error("ERROR: Source, target and nuclease parameters are mandatory.")
+            throw CLIError.error("ERROR: Source, target and nuclease parameters are mandatory.")
 
         }
 
@@ -176,17 +176,17 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         // FIXME: Get rid of this
         let t = Int(target as! String)
         if t == nil {
-            throw CLIError.Error("ERROR: Currently, target can be only a location (integer number) ")
+            throw CLIError.error("ERROR: Currently, target can be only a location (integer number) ")
         }
 
         guard let _ = self.service.commandLineArgs[.TargetLength],
         let _ = Int(target as! String) else {
-            throw CLIError.Error("ERROR: If Target is a number (location) then the target length (-T) is mandatory")
+            throw CLIError.error("ERROR: If Target is a number (location) then the target length (-T) is mandatory")
         }
     }
 
 
-    func execute(arguments: CommandArguments) throws  {
+    func execute(_ arguments: CommandArguments) throws  {
         try validateRuntimeParameters()
 
         let context = SqliteContext()

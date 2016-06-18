@@ -12,7 +12,6 @@
 		EE04FB0F1CE8CC5C005BC1B1 /* CoreProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB0B1CE8CC5C005BC1B1 /* CoreProtocols.swift */; };
 		EE04FB101CE8CC5C005BC1B1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB0C1CE8CC5C005BC1B1 /* Extensions.swift */; };
 		EE04FB111CE8CC5C005BC1B1 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB0D1CE8CC5C005BC1B1 /* SwiftyUserDefaults.swift */; };
-		EE04FB2F1CE8CCEC005BC1B1 /* WebAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB2C1CE8CCEC005BC1B1 /* WebAppView.swift */; };
 		EE04FB301CE8CCEC005BC1B1 /* views in Resources */ = {isa = PBXBuildFile; fileRef = EE04FB2D1CE8CCEC005BC1B1 /* views */; };
 		EE04FB311CE8CCEC005BC1B1 /* public in Resources */ = {isa = PBXBuildFile; fileRef = EE04FB2E1CE8CCEC005BC1B1 /* public */; };
 		EE04FB551CE8CEFA005BC1B1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB541CE8CEFA005BC1B1 /* BaseView.swift */; };
@@ -23,43 +22,18 @@
 		EE04FB651CE8D9EA005BC1B1 /* ExtensionsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB5F1CE8D9EA005BC1B1 /* ExtensionsClass.swift */; };
 		EE04FB661CE8D9EA005BC1B1 /* CamembertMisc.m in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB621CE8D9EA005BC1B1 /* CamembertMisc.m */; };
 		EE04FB6A1CE8DE8E005BC1B1 /* DesignGuideTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB691CE8DE8E005BC1B1 /* DesignGuideTables.swift */; };
-		EE36B8AA1CCAA21D00B57835 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */; };
-		EE36B8AB1CCAA28D00B57835 /* BioSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2D5C821CC546FB0073649D /* BioSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		EE36B8AC1CCAA38200B57835 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */; };
-		EE36B8AD1CCAA38200B57835 /* SwiftCLI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8AE1CCAA38200B57835 /* BioSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2D5C821CC546FB0073649D /* BioSwift.framework */; };
-		EE36B8AF1CCAA38200B57835 /* BioSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE2D5C821CC546FB0073649D /* BioSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8B01CCAA38200B57835 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE991C9B101E002E5DCA /* BrightFutures.framework */; };
-		EE36B8B11CCAA38200B57835 /* BrightFutures.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE991C9B101E002E5DCA /* BrightFutures.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8B21CCAA38200B57835 /* ExecutionContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9A1C9B101E002E5DCA /* ExecutionContext.framework */; };
-		EE36B8B31CCAA38200B57835 /* ExecutionContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9A1C9B101E002E5DCA /* ExecutionContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8B41CCAA38200B57835 /* PathToRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9B1C9B101E002E5DCA /* PathToRegex.framework */; };
-		EE36B8B51CCAA38200B57835 /* PathToRegex.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9B1C9B101E002E5DCA /* PathToRegex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8B61CCAA38200B57835 /* Stencil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9C1C9B101E002E5DCA /* Stencil.framework */; };
-		EE36B8B71CCAA38200B57835 /* Stencil.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9C1C9B101E002E5DCA /* Stencil.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8B81CCAA38200B57835 /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9D1C9B101E002E5DCA /* PathKit.framework */; };
-		EE36B8B91CCAA38200B57835 /* PathKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9D1C9B101E002E5DCA /* PathKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8BA1CCAA38200B57835 /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9E1C9B101E002E5DCA /* Regex.framework */; };
-		EE36B8BB1CCAA38200B57835 /* Regex.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9E1C9B101E002E5DCA /* Regex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8BC1CCAA38200B57835 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9F1C9B101E002E5DCA /* Result.framework */; };
-		EE36B8BD1CCAA38200B57835 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9F1C9B101E002E5DCA /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8BE1CCAA38200B57835 /* TidyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BEA01C9B101E002E5DCA /* TidyJSON.framework */; };
-		EE36B8BF1CCAA38200B57835 /* TidyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BEA01C9B101E002E5DCA /* TidyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8C01CCAA38200B57835 /* Express.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE981C9B101E002E5DCA /* Express.framework */; };
-		EE36B8C11CCAA38200B57835 /* Express.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE981C9B101E002E5DCA /* Express.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EE36B8C21CCAA38200B57835 /* Dip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE1197551C9B04D1000065C5 /* Dip.framework */; };
-		EE36B8C31CCAA38200B57835 /* Dip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EE1197551C9B04D1000065C5 /* Dip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE56E7CF1CEE18CA00620520 /* DesignGuideEnvironmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7CE1CEE18CA00620520 /* DesignGuideEnvironmentService.swift */; };
 		EE56E7D51CEE497E00620520 /* CommandLineCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D01CEE497E00620520 /* CommandLineCommand.swift */; };
 		EE56E7D61CEE497E00620520 /* GraphicalUserInterfaceCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D11CEE497E00620520 /* GraphicalUserInterfaceCommand.swift */; };
 		EE56E7D71CEE497E00620520 /* CommandLineListCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D21CEE497E00620520 /* CommandLineListCommand.swift */; };
-		EE56E7D81CEE497E00620520 /* WebAppCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D31CEE497E00620520 /* WebAppCommand.swift */; };
 		EE56E7D91CEE497E00620520 /* DesignGuideCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D41CEE497E00620520 /* DesignGuideCommand.swift */; };
 		EE56E7DE1CEE49A400620520 /* OrganismModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DA1CEE49A400620520 /* OrganismModelManager.swift */; };
 		EE56E7DF1CEE49A400620520 /* PamModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DB1CEE49A400620520 /* PamModelManager.swift */; };
 		EE56E7E01CEE49A400620520 /* TargetModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DC1CEE49A400620520 /* TargetModelManager.swift */; };
 		EE56E7E11CEE49A400620520 /* ModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DD1CEE49A400620520 /* ModelProtocols.swift */; };
 		EE56E7E31CEE49DB00620520 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7E21CEE49DB00620520 /* Command.swift */; };
+		EE7475E91D153BAC00F8068F /* BioSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE7475E81D153BAC00F8068F /* BioSwift.framework */; };
+		EE7475F41D153BC300F8068F /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE7475F01D153BB700F8068F /* SwiftCLI.framework */; };
 		EE9439961CEC49700085E864 /* NucleasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9439951CEC49700085E864 /* NucleasePresenter.swift */; };
 		EE9439981CEC4D320085E864 /* NucleaseListWithPamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9439971CEC4D320085E864 /* NucleaseListWithPamView.swift */; };
 		EEAA3D0A1CEA54A00095FE06 /* AnyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA3D091CEA54A00095FE06 /* AnyRepository.swift */; };
@@ -69,43 +43,26 @@
 		EEBACDBD1CEC7198000463BC /* GuideRNAListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBACDBC1CEC7198000463BC /* GuideRNAListView.swift */; };
 		EEBACDBF1CEC71C9000463BC /* GuideRNAPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBACDBE1CEC71C9000463BC /* GuideRNAPresenter.swift */; };
 		EEBACDC61CEC8186000463BC /* NucleaseModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBACDC51CEC8186000463BC /* NucleaseModelManager.swift */; };
-		EEBFFDD51CA0582A00CC992B /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE991C9B101E002E5DCA /* BrightFutures.framework */; };
-		EEBFFDD61CA0582A00CC992B /* ExecutionContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9A1C9B101E002E5DCA /* ExecutionContext.framework */; };
-		EEBFFDD71CA0582A00CC992B /* PathToRegex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9B1C9B101E002E5DCA /* PathToRegex.framework */; };
-		EEBFFDD81CA0582A00CC992B /* Stencil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9C1C9B101E002E5DCA /* Stencil.framework */; };
-		EEBFFDD91CA0582A00CC992B /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9D1C9B101E002E5DCA /* PathKit.framework */; };
-		EEBFFDDA1CA0582A00CC992B /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9E1C9B101E002E5DCA /* Regex.framework */; };
-		EEBFFDDB1CA0582A00CC992B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE9F1C9B101E002E5DCA /* Result.framework */; };
-		EEBFFDDC1CA0582A00CC992B /* TidyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BEA01C9B101E002E5DCA /* TidyJSON.framework */; };
-		EEBFFDDD1CA0582A00CC992B /* Express.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE86BE981C9B101E002E5DCA /* Express.framework */; };
-		EEBFFDDE1CA0582A00CC992B /* Dip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE1197551C9B04D1000065C5 /* Dip.framework */; };
+		EEEAAD271CEEDEDA00122BE4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EEEAAD261CEEDEDA00122BE4 /* README.md */; };
 		EEFD834C1CA4A0D400B7B540 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EEFD834B1CA4A0D400B7B540 /* libsqlite3.0.tbd */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		EE36B8C41CCAA38200B57835 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				EE36B8B11CCAA38200B57835 /* BrightFutures.framework in Embed Frameworks */,
-				EE36B8B71CCAA38200B57835 /* Stencil.framework in Embed Frameworks */,
-				EE36B8C31CCAA38200B57835 /* Dip.framework in Embed Frameworks */,
-				EE36B8AD1CCAA38200B57835 /* SwiftCLI.framework in Embed Frameworks */,
-				EE36B8BD1CCAA38200B57835 /* Result.framework in Embed Frameworks */,
-				EE36B8AF1CCAA38200B57835 /* BioSwift.framework in Embed Frameworks */,
-				EE36B8B31CCAA38200B57835 /* ExecutionContext.framework in Embed Frameworks */,
-				EE36B8C11CCAA38200B57835 /* Express.framework in Embed Frameworks */,
-				EE36B8B51CCAA38200B57835 /* PathToRegex.framework in Embed Frameworks */,
-				EE36B8BB1CCAA38200B57835 /* Regex.framework in Embed Frameworks */,
-				EE36B8BF1CCAA38200B57835 /* TidyJSON.framework in Embed Frameworks */,
-				EE36B8B91CCAA38200B57835 /* PathKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
+/* Begin PBXContainerItemProxy section */
+		EE7475EF1D153BB700F8068F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EFBFD6C61C3251E10068CB26;
+			remoteInfo = SwiftCLI;
 		};
-/* End PBXCopyFilesBuildPhase section */
+		EE7475F11D153BB700F8068F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EFBFD6D01C3251E10068CB26;
+			remoteInfo = SwiftCLITests;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EE04FAFD1CE8CBCD005BC1B1 /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationController.swift; path = App/ApplicationController.swift; sourceTree = "<group>"; };
@@ -127,7 +84,6 @@
 		EE04FB611CE8D9EA005BC1B1 /* Camembert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camembert.h; path = App/DataAccess/SQLite/Camembert/Camembert.h; sourceTree = "<group>"; };
 		EE04FB621CE8D9EA005BC1B1 /* CamembertMisc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CamembertMisc.m; path = App/DataAccess/SQLite/Camembert/CamembertMisc.m; sourceTree = "<group>"; };
 		EE04FB691CE8DE8E005BC1B1 /* DesignGuideTables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideTables.swift; path = App/DataAccess/SQLite/DesignGuideTables.swift; sourceTree = "<group>"; };
-		EE1197551C9B04D1000065C5 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/Dip.framework"; sourceTree = "<group>"; };
 		EE2D5C821CC546FB0073649D /* BioSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BioSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/BioSwift.framework"; sourceTree = "<group>"; };
 		EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCLI.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/SwiftCLI.framework"; sourceTree = "<group>"; };
 		EE56E7CE1CEE18CA00620520 /* DesignGuideEnvironmentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideEnvironmentService.swift; path = App/Core/DesignGuideEnvironmentService.swift; sourceTree = "<group>"; };
@@ -141,6 +97,8 @@
 		EE56E7DC1CEE49A400620520 /* TargetModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TargetModelManager.swift; path = App/Model/TargetModelManager.swift; sourceTree = "<group>"; };
 		EE56E7DD1CEE49A400620520 /* ModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelProtocols.swift; path = App/Model/ModelProtocols.swift; sourceTree = "<group>"; };
 		EE56E7E21CEE49DB00620520 /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Command.swift; path = App/Core/Command.swift; sourceTree = "<group>"; };
+		EE7475E81D153BAC00F8068F /* BioSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BioSwift.framework; path = ../BioSwift3/build/Debug/BioSwift.framework; sourceTree = "<group>"; };
+		EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftCLI.xcodeproj; path = ../SwiftCLI/Support/SwiftCLI.xcodeproj; sourceTree = "<group>"; };
 		EE86BE981C9B101E002E5DCA /* Express.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Express.framework; path = Utils/Frameworks/Express.framework; sourceTree = "<group>"; };
 		EE86BE991C9B101E002E5DCA /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Utils/Frameworks/BrightFutures.framework; sourceTree = "<group>"; };
 		EE86BE9A1C9B101E002E5DCA /* ExecutionContext.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExecutionContext.framework; path = Utils/Frameworks/ExecutionContext.framework; sourceTree = "<group>"; };
@@ -160,6 +118,7 @@
 		EEBACDBC1CEC7198000463BC /* GuideRNAListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuideRNAListView.swift; path = App/View/CLIView/GuideRNAListView.swift; sourceTree = "<group>"; };
 		EEBACDBE1CEC71C9000463BC /* GuideRNAPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuideRNAPresenter.swift; path = App/ViewModel/GuideRNAPresenter.swift; sourceTree = "<group>"; };
 		EEBACDC51CEC8186000463BC /* NucleaseModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleaseModelManager.swift; path = App/Model/NucleaseModelManager.swift; sourceTree = "<group>"; };
+		EEEAAD261CEEDEDA00122BE4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EEFD834B1CA4A0D400B7B540 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -169,30 +128,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEFD834C1CA4A0D400B7B540 /* libsqlite3.0.tbd in Frameworks */,
-				EE36B8BC1CCAA38200B57835 /* Result.framework in Frameworks */,
-				EE36B8B01CCAA38200B57835 /* BrightFutures.framework in Frameworks */,
-				EE36B8AE1CCAA38200B57835 /* BioSwift.framework in Frameworks */,
-				EE36B8AB1CCAA28D00B57835 /* BioSwift.framework in Frameworks */,
-				EE36B8AA1CCAA21D00B57835 /* SwiftCLI.framework in Frameworks */,
-				EEBFFDD51CA0582A00CC992B /* BrightFutures.framework in Frameworks */,
-				EE36B8C21CCAA38200B57835 /* Dip.framework in Frameworks */,
-				EEBFFDD61CA0582A00CC992B /* ExecutionContext.framework in Frameworks */,
-				EE36B8BA1CCAA38200B57835 /* Regex.framework in Frameworks */,
-				EEBFFDD71CA0582A00CC992B /* PathToRegex.framework in Frameworks */,
-				EE36B8B41CCAA38200B57835 /* PathToRegex.framework in Frameworks */,
-				EEBFFDD81CA0582A00CC992B /* Stencil.framework in Frameworks */,
-				EE36B8BE1CCAA38200B57835 /* TidyJSON.framework in Frameworks */,
-				EEBFFDD91CA0582A00CC992B /* PathKit.framework in Frameworks */,
-				EEBFFDDA1CA0582A00CC992B /* Regex.framework in Frameworks */,
-				EE36B8C01CCAA38200B57835 /* Express.framework in Frameworks */,
-				EE36B8AC1CCAA38200B57835 /* SwiftCLI.framework in Frameworks */,
-				EE36B8B61CCAA38200B57835 /* Stencil.framework in Frameworks */,
-				EEBFFDDB1CA0582A00CC992B /* Result.framework in Frameworks */,
-				EEBFFDDC1CA0582A00CC992B /* TidyJSON.framework in Frameworks */,
-				EE36B8B21CCAA38200B57835 /* ExecutionContext.framework in Frameworks */,
-				EEBFFDDD1CA0582A00CC992B /* Express.framework in Frameworks */,
-				EE36B8B81CCAA38200B57835 /* PathKit.framework in Frameworks */,
-				EEBFFDDE1CA0582A00CC992B /* Dip.framework in Frameworks */,
+				EE7475E91D153BAC00F8068F /* BioSwift.framework in Frameworks */,
+				EE7475F41D153BC300F8068F /* SwiftCLI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +272,8 @@
 		EE1197571C9B04E7000065C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */,
+				EE7475E81D153BAC00F8068F /* BioSwift.framework */,
 				EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */,
 				EE2D5C821CC546FB0073649D /* BioSwift.framework */,
 				EEFD834B1CA4A0D400B7B540 /* libsqlite3.0.tbd */,
@@ -347,14 +286,23 @@
 				EE86BE9F1C9B101E002E5DCA /* Result.framework */,
 				EE86BEA01C9B101E002E5DCA /* TidyJSON.framework */,
 				EE86BE981C9B101E002E5DCA /* Express.framework */,
-				EE1197551C9B04D1000065C5 /* Dip.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE7475EB1D153BB700F8068F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EE7475F01D153BB700F8068F /* SwiftCLI.framework */,
+				EE7475F21D153BB700F8068F /* SwiftCLITests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		EEAC63471C9AF91D00164943 = {
 			isa = PBXGroup;
 			children = (
+				EEEAAD261CEEDEDA00122BE4 /* README.md */,
 				EE04FAFC1CE8CBAC005BC1B1 /* App */,
 				EEAC63771C9AFF4100164943 /* main.swift */,
 				EEAC63571C9AF9CD00164943 /* Products */,
@@ -381,7 +329,6 @@
 				EEAC63531C9AF9CD00164943 /* Frameworks */,
 				EEAC63541C9AF9CD00164943 /* Resources */,
 				EE36B8A71CCAA0BD00B57835 /* ShellScript */,
-				EE36B8C41CCAA38200B57835 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -399,11 +346,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					EEAC63551C9AF9CD00164943 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 6CU5KD6SGT;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -418,12 +366,35 @@
 			mainGroup = EEAC63471C9AF91D00164943;
 			productRefGroup = EEAC63571C9AF9CD00164943 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EE7475EB1D153BB700F8068F /* Products */;
+					ProjectRef = EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EEAC63551C9AF9CD00164943 /* DesignGuide */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		EE7475F01D153BB700F8068F /* SwiftCLI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftCLI.framework;
+			remoteRef = EE7475EF1D153BB700F8068F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EE7475F21D153BB700F8068F /* SwiftCLITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftCLITests.xctest;
+			remoteRef = EE7475F11D153BB700F8068F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EEAC63541C9AF9CD00164943 /* Resources */ = {
@@ -461,7 +432,6 @@
 			files = (
 				EE04FB661CE8D9EA005BC1B1 /* CamembertMisc.m in Sources */,
 				EE9439961CEC49700085E864 /* NucleasePresenter.swift in Sources */,
-				EE56E7D81CEE497E00620520 /* WebAppCommand.swift in Sources */,
 				EE04FAFF1CE8CBCD005BC1B1 /* ApplicationController.swift in Sources */,
 				EEAA3D0C1CEA550D0095FE06 /* DataAccessProtocols.swift in Sources */,
 				EE56E7DF1CEE49A400620520 /* PamModelManager.swift in Sources */,
@@ -469,7 +439,6 @@
 				EE56E7DE1CEE49A400620520 /* OrganismModelManager.swift in Sources */,
 				EEBACDBD1CEC7198000463BC /* GuideRNAListView.swift in Sources */,
 				EE56E7D71CEE497E00620520 /* CommandLineListCommand.swift in Sources */,
-				EE04FB2F1CE8CCEC005BC1B1 /* WebAppView.swift in Sources */,
 				EE04FB101CE8CC5C005BC1B1 /* Extensions.swift in Sources */,
 				EE56E7E11CEE49A400620520 /* ModelProtocols.swift in Sources */,
 				EE04FB5B1CE8D9CB005BC1B1 /* SqliteConnection.swift in Sources */,
@@ -487,6 +456,7 @@
 				EE04FB641CE8D9EA005BC1B1 /* Camembert.swift in Sources */,
 				EE04FB651CE8D9EA005BC1B1 /* ExtensionsClass.swift in Sources */,
 				EEAC63791C9AFF4D00164943 /* main.swift in Sources */,
+				EEEAAD271CEEDEDA00122BE4 /* README.md in Sources */,
 				EEAA3D0E1CEA56390095FE06 /* PamListPresenter.swift in Sources */,
 				EEBACDBF1CEC71C9000463BC /* GuideRNAPresenter.swift in Sources */,
 				EE56E7D51CEE497E00620520 /* CommandLineCommand.swift in Sources */,
@@ -501,7 +471,23 @@
 		EEAC634C1C9AF91D00164943 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				"INFOPLIST_FILE[sdk=*]" = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -511,6 +497,22 @@
 		EEAC634D1C9AF91D00164943 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				"INFOPLIST_FILE[sdk=*]" = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 			};
@@ -572,6 +574,8 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/DataAccess/SQLite/Camembert/DesignGuide-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_BUILDER = ilap;
 			};
@@ -624,6 +628,9 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "App/DataAccess/SQLite/Camembert/DesignGuide-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_BUILDER = ilap;
 			};

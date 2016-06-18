@@ -49,7 +49,7 @@ class GuideRNAListView : BaseView {
         presenter.nuclease = service.commandLineArgs[.Endonuclease] as! String?
 
         /// Used PAMs
-        presenter.usedPAMs = (service.commandLineArgs[.UsedPAMs] as! [String]?) ?? []
+        presenter.usedPAMSequences = (service.commandLineArgs[.UsedPAMs] as! [String]?) ?? []
 
         /// Other parameters
         presenter.spacerLength = service.commandLineArgs[.SpacerLength] as! Int?
@@ -57,7 +57,7 @@ class GuideRNAListView : BaseView {
         // TODO: seed length must be set as it's a user parameter
         presenter.seedLength = service.commandLineArgs[.SeedLength] as! Int?
         // Kick off the command
-        print("Presenter's used PAMs: \(presenter.usedPAMs)")
+        print("Presenter's used PAMs: \(presenter.usedPAMSequences)")
 
         presenter.listGuideRNACommand!.execute()
     }

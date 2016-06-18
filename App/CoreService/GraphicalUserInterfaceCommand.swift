@@ -36,11 +36,11 @@ class GraphicalUserInterfaceCommand: DesignGuideCommand, OptionCommandType {
         return "Run Design Guide RNA Tool as Standalone GUI"
     }
     
-    func setupOptions(options: Options) {
+    func setupOptions(_ options: Options) {
     
     }
     
-    func execute(arguments: CommandArguments) throws  {
+    func execute(_ arguments: CommandArguments) throws  {
         print("GUI Application is not implemented yet!")
     }
 }
