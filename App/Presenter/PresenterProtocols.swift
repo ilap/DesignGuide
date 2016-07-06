@@ -19,27 +19,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class NucleaseListWithPamView : BaseView {
-
-    let presenter: NucleasePresenter
-    let service: EnvironmentService
-
-    init(presenter: NucleasePresenter, service: EnvironmentService) {
-        self.presenter = presenter
-        self.service = service
-    }
-
-    func show() {
-        // Here ve just list the nucleases.
-        let nlist = service.commandLineArgs[.ListNucleaseWithPAMs] as! Bool? ?? false
-        let blist = service.commandLineArgs[.ListExperiment] as! Bool? ?? false
-
-        if nlist {
-            print("Available nucleases with PAMs and PAM's affinity.")
-            presenter.listCommand!.execute()
-        } else if blist {
-            print("Listing experimetns is not implemented yet!")
-        }
-    }
+public protocol PresenterProtocol {
+    associatedtype T
+    
+    var view: T { get set }
+    func onViewInitialised() throws
+    func viewDidLoad() throws
 }
-

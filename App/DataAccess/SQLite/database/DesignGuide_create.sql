@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2016-05-19 19:06:06.971
+-- Last modification date: 2016-07-06 18:01:33.241
 
 -- tables
 -- Table: DesignApplication
@@ -14,6 +14,36 @@ INSERT INTO DesignApplication (id, name)  VALUES ( 1, "Knock-Out");
 INSERT INTO DesignApplication (id, name)  VALUES ( 2, "Knock-In");
 INSERT INTO DesignApplication (id, name)  VALUES ( 3, "Activation");
 INSERT INTO DesignApplication (id, name)  VALUES ( 4, "Repression");;
+
+-- Table: DesignSource
+CREATE TABLE DesignSource (
+    id integer NOT NULL CONSTRAINT DesignSource_pk PRIMARY KEY,
+    name text NOT NULL,
+    path text,
+    sequence_hash integer NOT NULL,
+    sequence_length integer NOT NULL,
+    descr text,
+    CONSTRAINT ModelOrganism_ak UNIQUE (name)
+);
+
+-- Table: DesignTarget
+CREATE TABLE DesignTarget (
+    id integer NOT NULL CONSTRAINT DesignTarget_pk PRIMARY KEY,
+    design_source_id integer NOT NULL,
+    design_application_id integer NOT NULL DEFAULT 1,
+    name integer NOT NULL,
+    location integer NOT NULL,
+    length integer NOT NULL,
+    "offset" integer NOT NULL,
+    type text NOT NULL DEFAULT L,
+    descr text,
+    CONSTRAINT ModelTarget_ak UNIQUE (location, length, design_source_id),
+    CONSTRAINT ModelTarget_ak_name UNIQUE (name, design_source_id),
+    CONSTRAINT ModelExperiment_ModelOrganism FOREIGN KEY (design_source_id)
+    REFERENCES DesignSource (id),
+    CONSTRAINT ModelTarget_DesignApplication FOREIGN KEY (design_application_id)
+    REFERENCES DesignApplication (id)
+);
 
 -- Table: Experiment
 CREATE TABLE Experiment (
@@ -42,36 +72,6 @@ CREATE TABLE ExperimentGuideRNA (
     REFERENCES OnTarget (id)
 );
 
--- Table: ModelOrganism
-CREATE TABLE ModelOrganism (
-    id integer NOT NULL CONSTRAINT ModelOrganism_pk PRIMARY KEY,
-    name text NOT NULL,
-    path text,
-    sequence_hash integer NOT NULL,
-    sequence_length integer NOT NULL,
-    descr text,
-    CONSTRAINT ModelOrganism_ak UNIQUE (name)
-);
-
--- Table: ModelTarget
-CREATE TABLE ModelTarget (
-    id integer NOT NULL CONSTRAINT ModelTarget_pk PRIMARY KEY,
-    model_organism_id integer NOT NULL,
-    design_application_id integer NOT NULL DEFAULT 1,
-    name integer NOT NULL,
-    location integer NOT NULL,
-    length integer NOT NULL,
-    offset integer NOT NULL,
-    type text NOT NULL DEFAULT L,
-    descr text,
-    CONSTRAINT ModelTarget_ak UNIQUE (location, length, model_organism_id),
-    CONSTRAINT ModelTarget_ak_name UNIQUE (name, model_organism_id),
-    CONSTRAINT ModelExperiment_ModelOrganism FOREIGN KEY (model_organism_id)
-    REFERENCES ModelOrganism (id),
-    CONSTRAINT ModelTarget_DesignApplication FOREIGN KEY (design_application_id)
-    REFERENCES DesignApplication (id)
-);
-
 -- Table: Nuclease
 CREATE TABLE Nuclease (
     id integer NOT NULL CONSTRAINT Nuclease_pk PRIMARY KEY,
@@ -96,13 +96,12 @@ INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES 
 INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES ( 5, "SpCas9 EQR", 4, 4);
 INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES ( 6, "SpCas9 VQR", 4, 4);
 INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES ( 7, "dCas9", NULL, NULL);
-INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES ( 8, "eSpCas9", 4, 4);
-
-INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES ( 9, "SaCas9", 4, 4);
+-- Currently Not supported 
+-- INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES ( 8, "eSpCas9", 4, 4);
+-- INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES ( 9, "SaCas9", 4, 4);
 INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES (10, "NmCas9", 4, 4);
-INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES (11, "StCas9", 4, 4);
+-- INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES (11, "StCas9", 4, 4);
 INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset)  VALUES (12, "TdCas9", 4, 4);
-
 
 INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset, downstream_target, descr)  VALUES (13, "FnCpf1", 18, 23, "false", "Zetsche et al.: http://www.ncbi.nlm.nih.gov/pubmed/26422227");
 INSERT INTO Nuclease (id, name, sense_cut_offset, antisense_cut_offset, downstream_target, descr)  VALUES (14, "AsCpf1", 19, 23, "false", "Zetsche et al.: http://www.ncbi.nlm.nih.gov/pubmed/26422227");
@@ -139,7 +138,7 @@ CREATE TABLE OnTarget (
     CONSTRAINT Target_Variant FOREIGN KEY (nuclease_id)
     REFERENCES Nuclease (id),
     CONSTRAINT RnaTarget_ModelTarget FOREIGN KEY (model_target_id)
-    REFERENCES ModelTarget (id)
+    REFERENCES DesignTarget (id)
 );
 
 -- Table: PAM
@@ -155,45 +154,65 @@ CREATE TABLE PAM (
     ON UPDATE CASCADE
 );
 
+-- wtCas9
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 1, 1, "NGG", 0.68);
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 2, 1, "NAG", 0.0132);
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 3, 1, "NGA", 0.0020);
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 4, 1, "NAA", 0.0007);
--- Nickase
+
+-- SpCas9 Nickase
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 5, 2, "NGG", 0.68);
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 6, 2, "NAG", 0.0132);
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 7, 2, "NGA", 0.0020);
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 8, 2, "NAA", 0.0007);
 
--- FnCpf1
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 9, 13, "TTN", 0.70);
--- AsCpf1
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (10, 14, "TTN", 0.70);
--- LbCpf1
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (11, 15, "TTN", 0.70);
-
+-- SpCas9 D1135
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 9, 3, "NGG", 0.70);
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (10, 3, "NAG", 0.002);
 
 -- SpCas9 VRER
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (12, 4, "NGCG", 0.70);
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (11, 4, "NGCG", 0.70);
 
 -- SpCas9 EQR
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (13, 5, "NGAG", 0.70);
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (12, 5, "NGAG", 0.70);
 
 -- SpCas9 VQR
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (14, 6, "NGAN", 0.70);
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (15, 6, "NGNG", 0.70);
 
+-- Dead dCas9
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 16, 7, "NGG", 0.68);
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 17, 7, "NAG", 0.0132);
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 18, 7, "NGA", 0.0020);
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 19, 7, "NAA", 0.0007);
+
+-- eSpCas9
+-- No any additional info
+-- INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (20, x, "XXX", x);
+
+-- SaCas9
+-- Currently Not supported 
+-- INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (21, 6, "NNGRRT", 0.70);
+-- INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (22, 6, "NNGRRN", 0.70);
+
 -- NmCas9
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (16, 10, "NNNNGATT", 0.70);
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (23, 10, "NNNNGATT", 0.70);
+
+-- StCas9
+-- Currently Not supported 
+-- INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (24, 11, "NNAGAAW", 0.70);
+
 
 -- TdCas9
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (17, 12, "NAAAAC", 0.70);
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (25, 12, "NAAAAC", 0.70);
 
--- Dead
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 18, 7, "NGG", 0.68);
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 19, 7, "NAG", 0.0132);
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 20, 7, "NGA", 0.0020);
-INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 21, 7, "NAA", 0.0007);;
+
+-- FnCpf1
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (26, 13, "TTN", 0.70);
+-- AsCpf1
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (27, 14, "TTN", 0.70);
+-- LbCpf1
+INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (28, 15, "TTN", 0.70);;
 
 -- Table: User
 CREATE TABLE "User" (

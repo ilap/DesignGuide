@@ -14,7 +14,7 @@
 		EE04FB111CE8CC5C005BC1B1 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB0D1CE8CC5C005BC1B1 /* SwiftyUserDefaults.swift */; };
 		EE04FB301CE8CCEC005BC1B1 /* views in Resources */ = {isa = PBXBuildFile; fileRef = EE04FB2D1CE8CCEC005BC1B1 /* views */; };
 		EE04FB311CE8CCEC005BC1B1 /* public in Resources */ = {isa = PBXBuildFile; fileRef = EE04FB2E1CE8CCEC005BC1B1 /* public */; };
-		EE04FB551CE8CEFA005BC1B1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB541CE8CEFA005BC1B1 /* BaseView.swift */; };
+		EE04FB551CE8CEFA005BC1B1 /* ViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB541CE8CEFA005BC1B1 /* ViewProtocols.swift */; };
 		EE04FB5B1CE8D9CB005BC1B1 /* SqliteConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB591CE8D9CB005BC1B1 /* SqliteConnection.swift */; };
 		EE04FB5C1CE8D9CB005BC1B1 /* database in Resources */ = {isa = PBXBuildFile; fileRef = EE04FB5A1CE8D9CB005BC1B1 /* database */; };
 		EE04FB631CE8D9EA005BC1B1 /* CamembertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB5D1CE8D9EA005BC1B1 /* CamembertModel.swift */; };
@@ -22,47 +22,95 @@
 		EE04FB651CE8D9EA005BC1B1 /* ExtensionsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB5F1CE8D9EA005BC1B1 /* ExtensionsClass.swift */; };
 		EE04FB661CE8D9EA005BC1B1 /* CamembertMisc.m in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB621CE8D9EA005BC1B1 /* CamembertMisc.m */; };
 		EE04FB6A1CE8DE8E005BC1B1 /* DesignGuideTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB691CE8DE8E005BC1B1 /* DesignGuideTables.swift */; };
+		EE1E7CFF1D2CF8DF0039F637 /* PamDetailsCLIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7CFE1D2CF8DF0039F637 /* PamDetailsCLIView.swift */; };
+		EE1E7D0A1D2D91AB0039F637 /* AnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7D091D2D91AB0039F637 /* AnyView.swift */; };
+		EE1E7D0C1D2D92550039F637 /* AnyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7D0B1D2D92550039F637 /* AnyPresenter.swift */; };
+		EE1E7D101D2D94840039F637 /* NucleaseDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7D0D1D2D94840039F637 /* NucleaseDetailsPresenter.swift */; };
+		EE1E7D111D2D94840039F637 /* DesignGuidePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7D0E1D2D94840039F637 /* DesignGuidePresenter.swift */; };
+		EE27BEA51D2ACDB300F9A6D8 /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27BEA41D2ACDB300F9A6D8 /* SwiftEventBus.swift */; };
 		EE56E7CF1CEE18CA00620520 /* DesignGuideEnvironmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7CE1CEE18CA00620520 /* DesignGuideEnvironmentService.swift */; };
 		EE56E7D51CEE497E00620520 /* CommandLineCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D01CEE497E00620520 /* CommandLineCommand.swift */; };
 		EE56E7D61CEE497E00620520 /* GraphicalUserInterfaceCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D11CEE497E00620520 /* GraphicalUserInterfaceCommand.swift */; };
 		EE56E7D71CEE497E00620520 /* CommandLineListCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D21CEE497E00620520 /* CommandLineListCommand.swift */; };
 		EE56E7D91CEE497E00620520 /* DesignGuideCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D41CEE497E00620520 /* DesignGuideCommand.swift */; };
-		EE56E7DE1CEE49A400620520 /* OrganismModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DA1CEE49A400620520 /* OrganismModelManager.swift */; };
-		EE56E7DF1CEE49A400620520 /* PamModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DB1CEE49A400620520 /* PamModelManager.swift */; };
+		EE56E7DE1CEE49A400620520 /* DesignSourceModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DA1CEE49A400620520 /* DesignSourceModelManager.swift */; };
 		EE56E7E01CEE49A400620520 /* TargetModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DC1CEE49A400620520 /* TargetModelManager.swift */; };
 		EE56E7E11CEE49A400620520 /* ModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DD1CEE49A400620520 /* ModelProtocols.swift */; };
 		EE56E7E31CEE49DB00620520 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7E21CEE49DB00620520 /* Command.swift */; };
-		EE7475E91D153BAC00F8068F /* BioSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE7475E81D153BAC00F8068F /* BioSwift.framework */; };
-		EE7475F41D153BC300F8068F /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE7475F01D153BB700F8068F /* SwiftCLI.framework */; };
-		EE9439961CEC49700085E864 /* NucleasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9439951CEC49700085E864 /* NucleasePresenter.swift */; };
-		EE9439981CEC4D320085E864 /* NucleaseListWithPamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9439971CEC4D320085E864 /* NucleaseListWithPamView.swift */; };
+		EE9439981CEC4D320085E864 /* NucleasesDetailsCLIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9439971CEC4D320085E864 /* NucleasesDetailsCLIView.swift */; };
+		EE95E72F1D2D95A10096A2CB /* NucleaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95E72E1D2D95A10096A2CB /* NucleaseViewModel.swift */; };
+		EE95E7331D2D95DA0096A2CB /* PamVievModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95E7321D2D95DA0096A2CB /* PamVievModel.swift */; };
+		EEA0A69F1D2D975200A8123C /* PresenterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA0A69E1D2D975200A8123C /* PresenterProtocols.swift */; };
 		EEAA3D0A1CEA54A00095FE06 /* AnyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA3D091CEA54A00095FE06 /* AnyRepository.swift */; };
 		EEAA3D0C1CEA550D0095FE06 /* DataAccessProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA3D0B1CEA550D0095FE06 /* DataAccessProtocols.swift */; };
-		EEAA3D0E1CEA56390095FE06 /* PamListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA3D0D1CEA56390095FE06 /* PamListPresenter.swift */; };
 		EEAC63791C9AFF4D00164943 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAC63771C9AFF4100164943 /* main.swift */; };
 		EEBACDBD1CEC7198000463BC /* GuideRNAListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBACDBC1CEC7198000463BC /* GuideRNAListView.swift */; };
-		EEBACDBF1CEC71C9000463BC /* GuideRNAPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBACDBE1CEC71C9000463BC /* GuideRNAPresenter.swift */; };
-		EEBACDC61CEC8186000463BC /* NucleaseModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBACDC51CEC8186000463BC /* NucleaseModelManager.swift */; };
-		EEEAAD271CEEDEDA00122BE4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EEEAAD261CEEDEDA00122BE4 /* README.md */; };
+		EEF43B951D26996100FFCB1F /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF43B921D26992A00FFCB1F /* SwiftCLI.framework */; };
+		EEF43B961D26996100FFCB1F /* SwiftCLI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EEF43B921D26992A00FFCB1F /* SwiftCLI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EEF43B9A1D26996600FFCB1F /* BioSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF43B891D26992500FFCB1F /* BioSwift.framework */; };
+		EEF43B9B1D26996600FFCB1F /* BioSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EEF43B891D26992500FFCB1F /* BioSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEFD834C1CA4A0D400B7B540 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EEFD834B1CA4A0D400B7B540 /* libsqlite3.0.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EE7475EF1D153BB700F8068F /* PBXContainerItemProxy */ = {
+		EEF43B881D26992500FFCB1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */;
+			containerPortal = EEF43B831D26992500FFCB1F /* BioSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE31965F1CC288650038756C;
+			remoteInfo = BioSwift;
+		};
+		EEF43B8A1D26992500FFCB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEF43B831D26992500FFCB1F /* BioSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE3196691CC288650038756C;
+			remoteInfo = BioSwiftTests;
+		};
+		EEF43B911D26992A00FFCB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEF43B8C1D26992A00FFCB1F /* SwiftCLI.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EFBFD6C61C3251E10068CB26;
 			remoteInfo = SwiftCLI;
 		};
-		EE7475F11D153BB700F8068F /* PBXContainerItemProxy */ = {
+		EEF43B931D26992A00FFCB1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */;
+			containerPortal = EEF43B8C1D26992A00FFCB1F /* SwiftCLI.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EFBFD6D01C3251E10068CB26;
 			remoteInfo = SwiftCLITests;
 		};
+		EEF43B971D26996100FFCB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEF43B8C1D26992A00FFCB1F /* SwiftCLI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EFBFD6C51C3251E10068CB26;
+			remoteInfo = SwiftCLI;
+		};
+		EEF43B9C1D26996600FFCB1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEF43B831D26992500FFCB1F /* BioSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE31965E1CC288650038756C;
+			remoteInfo = BioSwift;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EEF43B991D26996100FFCB1F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EEF43B961D26996100FFCB1F /* SwiftCLI.framework in Embed Frameworks */,
+				EEF43B9B1D26996600FFCB1F /* BioSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		EE04FAFD1CE8CBCD005BC1B1 /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationController.swift; path = App/ApplicationController.swift; sourceTree = "<group>"; };
@@ -74,7 +122,7 @@
 		EE04FB2C1CE8CCEC005BC1B1 /* WebAppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppView.swift; path = App/View/WebAppView/WebAppView.swift; sourceTree = "<group>"; };
 		EE04FB2D1CE8CCEC005BC1B1 /* views */ = {isa = PBXFileReference; lastKnownFileType = folder; name = views; path = App/View/WebAppView/views; sourceTree = "<group>"; };
 		EE04FB2E1CE8CCEC005BC1B1 /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; name = public; path = App/View/WebAppView/public; sourceTree = "<group>"; };
-		EE04FB541CE8CEFA005BC1B1 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseView.swift; path = App/View/BaseView.swift; sourceTree = "<group>"; };
+		EE04FB541CE8CEFA005BC1B1 /* ViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewProtocols.swift; path = App/View/ViewProtocols.swift; sourceTree = "<group>"; };
 		EE04FB591CE8D9CB005BC1B1 /* SqliteConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SqliteConnection.swift; path = App/DataAccess/SQLite/SqliteConnection.swift; sourceTree = "<group>"; };
 		EE04FB5A1CE8D9CB005BC1B1 /* database */ = {isa = PBXFileReference; lastKnownFileType = folder; name = database; path = App/DataAccess/SQLite/database; sourceTree = "<group>"; };
 		EE04FB5D1CE8D9EA005BC1B1 /* CamembertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CamembertModel.swift; path = App/DataAccess/SQLite/Camembert/CamembertModel.swift; sourceTree = "<group>"; };
@@ -84,41 +132,34 @@
 		EE04FB611CE8D9EA005BC1B1 /* Camembert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camembert.h; path = App/DataAccess/SQLite/Camembert/Camembert.h; sourceTree = "<group>"; };
 		EE04FB621CE8D9EA005BC1B1 /* CamembertMisc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CamembertMisc.m; path = App/DataAccess/SQLite/Camembert/CamembertMisc.m; sourceTree = "<group>"; };
 		EE04FB691CE8DE8E005BC1B1 /* DesignGuideTables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideTables.swift; path = App/DataAccess/SQLite/DesignGuideTables.swift; sourceTree = "<group>"; };
-		EE2D5C821CC546FB0073649D /* BioSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BioSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/BioSwift.framework"; sourceTree = "<group>"; };
-		EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCLI.framework; path = "../../../Library/Developer/Xcode/DerivedData/DesignGuide-edicxbogtrtmmcdvrxebkyhcfilr/Build/Products/Debug/SwiftCLI.framework"; sourceTree = "<group>"; };
+		EE1E7CFE1D2CF8DF0039F637 /* PamDetailsCLIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PamDetailsCLIView.swift; path = App/View/CLIView/PamDetailsCLIView.swift; sourceTree = "<group>"; };
+		EE1E7D091D2D91AB0039F637 /* AnyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyView.swift; path = App/View/AnyView.swift; sourceTree = "<group>"; };
+		EE1E7D0B1D2D92550039F637 /* AnyPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyPresenter.swift; path = App/Presenter/AnyPresenter.swift; sourceTree = "<group>"; };
+		EE1E7D0D1D2D94840039F637 /* NucleaseDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleaseDetailsPresenter.swift; path = App/Presenter/NucleaseDetailsPresenter.swift; sourceTree = "<group>"; };
+		EE1E7D0E1D2D94840039F637 /* DesignGuidePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuidePresenter.swift; path = App/Presenter/DesignGuidePresenter.swift; sourceTree = "<group>"; };
+		EE27BEA41D2ACDB300F9A6D8 /* SwiftEventBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftEventBus.swift; path = App/Core/SwiftEventBus.swift; sourceTree = "<group>"; };
 		EE56E7CE1CEE18CA00620520 /* DesignGuideEnvironmentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideEnvironmentService.swift; path = App/Core/DesignGuideEnvironmentService.swift; sourceTree = "<group>"; };
 		EE56E7D01CEE497E00620520 /* CommandLineCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineCommand.swift; path = App/CoreService/CommandLineCommand.swift; sourceTree = "<group>"; };
 		EE56E7D11CEE497E00620520 /* GraphicalUserInterfaceCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicalUserInterfaceCommand.swift; path = App/CoreService/GraphicalUserInterfaceCommand.swift; sourceTree = "<group>"; };
 		EE56E7D21CEE497E00620520 /* CommandLineListCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineListCommand.swift; path = App/CoreService/CommandLineListCommand.swift; sourceTree = "<group>"; };
 		EE56E7D31CEE497E00620520 /* WebAppCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppCommand.swift; path = App/CoreService/WebAppCommand.swift; sourceTree = "<group>"; };
 		EE56E7D41CEE497E00620520 /* DesignGuideCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideCommand.swift; path = App/CoreService/DesignGuideCommand.swift; sourceTree = "<group>"; };
-		EE56E7DA1CEE49A400620520 /* OrganismModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrganismModelManager.swift; path = App/Model/OrganismModelManager.swift; sourceTree = "<group>"; };
-		EE56E7DB1CEE49A400620520 /* PamModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PamModelManager.swift; path = App/Model/PamModelManager.swift; sourceTree = "<group>"; };
+		EE56E7DA1CEE49A400620520 /* DesignSourceModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignSourceModelManager.swift; path = App/Model/DesignSourceModelManager.swift; sourceTree = "<group>"; };
 		EE56E7DC1CEE49A400620520 /* TargetModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TargetModelManager.swift; path = App/Model/TargetModelManager.swift; sourceTree = "<group>"; };
 		EE56E7DD1CEE49A400620520 /* ModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelProtocols.swift; path = App/Model/ModelProtocols.swift; sourceTree = "<group>"; };
 		EE56E7E21CEE49DB00620520 /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Command.swift; path = App/Core/Command.swift; sourceTree = "<group>"; };
-		EE7475E81D153BAC00F8068F /* BioSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BioSwift.framework; path = ../BioSwift3/build/Debug/BioSwift.framework; sourceTree = "<group>"; };
-		EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftCLI.xcodeproj; path = ../SwiftCLI/Support/SwiftCLI.xcodeproj; sourceTree = "<group>"; };
-		EE86BE981C9B101E002E5DCA /* Express.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Express.framework; path = Utils/Frameworks/Express.framework; sourceTree = "<group>"; };
-		EE86BE991C9B101E002E5DCA /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Utils/Frameworks/BrightFutures.framework; sourceTree = "<group>"; };
-		EE86BE9A1C9B101E002E5DCA /* ExecutionContext.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExecutionContext.framework; path = Utils/Frameworks/ExecutionContext.framework; sourceTree = "<group>"; };
-		EE86BE9B1C9B101E002E5DCA /* PathToRegex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PathToRegex.framework; path = Utils/Frameworks/PathToRegex.framework; sourceTree = "<group>"; };
-		EE86BE9C1C9B101E002E5DCA /* Stencil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stencil.framework; path = Utils/Frameworks/Stencil.framework; sourceTree = "<group>"; };
-		EE86BE9D1C9B101E002E5DCA /* PathKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PathKit.framework; path = Utils/Frameworks/PathKit.framework; sourceTree = "<group>"; };
-		EE86BE9E1C9B101E002E5DCA /* Regex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Regex.framework; path = Utils/Frameworks/Regex.framework; sourceTree = "<group>"; };
-		EE86BE9F1C9B101E002E5DCA /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Utils/Frameworks/Result.framework; sourceTree = "<group>"; };
-		EE86BEA01C9B101E002E5DCA /* TidyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TidyJSON.framework; path = Utils/Frameworks/TidyJSON.framework; sourceTree = "<group>"; };
-		EE9439951CEC49700085E864 /* NucleasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleasePresenter.swift; path = App/ViewModel/NucleasePresenter.swift; sourceTree = "<group>"; };
-		EE9439971CEC4D320085E864 /* NucleaseListWithPamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleaseListWithPamView.swift; path = App/View/CLIView/NucleaseListWithPamView.swift; sourceTree = "<group>"; };
+		EE9439971CEC4D320085E864 /* NucleasesDetailsCLIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleasesDetailsCLIView.swift; path = App/View/CLIView/NucleasesDetailsCLIView.swift; sourceTree = "<group>"; };
+		EE95E72E1D2D95A10096A2CB /* NucleaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleaseViewModel.swift; path = App/ViewModel/NucleaseViewModel.swift; sourceTree = "<group>"; };
+		EE95E7321D2D95DA0096A2CB /* PamVievModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PamVievModel.swift; path = App/ViewModel/PamVievModel.swift; sourceTree = "<group>"; };
+		EEA0A69E1D2D975200A8123C /* PresenterProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresenterProtocols.swift; path = App/Presenter/PresenterProtocols.swift; sourceTree = "<group>"; };
 		EEAA3D091CEA54A00095FE06 /* AnyRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyRepository.swift; path = App/DataAccess/AnyRepository.swift; sourceTree = "<group>"; };
 		EEAA3D0B1CEA550D0095FE06 /* DataAccessProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataAccessProtocols.swift; path = App/DataAccess/DataAccessProtocols.swift; sourceTree = "<group>"; };
-		EEAA3D0D1CEA56390095FE06 /* PamListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PamListPresenter.swift; path = App/ViewModel/PamListPresenter.swift; sourceTree = "<group>"; };
 		EEAC63561C9AF9CD00164943 /* DesignGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAC63771C9AFF4100164943 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		EEBACDBC1CEC7198000463BC /* GuideRNAListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuideRNAListView.swift; path = App/View/CLIView/GuideRNAListView.swift; sourceTree = "<group>"; };
-		EEBACDBE1CEC71C9000463BC /* GuideRNAPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuideRNAPresenter.swift; path = App/ViewModel/GuideRNAPresenter.swift; sourceTree = "<group>"; };
-		EEBACDC51CEC8186000463BC /* NucleaseModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleaseModelManager.swift; path = App/Model/NucleaseModelManager.swift; sourceTree = "<group>"; };
 		EEEAAD261CEEDEDA00122BE4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EEF43B831D26992500FFCB1F /* BioSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BioSwift.xcodeproj; path = ../BioSwift/BioSwift.xcodeproj; sourceTree = "<group>"; };
+		EEF43B8C1D26992A00FFCB1F /* SwiftCLI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftCLI.xcodeproj; path = ../FrameWorks/SwiftCLI/Support/SwiftCLI.xcodeproj; sourceTree = "<group>"; };
 		EEFD834B1CA4A0D400B7B540 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -128,8 +169,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEFD834C1CA4A0D400B7B540 /* libsqlite3.0.tbd in Frameworks */,
-				EE7475E91D153BAC00F8068F /* BioSwift.framework in Frameworks */,
-				EE7475F41D153BC300F8068F /* SwiftCLI.framework in Frameworks */,
+				EEF43B9A1D26996600FFCB1F /* BioSwift.framework in Frameworks */,
+				EEF43B951D26996100FFCB1F /* SwiftCLI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,9 +182,9 @@
 			children = (
 				EE04FB091CE8CC47005BC1B1 /* CoreService */,
 				EE04FB051CE8CC01005BC1B1 /* DataAccess */,
-				EE04FB041CE8CBF5005BC1B1 /* ViewModel */,
 				EE04FB031CE8CBEF005BC1B1 /* View */,
-				EE04FB021CE8CBE8005BC1B1 /* Model */,
+				EE04FB041CE8CBF5005BC1B1 /* Presenter */,
+				EE04FB021CE8CBE8005BC1B1 /* ViewModel */,
 				EE04FB011CE8CBE2005BC1B1 /* Core */,
 				EE04FAFD1CE8CBCD005BC1B1 /* ApplicationController.swift */,
 				EE04FAFE1CE8CBCD005BC1B1 /* Info.plist */,
@@ -160,26 +201,27 @@
 				EE04FB0C1CE8CC5C005BC1B1 /* Extensions.swift */,
 				EE04FB0D1CE8CC5C005BC1B1 /* SwiftyUserDefaults.swift */,
 				EE56E7CE1CEE18CA00620520 /* DesignGuideEnvironmentService.swift */,
+				EE27BEA41D2ACDB300F9A6D8 /* SwiftEventBus.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
 		};
-		EE04FB021CE8CBE8005BC1B1 /* Model */ = {
+		EE04FB021CE8CBE8005BC1B1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EE56E7DA1CEE49A400620520 /* OrganismModelManager.swift */,
-				EE56E7DB1CEE49A400620520 /* PamModelManager.swift */,
+				EE95E72E1D2D95A10096A2CB /* NucleaseViewModel.swift */,
+				EE95E7321D2D95DA0096A2CB /* PamVievModel.swift */,
+				EE56E7DA1CEE49A400620520 /* DesignSourceModelManager.swift */,
 				EE56E7DC1CEE49A400620520 /* TargetModelManager.swift */,
-				EE56E7DD1CEE49A400620520 /* ModelProtocols.swift */,
-				EEBACDC51CEC8186000463BC /* NucleaseModelManager.swift */,
 			);
-			name = Model;
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		EE04FB031CE8CBEF005BC1B1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE04FB541CE8CEFA005BC1B1 /* BaseView.swift */,
+				EE1E7D091D2D91AB0039F637 /* AnyView.swift */,
+				EE04FB541CE8CEFA005BC1B1 /* ViewProtocols.swift */,
 				EE04FB2B1CE8CCC3005BC1B1 /* WebAppView */,
 				EE04FB2A1CE8CCBC005BC1B1 /* GUIView */,
 				EE04FB291CE8CCB3005BC1B1 /* CLIView */,
@@ -187,19 +229,21 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		EE04FB041CE8CBF5005BC1B1 /* ViewModel */ = {
+		EE04FB041CE8CBF5005BC1B1 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				EEAA3D0D1CEA56390095FE06 /* PamListPresenter.swift */,
-				EE9439951CEC49700085E864 /* NucleasePresenter.swift */,
-				EEBACDBE1CEC71C9000463BC /* GuideRNAPresenter.swift */,
+				EE1E7D0B1D2D92550039F637 /* AnyPresenter.swift */,
+				EEA0A69E1D2D975200A8123C /* PresenterProtocols.swift */,
+				EE1E7D0D1D2D94840039F637 /* NucleaseDetailsPresenter.swift */,
+				EE1E7D0E1D2D94840039F637 /* DesignGuidePresenter.swift */,
 			);
-			name = ViewModel;
+			name = Presenter;
 			sourceTree = "<group>";
 		};
 		EE04FB051CE8CC01005BC1B1 /* DataAccess */ = {
 			isa = PBXGroup;
 			children = (
+				EE56E7DD1CEE49A400620520 /* ModelProtocols.swift */,
 				EE04FB581CE8D95E005BC1B1 /* SQLite */,
 				EEAA3D091CEA54A00095FE06 /* AnyRepository.swift */,
 				EEAA3D0B1CEA550D0095FE06 /* DataAccessProtocols.swift */,
@@ -235,7 +279,8 @@
 		EE04FB291CE8CCB3005BC1B1 /* CLIView */ = {
 			isa = PBXGroup;
 			children = (
-				EE9439971CEC4D320085E864 /* NucleaseListWithPamView.swift */,
+				EE1E7CFE1D2CF8DF0039F637 /* PamDetailsCLIView.swift */,
+				EE9439971CEC4D320085E864 /* NucleasesDetailsCLIView.swift */,
 				EEBACDBC1CEC7198000463BC /* GuideRNAListView.swift */,
 			);
 			name = CLIView;
@@ -272,31 +317,11 @@
 		EE1197571C9B04E7000065C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */,
-				EE7475E81D153BAC00F8068F /* BioSwift.framework */,
-				EE36B8A81CCAA1D600B57835 /* SwiftCLI.framework */,
-				EE2D5C821CC546FB0073649D /* BioSwift.framework */,
+				EEF43B8C1D26992A00FFCB1F /* SwiftCLI.xcodeproj */,
+				EEF43B831D26992500FFCB1F /* BioSwift.xcodeproj */,
 				EEFD834B1CA4A0D400B7B540 /* libsqlite3.0.tbd */,
-				EE86BE991C9B101E002E5DCA /* BrightFutures.framework */,
-				EE86BE9A1C9B101E002E5DCA /* ExecutionContext.framework */,
-				EE86BE9B1C9B101E002E5DCA /* PathToRegex.framework */,
-				EE86BE9C1C9B101E002E5DCA /* Stencil.framework */,
-				EE86BE9D1C9B101E002E5DCA /* PathKit.framework */,
-				EE86BE9E1C9B101E002E5DCA /* Regex.framework */,
-				EE86BE9F1C9B101E002E5DCA /* Result.framework */,
-				EE86BEA01C9B101E002E5DCA /* TidyJSON.framework */,
-				EE86BE981C9B101E002E5DCA /* Express.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EE7475EB1D153BB700F8068F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EE7475F01D153BB700F8068F /* SwiftCLI.framework */,
-				EE7475F21D153BB700F8068F /* SwiftCLITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		EEAC63471C9AF91D00164943 = {
@@ -318,6 +343,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		EEF43B841D26992500FFCB1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EEF43B891D26992500FFCB1F /* BioSwift.framework */,
+				EEF43B8B1D26992500FFCB1F /* BioSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EEF43B8D1D26992A00FFCB1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EEF43B921D26992A00FFCB1F /* SwiftCLI.framework */,
+				EEF43B941D26992A00FFCB1F /* SwiftCLITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -329,10 +372,13 @@
 				EEAC63531C9AF9CD00164943 /* Frameworks */,
 				EEAC63541C9AF9CD00164943 /* Resources */,
 				EE36B8A71CCAA0BD00B57835 /* ShellScript */,
+				EEF43B991D26996100FFCB1F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EEF43B981D26996100FFCB1F /* PBXTargetDependency */,
+				EEF43B9D1D26996600FFCB1F /* PBXTargetDependency */,
 			);
 			name = DesignGuide;
 			productName = DesignGuide;
@@ -345,8 +391,10 @@
 		EEAC63481C9AF91D00164943 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = org.ilap;
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Pal Dorogi";
 				TargetAttributes = {
 					EEAC63551C9AF9CD00164943 = {
 						CreatedOnToolsVersion = 7.3;
@@ -368,8 +416,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = EE7475EB1D153BB700F8068F /* Products */;
-					ProjectRef = EE7475EA1D153BB700F8068F /* SwiftCLI.xcodeproj */;
+					ProductGroup = EEF43B841D26992500FFCB1F /* Products */;
+					ProjectRef = EEF43B831D26992500FFCB1F /* BioSwift.xcodeproj */;
+				},
+				{
+					ProductGroup = EEF43B8D1D26992A00FFCB1F /* Products */;
+					ProjectRef = EEF43B8C1D26992A00FFCB1F /* SwiftCLI.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -380,18 +432,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		EE7475F01D153BB700F8068F /* SwiftCLI.framework */ = {
+		EEF43B891D26992500FFCB1F /* BioSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BioSwift.framework;
+			remoteRef = EEF43B881D26992500FFCB1F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EEF43B8B1D26992500FFCB1F /* BioSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BioSwiftTests.xctest;
+			remoteRef = EEF43B8A1D26992500FFCB1F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EEF43B921D26992A00FFCB1F /* SwiftCLI.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = SwiftCLI.framework;
-			remoteRef = EE7475EF1D153BB700F8068F /* PBXContainerItemProxy */;
+			remoteRef = EEF43B911D26992A00FFCB1F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EE7475F21D153BB700F8068F /* SwiftCLITests.xctest */ = {
+		EEF43B941D26992A00FFCB1F /* SwiftCLITests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = SwiftCLITests.xctest;
-			remoteRef = EE7475F11D153BB700F8068F /* PBXContainerItemProxy */;
+			remoteRef = EEF43B931D26992A00FFCB1F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -431,41 +497,57 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE04FB661CE8D9EA005BC1B1 /* CamembertMisc.m in Sources */,
-				EE9439961CEC49700085E864 /* NucleasePresenter.swift in Sources */,
 				EE04FAFF1CE8CBCD005BC1B1 /* ApplicationController.swift in Sources */,
 				EEAA3D0C1CEA550D0095FE06 /* DataAccessProtocols.swift in Sources */,
-				EE56E7DF1CEE49A400620520 /* PamModelManager.swift in Sources */,
 				EE56E7D61CEE497E00620520 /* GraphicalUserInterfaceCommand.swift in Sources */,
-				EE56E7DE1CEE49A400620520 /* OrganismModelManager.swift in Sources */,
+				EE56E7DE1CEE49A400620520 /* DesignSourceModelManager.swift in Sources */,
 				EEBACDBD1CEC7198000463BC /* GuideRNAListView.swift in Sources */,
 				EE56E7D71CEE497E00620520 /* CommandLineListCommand.swift in Sources */,
 				EE04FB101CE8CC5C005BC1B1 /* Extensions.swift in Sources */,
 				EE56E7E11CEE49A400620520 /* ModelProtocols.swift in Sources */,
 				EE04FB5B1CE8D9CB005BC1B1 /* SqliteConnection.swift in Sources */,
 				EE56E7CF1CEE18CA00620520 /* DesignGuideEnvironmentService.swift in Sources */,
+				EE1E7D111D2D94840039F637 /* DesignGuidePresenter.swift in Sources */,
 				EE04FB0F1CE8CC5C005BC1B1 /* CoreProtocols.swift in Sources */,
+				EE95E7331D2D95DA0096A2CB /* PamVievModel.swift in Sources */,
+				EE1E7D101D2D94840039F637 /* NucleaseDetailsPresenter.swift in Sources */,
 				EEAA3D0A1CEA54A00095FE06 /* AnyRepository.swift in Sources */,
+				EE1E7CFF1D2CF8DF0039F637 /* PamDetailsCLIView.swift in Sources */,
 				EE56E7E31CEE49DB00620520 /* Command.swift in Sources */,
-				EE04FB551CE8CEFA005BC1B1 /* BaseView.swift in Sources */,
+				EE04FB551CE8CEFA005BC1B1 /* ViewProtocols.swift in Sources */,
 				EE56E7D91CEE497E00620520 /* DesignGuideCommand.swift in Sources */,
 				EE04FB0E1CE8CC5C005BC1B1 /* ApplicationDefaultsConfiguration.swift in Sources */,
 				EE04FB631CE8D9EA005BC1B1 /* CamembertModel.swift in Sources */,
-				EEBACDC61CEC8186000463BC /* NucleaseModelManager.swift in Sources */,
-				EE9439981CEC4D320085E864 /* NucleaseListWithPamView.swift in Sources */,
+				EE9439981CEC4D320085E864 /* NucleasesDetailsCLIView.swift in Sources */,
+				EEA0A69F1D2D975200A8123C /* PresenterProtocols.swift in Sources */,
 				EE56E7E01CEE49A400620520 /* TargetModelManager.swift in Sources */,
 				EE04FB641CE8D9EA005BC1B1 /* Camembert.swift in Sources */,
 				EE04FB651CE8D9EA005BC1B1 /* ExtensionsClass.swift in Sources */,
 				EEAC63791C9AFF4D00164943 /* main.swift in Sources */,
-				EEEAAD271CEEDEDA00122BE4 /* README.md in Sources */,
-				EEAA3D0E1CEA56390095FE06 /* PamListPresenter.swift in Sources */,
-				EEBACDBF1CEC71C9000463BC /* GuideRNAPresenter.swift in Sources */,
+				EE95E72F1D2D95A10096A2CB /* NucleaseViewModel.swift in Sources */,
+				EE27BEA51D2ACDB300F9A6D8 /* SwiftEventBus.swift in Sources */,
 				EE56E7D51CEE497E00620520 /* CommandLineCommand.swift in Sources */,
+				EE1E7D0C1D2D92550039F637 /* AnyPresenter.swift in Sources */,
 				EE04FB6A1CE8DE8E005BC1B1 /* DesignGuideTables.swift in Sources */,
 				EE04FB111CE8CC5C005BC1B1 /* SwiftyUserDefaults.swift in Sources */,
+				EE1E7D0A1D2D91AB0039F637 /* AnyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EEF43B981D26996100FFCB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftCLI;
+			targetProxy = EEF43B971D26996100FFCB1F /* PBXContainerItemProxy */;
+		};
+		EEF43B9D1D26996600FFCB1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BioSwift;
+			targetProxy = EEF43B9C1D26996600FFCB1F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		EEAC634C1C9AF91D00164943 /* Debug */ = {
@@ -491,6 +573,8 @@
 				"INFOPLIST_FILE[sdk=*]" = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
 			};
 			name = Debug;
 		};
@@ -515,12 +599,15 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"INFOPLIST_FILE[sdk=*]" = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 			};
 			name = Release;
 		};
 		EEAC636D1C9AF9CD00164943 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -568,6 +655,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = org.ilap.DesignGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -584,6 +672,7 @@
 		EEAC636E1C9AF9CD00164943 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -623,6 +712,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.ilap.DesignGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

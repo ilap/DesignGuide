@@ -29,6 +29,13 @@ class PAM: CamembertModel, PAMProtocol, DataServiceProtocol {
     var sequence: TEXT = ""
     var survival: REAL =  0.0
     
+    var targets: [PAM] {
+        get {
+            return []
+        }
+
+    }
+    
     class func findAll() -> [PAM] {
         return PAM.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [PAM]
     }
@@ -61,6 +68,10 @@ class PAM: CamembertModel, PAMProtocol, DataServiceProtocol {
         return records
     }
 
+    func delete() {
+        self.remove()
+    }
+    
     func save() {
         self.push()
     }
@@ -72,7 +83,7 @@ class PAM: CamembertModel, PAMProtocol, DataServiceProtocol {
 }
 
 
-class Nuclease: CamembertModel, DataServiceProtocol  {
+class Nuclease: CamembertModel, NucleaseProtocol, DataServiceProtocol  {
 
     var name: TEXT = ""
     var spacer_length: INTEGER = 0
@@ -92,6 +103,11 @@ class Nuclease: CamembertModel, DataServiceProtocol  {
         return records
     }
 
+    var pams: [PAMProtocol] {
+        get {
+            return PAM.findByValue("nuclease_id" , value: self.id)
+        }
+    }
 
     class func findByValues(_ queries: [String:Any]) -> [Nuclease] {
 
@@ -124,30 +140,31 @@ class Nuclease: CamembertModel, DataServiceProtocol  {
     required override init() {
         super.init()
     }
+    
     func save() {
         self.push()
     }
 }
 
 
-class ModelOrganism: CamembertModel, DataServiceProtocol {
+class DesignSource: CamembertModel, DataServiceProtocol, DesignSourceProtocol {
     var name: TEXT = ""
     var descr: TEXT = ""
     var path: TEXT = ""
     var sequence_length: INTEGER = -1
     var sequence_hash: INTEGER = 0
     
-    class func findAll() -> [ModelOrganism] {
-        return ModelOrganism.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [ModelOrganism]
+    class func findAll() -> [DesignSource] {
+        return DesignSource.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [DesignSource]
         
     }
 
-    class func findByValue(_ column: String, value: Any) -> [ModelOrganism] {
-        let records = ModelOrganism.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [ModelOrganism]
+    class func findByValue(_ column: String, value: Any) -> [DesignSource] {
+        let records = DesignSource.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [DesignSource]
         return records
     }
 
-    class func findByValues(_ queries: [String:Any]) -> [ModelOrganism] {
+    class func findByValues(_ queries: [String:Any]) -> [DesignSource] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -165,13 +182,13 @@ class ModelOrganism: CamembertModel, DataServiceProtocol {
         }
         let customRequest = prefix + parameters + postfix
 
-        let records = ModelOrganism.select(selectRequest:  Select.customRequest(customRequest))! as! [ModelOrganism]
+        let records = DesignSource.select(selectRequest:  Select.customRequest(customRequest))! as! [DesignSource]
 
         return records
     }
 
-    class func findHash(_ hash: Int) -> [ModelOrganism] {
-        return ModelOrganism.select(selectRequest:  Select.where("sequence_hash", .equalsTo, hash, .ascending, "1"))! as! [ModelOrganism]
+    class func findHash(_ hash: Int) -> [DesignSource] {
+        return DesignSource.select(selectRequest:  Select.where("sequence_hash", .equalsTo, hash, .ascending, "1"))! as! [DesignSource]
     }
     
     func copySequenceToDatabase(_ fromPath: String, createNewFile: Bool) throws {
@@ -262,8 +279,9 @@ class DesignApplication: CamembertModel, DataServiceProtocol {
 
 }
 
-class ModelTarget: CamembertModel, DataServiceProtocol {
-    var model_organism_id: INTEGER = 0
+
+class DesignTarget: CamembertModel, DesignTargetProtocol, DataServiceProtocol {
+    var design_source_id: INTEGER = 0
     var design_application_id: INTEGER = 0
     var name: TEXT = ""
     
@@ -273,22 +291,22 @@ class ModelTarget: CamembertModel, DataServiceProtocol {
     var type: TEXT = "L"
     var descr: TEXT = ""
     
-    class func findForModelOrganism(_ column: [String], value: [Any]) -> [ModelTarget] {
-        let customRequest = "SELECT * FROM ModelTarget WHERE \(column[0]) = \(value[0]) AND \(column[1]) = \(value[1]) AND \(column[2]) = \(value[2]);"
-        let modelTarget = ModelTarget.select(selectRequest:  Select.customRequest(customRequest))! as! [ModelTarget]
-        return modelTarget
+    class func findForDesignSource(_ column: [String], value: [Any]) -> [DesignTarget] {
+        let customRequest = "SELECT * FROM DesignTarget WHERE \(column[0]) = \(value[0]) AND \(column[1]) = \(value[1]) AND \(column[2]) = \(value[2]);"
+        let designTarget = DesignTarget.select(selectRequest:  Select.customRequest(customRequest))! as! [DesignTarget]
+        return designTarget
     }
 
-    class func findAll() -> [ModelTarget] {
-        return ModelTarget.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [ModelTarget]
+    class func findAll() -> [DesignTarget] {
+        return DesignTarget.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [DesignTarget]
     }
 
-    class func findByValue(_ column: String, value: Any) -> [ModelTarget] {
-        let records = ModelTarget.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [ModelTarget]
+    class func findByValue(_ column: String, value: Any) -> [DesignTarget] {
+        let records = DesignTarget.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [DesignTarget]
         return records
     }
 
-    class func findByValues(_ queries: [String:Any]) -> [ModelTarget] {
+    class func findByValues(_ queries: [String:Any]) -> [DesignTarget] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -307,7 +325,7 @@ class ModelTarget: CamembertModel, DataServiceProtocol {
         let customRequest = prefix + parameters + postfix
         //print("CUSTOMREQUEST: \(customRequest)")
 
-        let records = ModelTarget.select(selectRequest:  Select.customRequest(customRequest))! as! [ModelTarget]
+        let records = DesignTarget.select(selectRequest:  Select.customRequest(customRequest))! as! [DesignTarget]
 
         return records
     }
@@ -325,7 +343,7 @@ class ModelTarget: CamembertModel, DataServiceProtocol {
 ///
 /// On and Off Target tables
 ///
-class OnTarget: CamembertModel, DataServiceProtocol {
+class OnTarget: CamembertModel, RNATargetProtocol, DataServiceProtocol {
     var model_target_id: INTEGER = 0
     var nuclease_id: INTEGER = 0
     var pam: TEXT = ""
@@ -376,6 +394,7 @@ class OnTarget: CamembertModel, DataServiceProtocol {
         self.push()
     }
 }
+
 
 
 class OffTarget: CamembertModel, DataServiceProtocol {
