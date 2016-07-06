@@ -35,7 +35,7 @@
 ///  1. -L <17-100>: Spacer length - default 20
 ///  2. -l <0..spacer lentgth>:Seed length - default 10
 ///  3. -o <0..2000>: Target offset, means offset of up/down stream of the target start and and position - default 0
-enum CommandLineArguments: String  {
+public enum DesignOption: String  {
     ///
     /// CLI Parameters
     ///
@@ -81,6 +81,14 @@ enum GuideApplication: String {
     }
 }
 
-protocol EnvironmentService {
-    var commandLineArgs: [CommandLineArguments:Any] { get set }
+public protocol DesignOptionsService {
+    var options: [DesignOption:Any] { get set }
 }
+
+enum DesignBusEvent: String {
+    case ListNucleaseRequest = "ListNucleaseRequest"
+    case ListNuclease = "ListNuclease"
+    case ListPAMRequest = "ListPAMRequest"
+    case ListPAM = "ListPAM"
+}
+

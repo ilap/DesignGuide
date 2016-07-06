@@ -30,7 +30,7 @@ public class ApplicatonController {
         // Singleton for initialising the Settings application level
         let configuration = ApplicatioinDefaultsConfiguration.sharedInstance
 
-        let envService = DesignGuideEnvironmentService()
+        let envService = DesignGuideOptions()
 
         let defaultCommand = CommandLineCommand(service: envService)
         //let defaultCommand = CommandLineListCommand(service: envService)

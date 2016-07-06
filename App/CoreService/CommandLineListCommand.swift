@@ -22,12 +22,11 @@
 import SwiftCLI
 import Foundation
 
-
 class CommandLineListCommand: DesignGuideCommand, OptionCommandType {
 
-    var service: EnvironmentService
+    var service: DesignOptionsService
 
-    init(service: EnvironmentService) {
+    init(service: DesignOptionsService) {
         self.service = service
     }
 
@@ -45,12 +44,11 @@ class CommandLineListCommand: DesignGuideCommand, OptionCommandType {
     
     func setupOptions(_ options: Options) {
         options.onFlags(["-e", "--experiments"], usage: "List experiments by users and date") {(flag) in
-            self.service.commandLineArgs[.ListExperiment] = true
+            self.service.options[.ListExperiment] = true
         }
         options.onFlags(["-n", "--nucleases"], usage: "List nucleases with known PAMs") {(flag) in
-            self.service.commandLineArgs[.ListNucleaseWithPAMs] = true
+            self.service.options[.ListNucleaseWithPAMs] = true
         }
-
     }
 
     func execute(_ arguments: CommandArguments) throws  {
@@ -59,12 +57,14 @@ class CommandLineListCommand: DesignGuideCommand, OptionCommandType {
         //self.service.commandLineArgs[.ListNucleaseWithPAMs] = true
 
         let context = SqliteContext()
-        let pamManager = PamModelManager(context: context)
-        let nucleaseManager = NucleaseModelManager(context: context)
-        let viewModel = NucleasePresenter(model: nucleaseManager, otherModel: pamManager)
-        let view = NucleaseListWithPamView(presenter: viewModel, service: service)
-
+        
+        
+        let dao = AnyRepository<Nuclease>(context: context)
+        let pamDao = AnyRepository<PAM>(context: context)
+        
+        let presenter = NucleaseDetailPresenter(dao: dao, pamDao: pamDao, options: service)
+        let view = NucleasesDetailsCLIView(presenter: presenter)
+        
         view.show()
-
     }
 }

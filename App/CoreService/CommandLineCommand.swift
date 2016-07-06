@@ -36,9 +36,9 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         return "Run Design Guide RNA Tool as CLI"
     }
 
-    var service: EnvironmentService
+    var service: DesignOptionsService
 
-    init(service: EnvironmentService) {
+    init(service: DesignOptionsService) {
         self.service = service
     }
     
@@ -46,13 +46,13 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         
         options.onKeys(["-s", "--source"], usage: "Directory includes sequence file(s) or a sequence file") {(key, value) in self
 
-            self.service.commandLineArgs[.Source] = value
+            self.service.options[.Source] = value
 
         }
         
         options.onKeys(["-t", "--target"], usage: "Start position, sequence file or a gene name (if the source genome/file is annotated (has not implemented yet)).", valueSignature: "target") {(key, value) in self
             // Always must be String
-            self.service.commandLineArgs[.Target] = value
+            self.service.options[.Target] = value
 
         }
         
@@ -65,7 +65,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
 
             if length > 0 {
 
-                 self.service.commandLineArgs[.TargetLength] = length
+                 self.service.options[.TargetLength] = length
             } else {
                 self.errorMessage = "ERROR: Target length (-T) must be positive number!"
             }
@@ -74,14 +74,14 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         
         options.onKeys(["-e", "--endonuclease"], usage: "Available endonucleases - default is \"wtCas9\", use \"list -n\" command for obtaining supported Cas9/Cpf1 variants", valueSignature: "endonuclease" ) {(key, value) in self
 
-            self.service.commandLineArgs[.Endonuclease] = value
+            self.service.options[.Endonuclease] = value
 
         }
         
         options.onKeys(["-p", "--pam"], usage: "PAM sequence(s) e.g. \"NGG NAG\", must be a subset of the chosen nuclease's PAMs - default is all the PAMs of the chosen nuclease", valueSignature: "PAMs" ) {(key, value) in self
             let pams = value.characters.split(separator: " ").map(String.init)
 
-            self.service.commandLineArgs[.UsedPAMs] = pams
+            self.service.options[.UsedPAMs] = pams
 
         }
         
@@ -94,7 +94,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             
             if spacer_length >= 0 && spacer_length <= 100 {
 
-                self.service.commandLineArgs[.SpacerLength] = spacer_length
+                self.service.options[.SpacerLength] = spacer_length
             } else {
                 self.errorMessage = "ERROR: Spacer length (-L) must be between 10 and 100"
             }
@@ -109,7 +109,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
 
             if seedLength >= 0 && seedLength <= 100 {
 
-                self.service.commandLineArgs[.SeedLength] = seedLength
+                self.service.options[.SeedLength] = seedLength
             } else {
                 self.errorMessage = "ERROR: Seed length (-l) must be between 0 and 100"
             }
@@ -124,7 +124,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             
             if offset >= 0 && offset <= 10000 {
 
-                self.service.commandLineArgs[.TargetOffset] = offset
+                self.service.options[.TargetOffset] = offset
 
             } else {
                 self.errorMessage = "ERROR: Target offset (-o) must be between 0 and 10000"
@@ -140,7 +140,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
                  GuideApplication.Activation.rawValue,
                  GuideApplication.Repression.rawValue :
 
-                self.service.commandLineArgs[.ApplicationType] = value
+                self.service.options[.ApplicationType] = value
             default:
                 self.errorMessage = "ERROR: Application must be either of \"KO\", \"KI\", \"Activation\" or \"Repression\"."
             }
@@ -155,23 +155,22 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         }
 
         // TODO: remove after testing...
-        self.service.commandLineArgs[.Source] = "/Users/ilap/Developer/Dissertation/Sequences/Source1in1"
-        self.service.commandLineArgs[.Endonuclease] = "wtCas9"
-        self.service.commandLineArgs[.Target] = "250000"
-        //self.service.commandLineArgs[.TargetOffset] = 20
-        self.service.commandLineArgs[.TargetLength] = 100
+        self.service.options[.Source] = "/Users/ilap/Developer/Dissertation/Resources/Sequences/Source1in1/sequence.fasta"
+        self.service.options[.Endonuclease] = "wtCas9"
+        self.service.options[.Target] = "100"
+        self.service.options[.TargetOffset] = 20
+        self.service.options[.TargetLength] = 100
+        self.service.options[.UsedPAMs] = ["NGG"]
 
-        //self.service.commandLineArgs[.UsedPAMs] = ["NAG"]
-
-        if self.service.commandLineArgs[.Source] == nil ||
-            self.service.commandLineArgs[.Target] == nil ||
-            self.service.commandLineArgs[.Endonuclease] == nil {
+        if self.service.options[.Source] == nil ||
+            self.service.options[.Target] == nil ||
+            self.service.options[.Endonuclease] == nil {
 
             throw CLIError.error("ERROR: Source, target and nuclease parameters are mandatory.")
 
         }
 
-        let target = self.service.commandLineArgs[.Target]
+        let target = self.service.options[.Target]
 
         // FIXME: Get rid of this
         let t = Int(target as! String)
@@ -179,7 +178,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             throw CLIError.error("ERROR: Currently, target can be only a location (integer number) ")
         }
 
-        guard let _ = self.service.commandLineArgs[.TargetLength],
+        guard let _ = self.service.options[.TargetLength],
         let _ = Int(target as! String) else {
             throw CLIError.error("ERROR: If Target is a number (location) then the target length (-T) is mandatory")
         }
@@ -190,8 +189,8 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         try validateRuntimeParameters()
 
         let context = SqliteContext()
-        let viewModel = GuideRNAPresenter(context: context)
-        let view = GuideRNAListView(presenter: viewModel, service: service)
+        let viewModel = DesignGuidePresenter(context: context, service: service) //GuideRNAPresenter(context: context)
+        let view = GuideRNAListView(presenter: viewModel)
 
         view.show()
 

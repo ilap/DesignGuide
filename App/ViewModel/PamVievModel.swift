@@ -19,16 +19,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import BioSwift
 
-public enum ModelError: ErrorProtocol {
-    case error(String)
-    case fileError(String)
-    case databaseError(String)
-    case parameterError(String)
-    case emptyError
-}
-
-protocol DesignableManagerModel {
-    var sourceSequence: [CamembertModel:SeqRecord] { get }
+public class PamViewModel {
+    var name: String {
+        get {
+            return model.sequence
+        }
+    }
+    
+    var survival: String {
+        get {
+            return String(model.survival * 100) + "%"
+        }
+    }
+    
+    var model: PAM
+    
+    init(model: PAM) {
+        self.model = model
+    }
 }

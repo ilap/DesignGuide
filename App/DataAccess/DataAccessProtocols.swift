@@ -28,7 +28,6 @@ enum DataAccessLayerError: ErrorProtocol {
     case nilError
 }
 
-
 protocol DataContext {
     var initialised : Bool { get }
 }
@@ -46,12 +45,13 @@ public protocol DataServiceProtocol {
 }
 
 
-protocol RepositoryProtocol{
+protocol RepositoryProtocol {
     associatedtype T
 
     func create() -> T?
     func add(_ item: T) -> Void
-
+    func delete(_ item: T) -> Void
+    
     func getAll<T: DataServiceProtocol where T.T == T>() -> [T]
     func getByValue<T: DataServiceProtocol where T.T ==T>(_ column: String, value: Any) -> [T]
     func getByValues<T: DataServiceProtocol where T.T ==T>(_ queries: [String:Any]) -> [T]

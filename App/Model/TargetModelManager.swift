@@ -19,31 +19,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class TargetModelManager: AnyRepository<ModelTarget> {
+class TargetModelManager: AnyRepository<DesignTarget> {
     
     var items: [CamembertModel] = []
 
     required init(context: DataContext) {
         super.init(context: context)
-        self.context = context
     }
 
-    func getOrCreateTargetsFromLocation(_ organism_id: Int, location: Int, length: Int, offset: Int? = nil) -> [CamembertModel] {
+    func getOrCreateTargetsFromLocation(_ sourceId: Int, location: Int, length: Int, offset: Int? = nil) -> [CamembertModel] {
 
-        let modelId = organism_id
+        //let modelId = modelId
 
-        var result = ModelTarget.findByValues(["model_organism_id":organism_id,
+        var result = DesignTarget.findByValues(["design_source_id":sourceId,
             "location":location,
             "length":length,
             "offset":offset!])
 
-
         assert(result.count <= 1, "DATABASE ERROR: More than one targets found")
 
         if result.isEmpty {
+            print("RESULT IS EMPTY")
 
-            let target = ModelTarget()
-            target.model_organism_id = modelId
+            let target = DesignTarget()
+            target.design_source_id = sourceId
 
             // FIXME: name must be uniq for an organism
             target.location = location
@@ -54,10 +53,13 @@ class TargetModelManager: AnyRepository<ModelTarget> {
 
             // Computed name for target as just the location has been set.
             target.name = "location_" + String(location) + "_" + String(length) + "_" + String(target.offset)
-            target.push()
+            
+            if target.push() == .success {
+                result.append(target)
+            }
 
-            result.append(target)
-
+        } else {
+            print("RESULT IS NOT EMPTY")
         }
 
         return result

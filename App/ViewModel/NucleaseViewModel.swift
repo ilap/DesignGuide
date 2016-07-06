@@ -19,16 +19,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import BioSwift
 
-public enum ModelError: ErrorProtocol {
-    case error(String)
-    case fileError(String)
-    case databaseError(String)
-    case parameterError(String)
-    case emptyError
-}
+public class NucleaseViewModel {
+    
+    var model: Nuclease
+    var pamDao: AnyRepository<PAM>
+    var pamViewModels: [PamViewModel?] = []
 
-protocol DesignableManagerModel {
-    var sourceSequence: [CamembertModel:SeqRecord] { get }
+    var name: String {
+        get {
+            return model.name
+        }
+    }
+    
+    init(model: Nuclease, pamDao: AnyRepository<PAM>) {
+        self.model = model
+        self.pamDao = pamDao
+        loadPams()
+    }
+    
+    private func loadPams() {
+        pamViewModels = []
+        
+        let pams = pamDao.getByValue("nuclease_id", value: model.id!) as [PAM]
+        
+        if !pams.isEmpty {
+            for pam in pams {
+                pamViewModels.append(PamViewModel(model: pam))
+            }
+        }
+    }
 }

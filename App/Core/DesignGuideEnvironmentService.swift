@@ -20,22 +20,22 @@
  */
 
 
-class DesignGuideEnvironmentService: EnvironmentService {
-    var commandLineArgs: [CommandLineArguments:Any] = [:]
+class DesignGuideOptions: DesignOptionsService {
+    var options: [DesignOption:Any] = [:]
 
     func description() {
         print ("Description:")
         print ("============================")
-        print("Source: \(commandLineArgs[.Source])")
-        print("Target: \(commandLineArgs[.Target])")
-        print("Target Length: \(commandLineArgs[.TargetLength])")
-        print("Target offset: \(commandLineArgs[.TargetOffset])")
+        print("Source: \(options[.Source])")
+        print("Target: \(options[.Target])")
+        print("Target Length: \(options[.TargetLength])")
+        print("Target offset: \(options[.TargetOffset])")
         print("-----")
-        print("Endonuclease: \(commandLineArgs[.Endonuclease])")
-        print("Used PAMs: \(commandLineArgs[.UsedPAMs])")
+        print("Endonuclease: \(options[.Endonuclease])")
+        print("Used PAMs: \(options[.UsedPAMs])")
         print("-----")
-        print("Spacer length: \(commandLineArgs[.SpacerLength])")
-        print("Seed length: \(commandLineArgs[.SeedLength])")
+        print("Spacer length: \(options[.SpacerLength])")
+        print("Seed length: \(options[.SeedLength])")
         print("-----")
     }
 }

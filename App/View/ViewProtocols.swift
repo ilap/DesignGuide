@@ -19,16 +19,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import BioSwift
 
-public enum ModelError: ErrorProtocol {
-    case error(String)
-    case fileError(String)
-    case databaseError(String)
-    case parameterError(String)
-    case emptyError
+public protocol ViewProtocol {
+    func show() throws
+    func showMessage(message: String)
+    //func showErrorMessage(erroMessage: String)
 }
 
-protocol DesignableManagerModel {
-    var sourceSequence: [CamembertModel:SeqRecord] { get }
+public protocol ListNucleasesViewProtocol: ViewProtocol {
+    func showNucleases(nucleaseViewModelList: [NucleaseViewModel])
+}
+
+public protocol ListPamsViewProtocol: ViewProtocol {
+    func showPams(pamViewModelList: [PamViewModel])
 }

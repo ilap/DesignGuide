@@ -31,10 +31,18 @@ class AnyRepository<T: DataServiceProtocol>: RepositoryProtocol {
     func create() -> T? {
         return T()
     }
-
+    
     func add(_ item: T) -> Void {
         // FIXME: get rid off this thightly coupled CamembertModel.
         let result = (item as! CamembertModel).push()
+        if result != .success {
+            debugPrint("DATABASE ERROR: \(result): \(item)")
+        }
+    }
+
+    func delete(_ item: T) -> Void {
+        // FIXME: get rid off this thightly coupled CamembertModel.
+        let result = (item as! CamembertModel).remove()
         if result != .success {
             debugPrint("DATABASE ERROR: \(result): \(item)")
         }
@@ -45,6 +53,7 @@ class AnyRepository<T: DataServiceProtocol>: RepositoryProtocol {
         return T.findAll()
     }
 
+    
     func getByValue<T: DataServiceProtocol where T.T ==T>(_ column: String, value: Any) -> [T] {
         // MARK: Call static function.
         return T.findByValue(column, value: value)

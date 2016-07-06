@@ -19,47 +19,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class GuideRNAListView : BaseView {
+class GuideRNAListView : ViewProtocol {
     // TODO: Use some presistent store for seedLength parameter.
-    let seedLength = 10
-    let targetOffset = 0
+    
+    let presenter: DesignGuidePresenter //GuideRNAPresenter
+    //let service: DesignOptionsService
 
-    let presenter: GuideRNAPresenter
-    let service: EnvironmentService
-
-    init(presenter: GuideRNAPresenter, service: EnvironmentService) {
+    init(presenter: DesignGuidePresenter) {//, service: DesignOptionsService) {
         self.presenter = presenter
-        self.service = service
+        //self.service = service
+    }
+    
+    func initialised() -> Bool {
+        presenter.onViewInitialised()
+        /// No any throws occured
+        return true
     }
 
+    func getContext (contexts: [String]) {
+        for context in contexts {
+            print(context)
+        }
+    }
+    
+    func showMessage(message: String) {
+        print(message)
+    }
+    
     func show() {
-        debugPrint(service.commandLineArgs[.Endonuclease] as! String)
-
-        /// Source
-        presenter.sourceFile = service.commandLineArgs[.Source] as! String?
-
-        /// Target
-        // FIXME: Only location is supported, means target Length always must be presented.
-        presenter.target = service.commandLineArgs[.Target] as! String?
-        presenter.targetLength = service.commandLineArgs[.TargetLength] as! Int?
-        // if it's not defined then it's always 0
-        presenter.targetOffset = service.commandLineArgs[.TargetOffset] as! Int? ?? 0
-
-        /// Endonuclease
-        presenter.nuclease = service.commandLineArgs[.Endonuclease] as! String?
-
-        /// Used PAMs
-        presenter.usedPAMSequences = (service.commandLineArgs[.UsedPAMs] as! [String]?) ?? []
-
-        /// Other parameters
-        presenter.spacerLength = service.commandLineArgs[.SpacerLength] as! Int?
-
-        // TODO: seed length must be set as it's a user parameter
-        presenter.seedLength = service.commandLineArgs[.SeedLength] as! Int?
-        // Kick off the command
-        print("Presenter's used PAMs: \(presenter.usedPAMSequences)")
-
-        presenter.listGuideRNACommand!.execute()
+        if initialised() {
+            //FIXME: Design Guide RNA
+            // presenter.listGuideRNACommand!.execute()
+        } else {
+            print("Error in initialising View.")
+        }
     }
 }
 
