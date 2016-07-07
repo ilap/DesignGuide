@@ -132,6 +132,8 @@
 		EE04FB611CE8D9EA005BC1B1 /* Camembert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camembert.h; path = App/DataAccess/SQLite/Camembert/Camembert.h; sourceTree = "<group>"; };
 		EE04FB621CE8D9EA005BC1B1 /* CamembertMisc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CamembertMisc.m; path = App/DataAccess/SQLite/Camembert/CamembertMisc.m; sourceTree = "<group>"; };
 		EE04FB691CE8DE8E005BC1B1 /* DesignGuideTables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideTables.swift; path = App/DataAccess/SQLite/DesignGuideTables.swift; sourceTree = "<group>"; };
+		EE1699691D2E18F300F4E6B3 /* MVP-VM.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "MVP-VM.playground"; path = "PlayGrounds/MVP-VM.playground"; sourceTree = "<group>"; };
+		EE16996D1D2E30C000F4E6B3 /* Sandbox.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Sandbox.playground; path = PlayGrounds/Sandbox.playground; sourceTree = "<group>"; };
 		EE1E7CFE1D2CF8DF0039F637 /* PamDetailsCLIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PamDetailsCLIView.swift; path = App/View/CLIView/PamDetailsCLIView.swift; sourceTree = "<group>"; };
 		EE1E7D091D2D91AB0039F637 /* AnyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyView.swift; path = App/View/AnyView.swift; sourceTree = "<group>"; };
 		EE1E7D0B1D2D92550039F637 /* AnyPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyPresenter.swift; path = App/Presenter/AnyPresenter.swift; sourceTree = "<group>"; };
@@ -324,12 +326,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EE16996C1D2E192700F4E6B3 /* PlayGrounds */ = {
+			isa = PBXGroup;
+			children = (
+				EE16996D1D2E30C000F4E6B3 /* Sandbox.playground */,
+				EE1699691D2E18F300F4E6B3 /* MVP-VM.playground */,
+			);
+			name = PlayGrounds;
+			sourceTree = "<group>";
+		};
 		EEAC63471C9AF91D00164943 = {
 			isa = PBXGroup;
 			children = (
+				EEAC63771C9AFF4100164943 /* main.swift */,
 				EEEAAD261CEEDEDA00122BE4 /* README.md */,
 				EE04FAFC1CE8CBAC005BC1B1 /* App */,
-				EEAC63771C9AFF4100164943 /* main.swift */,
+				EE16996C1D2E192700F4E6B3 /* PlayGrounds */,
 				EEAC63571C9AF9CD00164943 /* Products */,
 				EE1197571C9B04E7000065C5 /* Frameworks */,
 			);

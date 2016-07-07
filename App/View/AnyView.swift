@@ -20,7 +20,7 @@
  */
 
 /**
- Implements the Model View Presenter design pattern.
+ Implements the Model View Presenter ViewModel design pattern.
  
  Implementing Presenter claas
  1. directly invoking methods in the presenter by implementing additional methods
