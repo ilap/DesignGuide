@@ -499,7 +499,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "lowercase_name=`echo $PRODUCT_NAME | tr '[A-Z]' '[a-z]'`\nnew_path=/usr/local/bin/$lowercase_name\n\nif [ ! -f $new_path ]; then ln -fs \"$BUILT_PRODUCTS_DIR/${PRODUCT_NAME}.app/Contents/MacOS/$PRODUCT_NAME\" \"$new_path\";fi";
+			shellScript = "# lowercase_name=`echo $PRODUCT_NAME | tr '[A-Z]' '[a-z]'`\nnew_path=/usr/local/bin/ #$lowercase_name\n\n# if [ ! -f $new_path ]; then\nln -fs \"$BUILT_PRODUCTS_DIR/${PRODUCT_NAME}.app\" \"$new_path\"\n#;fi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
