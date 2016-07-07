@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../BioSwift/BioSwift.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../FrameWorks/SwiftCLI/Support/SwiftCLI.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DesignGuide.xcodeproj">
+   </FileRef>
+</Workspace>
