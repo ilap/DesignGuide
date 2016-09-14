@@ -41,9 +41,9 @@ class DataAccess {
         }
         set (value){
             var isDir = ObjCBool(true)
-            if !FileManager.default().fileExists(atPath: value!, isDirectory: &isDir){
+            if !FileManager.default.fileExists(atPath: value!, isDirectory: &isDir){
                 do {
-                    try FileManager.default().createDirectory(atPath: value!, withIntermediateDirectories: true, attributes: nil)
+                    try FileManager.default.createDirectory(atPath: value!, withIntermediateDirectories: true, attributes: nil)
                 }
                 catch {
                     print("DataAccess function raised an exception")
@@ -166,7 +166,7 @@ class Camembert {
                     let A = (Int(sqlite3_column_int(ptrRequest,
                         CInt(index))) as AnyObject)
                     //debugPrint ("AAAAAA \(columName) \(A) \(currentObject.getValue)")
-                    currentObject.getValue
+                    let _ = currentObject.getValue
                     currentObject.setValue(A, forKey: columName)
                 case SQLITE_FLOAT:
                     currentObject.setValue((Float(sqlite3_column_double(ptrRequest,

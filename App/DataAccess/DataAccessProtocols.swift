@@ -36,11 +36,12 @@ protocol DataContext {
 // For DAL's class function.
 public protocol DataServiceProtocol {
     associatedtype T
+    var id: Int? { get set }
     static func findAll() -> [T]
     static func findByValue(_ column: String, value: Any) -> [T]
     static func findByValues(_ queries: [String:Any]) -> [T]
     func save() -> Void
-
+    func remove() -> Void
     init()
 }
 
@@ -51,7 +52,7 @@ protocol RepositoryProtocol {
     func create() -> T?
     func add(_ item: T) -> Void
     func delete(_ item: T) -> Void
-    
+
     func getAll<T: DataServiceProtocol where T.T == T>() -> [T]
     func getByValue<T: DataServiceProtocol where T.T ==T>(_ column: String, value: Any) -> [T]
     func getByValues<T: DataServiceProtocol where T.T ==T>(_ queries: [String:Any]) -> [T]

@@ -50,7 +50,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
 
         }
         
-        options.onKeys(["-t", "--target"], usage: "Start position, sequence file or a gene name (if the source genome/file is annotated (has not implemented yet)).", valueSignature: "target") {(key, value) in self
+        options.onKeys(["-t", "--target"], usage: "Start position. The sequence file or a gene name (if the source genome/file is annotated) as target parameter has not implemented yet)).", valueSignature: "target location") {(key, value) in self
             // Always must be String
             self.service.options[.Target] = value
 
@@ -78,12 +78,15 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
 
         }
         
-        options.onKeys(["-p", "--pam"], usage: "PAM sequence(s) e.g. \"NGG NAG\", must be a subset of the chosen nuclease's PAMs - default is all the PAMs of the chosen nuclease", valueSignature: "PAMs" ) {(key, value) in self
+        /* 
+         FIXME: Add this feature later 
+         options.onKeys(["-p", "--pam"], usage: "PAM sequence(s) e.g. \"NGG NAG\", must be a subset of the chosen nuclease's PAMs - default is all the PAMs of the chosen nuclease", valueSignature: "PAMs" ) {(key, value) in self
             let pams = value.characters.split(separator: " ").map(String.init)
 
             self.service.options[.UsedPAMs] = pams
 
         }
+        */
         
         options.onKeys(["-L", "--spacer-length"], usage: "RNA Spacer length - default is 17", valueSignature: "10-100") {(key, value) in self
             
@@ -131,6 +134,8 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             }
         }
         
+        /*
+        FIXME: Add this feature later
         options.onKeys(["-a", "--application"], usage: "Application e.g. [\"KO\", \"KI\", \"Activation\" or \"Repression\" - default is \"KO\"", valueSignature: "application" ) {(key, value) in self
 
             switch value as String {
@@ -145,6 +150,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
                 self.errorMessage = "ERROR: Application must be either of \"KO\", \"KI\", \"Activation\" or \"Repression\"."
             }
         }
+         */
     }
     
     
@@ -153,14 +159,6 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         if let _ = self.errorMessage {
             throw CLIError.error(self.errorMessage!)
         }
-
-        // TODO: remove after testing...
-        self.service.options[.Source] = "/Users/ilap/Developer/Dissertation/Resources/Sequences/Source1in1/sequence.fasta"
-        self.service.options[.Endonuclease] = "wtCas9"
-        self.service.options[.Target] = "100"
-        self.service.options[.TargetOffset] = 20
-        self.service.options[.TargetLength] = 100
-        self.service.options[.UsedPAMs] = ["NGG"]
 
         if self.service.options[.Source] == nil ||
             self.service.options[.Target] == nil ||
@@ -182,16 +180,24 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         let _ = Int(target as! String) else {
             throw CLIError.error("ERROR: If Target is a number (location) then the target length (-T) is mandatory")
         }
+        self.service.options[.Target] = t
     }
 
-
     func execute(_ arguments: CommandArguments) throws  {
+
         try validateRuntimeParameters()
 
         let context = SqliteContext()
-        let viewModel = DesignGuidePresenter(context: context, service: service) //GuideRNAPresenter(context: context)
-        let view = GuideRNAListView(presenter: viewModel)
 
+        let dao = AnyRepository<Nuclease>(context: context)
+        let pamDao = AnyRepository<PAM>(context: context)
+        
+        let nucleasePresenter = NucleaseCollectionPresenter(dao: dao, pamDao: pamDao)
+        _ = NucleasesCollectionCLIView(presenter: nucleasePresenter, optionService: service)
+        
+        let presenter = DesignManagerPresenter(context: context, service: service)
+        let view = DesignGuideView(presenter: presenter, optionService: service)
+        
         view.show()
 
     }

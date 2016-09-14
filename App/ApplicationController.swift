@@ -28,7 +28,7 @@ public class ApplicatonController {
     private static func setup() {
         // TODO: Use dependency injection instead
         // Singleton for initialising the Settings application level
-        let configuration = ApplicatioinDefaultsConfiguration.sharedInstance
+        ApplicatioinDefaultsConfiguration.setDefaults()
 
         let envService = DesignGuideOptions()
 

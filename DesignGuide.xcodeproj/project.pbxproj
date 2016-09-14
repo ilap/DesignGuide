@@ -22,29 +22,29 @@
 		EE04FB651CE8D9EA005BC1B1 /* ExtensionsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB5F1CE8D9EA005BC1B1 /* ExtensionsClass.swift */; };
 		EE04FB661CE8D9EA005BC1B1 /* CamembertMisc.m in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB621CE8D9EA005BC1B1 /* CamembertMisc.m */; };
 		EE04FB6A1CE8DE8E005BC1B1 /* DesignGuideTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04FB691CE8DE8E005BC1B1 /* DesignGuideTables.swift */; };
-		EE1E7CFF1D2CF8DF0039F637 /* PamDetailsCLIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7CFE1D2CF8DF0039F637 /* PamDetailsCLIView.swift */; };
 		EE1E7D0A1D2D91AB0039F637 /* AnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7D091D2D91AB0039F637 /* AnyView.swift */; };
 		EE1E7D0C1D2D92550039F637 /* AnyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7D0B1D2D92550039F637 /* AnyPresenter.swift */; };
-		EE1E7D101D2D94840039F637 /* NucleaseDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7D0D1D2D94840039F637 /* NucleaseDetailsPresenter.swift */; };
-		EE1E7D111D2D94840039F637 /* DesignGuidePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7D0E1D2D94840039F637 /* DesignGuidePresenter.swift */; };
+		EE1E7D111D2D94840039F637 /* DesignManagerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E7D0E1D2D94840039F637 /* DesignManagerPresenter.swift */; };
 		EE27BEA51D2ACDB300F9A6D8 /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27BEA41D2ACDB300F9A6D8 /* SwiftEventBus.swift */; };
+		EE5113EC1D877F9E00C7B995 /* DesignGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5113EB1D877F9E00C7B995 /* DesignGuideView.swift */; };
+		EE5113EE1D8780C000C7B995 /* GuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5113ED1D8780C000C7B995 /* GuideViewModel.swift */; };
+		EE5154C81D32BD1300CAB6FB /* NucleaseCollectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5154C71D32BD1300CAB6FB /* NucleaseCollectionPresenter.swift */; };
 		EE56E7CF1CEE18CA00620520 /* DesignGuideEnvironmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7CE1CEE18CA00620520 /* DesignGuideEnvironmentService.swift */; };
 		EE56E7D51CEE497E00620520 /* CommandLineCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D01CEE497E00620520 /* CommandLineCommand.swift */; };
 		EE56E7D61CEE497E00620520 /* GraphicalUserInterfaceCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D11CEE497E00620520 /* GraphicalUserInterfaceCommand.swift */; };
 		EE56E7D71CEE497E00620520 /* CommandLineListCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D21CEE497E00620520 /* CommandLineListCommand.swift */; };
 		EE56E7D91CEE497E00620520 /* DesignGuideCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7D41CEE497E00620520 /* DesignGuideCommand.swift */; };
-		EE56E7DE1CEE49A400620520 /* DesignSourceModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DA1CEE49A400620520 /* DesignSourceModelManager.swift */; };
-		EE56E7E01CEE49A400620520 /* TargetModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DC1CEE49A400620520 /* TargetModelManager.swift */; };
 		EE56E7E11CEE49A400620520 /* ModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7DD1CEE49A400620520 /* ModelProtocols.swift */; };
 		EE56E7E31CEE49DB00620520 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56E7E21CEE49DB00620520 /* Command.swift */; };
-		EE9439981CEC4D320085E864 /* NucleasesDetailsCLIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9439971CEC4D320085E864 /* NucleasesDetailsCLIView.swift */; };
+		EE89886C1D2FA66E00124B64 /* SourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE89886B1D2FA66E00124B64 /* SourceViewModel.swift */; };
+		EE8988701D2FA76B00124B64 /* TargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE89886F1D2FA76B00124B64 /* TargetViewModel.swift */; };
+		EE9439981CEC4D320085E864 /* NucleasesCollectionCLIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9439971CEC4D320085E864 /* NucleasesCollectionCLIView.swift */; };
 		EE95E72F1D2D95A10096A2CB /* NucleaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95E72E1D2D95A10096A2CB /* NucleaseViewModel.swift */; };
 		EE95E7331D2D95DA0096A2CB /* PamVievModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95E7321D2D95DA0096A2CB /* PamVievModel.swift */; };
 		EEA0A69F1D2D975200A8123C /* PresenterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA0A69E1D2D975200A8123C /* PresenterProtocols.swift */; };
 		EEAA3D0A1CEA54A00095FE06 /* AnyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA3D091CEA54A00095FE06 /* AnyRepository.swift */; };
 		EEAA3D0C1CEA550D0095FE06 /* DataAccessProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAA3D0B1CEA550D0095FE06 /* DataAccessProtocols.swift */; };
 		EEAC63791C9AFF4D00164943 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAC63771C9AFF4100164943 /* main.swift */; };
-		EEBACDBD1CEC7198000463BC /* GuideRNAListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBACDBC1CEC7198000463BC /* GuideRNAListView.swift */; };
 		EEF43B951D26996100FFCB1F /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF43B921D26992A00FFCB1F /* SwiftCLI.framework */; };
 		EEF43B961D26996100FFCB1F /* SwiftCLI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EEF43B921D26992A00FFCB1F /* SwiftCLI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEF43B9A1D26996600FFCB1F /* BioSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF43B891D26992500FFCB1F /* BioSwift.framework */; };
@@ -133,24 +133,24 @@
 		EE04FB621CE8D9EA005BC1B1 /* CamembertMisc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CamembertMisc.m; path = App/DataAccess/SQLite/Camembert/CamembertMisc.m; sourceTree = "<group>"; };
 		EE04FB691CE8DE8E005BC1B1 /* DesignGuideTables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideTables.swift; path = App/DataAccess/SQLite/DesignGuideTables.swift; sourceTree = "<group>"; };
 		EE1699691D2E18F300F4E6B3 /* MVP-VM.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "MVP-VM.playground"; path = "PlayGrounds/MVP-VM.playground"; sourceTree = "<group>"; };
-		EE16996D1D2E30C000F4E6B3 /* Sandbox.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Sandbox.playground; path = PlayGrounds/Sandbox.playground; sourceTree = "<group>"; };
-		EE1E7CFE1D2CF8DF0039F637 /* PamDetailsCLIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PamDetailsCLIView.swift; path = App/View/CLIView/PamDetailsCLIView.swift; sourceTree = "<group>"; };
 		EE1E7D091D2D91AB0039F637 /* AnyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyView.swift; path = App/View/AnyView.swift; sourceTree = "<group>"; };
 		EE1E7D0B1D2D92550039F637 /* AnyPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyPresenter.swift; path = App/Presenter/AnyPresenter.swift; sourceTree = "<group>"; };
-		EE1E7D0D1D2D94840039F637 /* NucleaseDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleaseDetailsPresenter.swift; path = App/Presenter/NucleaseDetailsPresenter.swift; sourceTree = "<group>"; };
-		EE1E7D0E1D2D94840039F637 /* DesignGuidePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuidePresenter.swift; path = App/Presenter/DesignGuidePresenter.swift; sourceTree = "<group>"; };
+		EE1E7D0E1D2D94840039F637 /* DesignManagerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignManagerPresenter.swift; path = App/Presenter/DesignManagerPresenter.swift; sourceTree = "<group>"; };
 		EE27BEA41D2ACDB300F9A6D8 /* SwiftEventBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftEventBus.swift; path = App/Core/SwiftEventBus.swift; sourceTree = "<group>"; };
+		EE5113EB1D877F9E00C7B995 /* DesignGuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideView.swift; path = App/View/CLIView/DesignGuideView.swift; sourceTree = "<group>"; };
+		EE5113ED1D8780C000C7B995 /* GuideViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuideViewModel.swift; path = App/ViewModel/GuideViewModel.swift; sourceTree = "<group>"; };
+		EE5154C71D32BD1300CAB6FB /* NucleaseCollectionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NucleaseCollectionPresenter.swift; sourceTree = "<group>"; };
 		EE56E7CE1CEE18CA00620520 /* DesignGuideEnvironmentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideEnvironmentService.swift; path = App/Core/DesignGuideEnvironmentService.swift; sourceTree = "<group>"; };
 		EE56E7D01CEE497E00620520 /* CommandLineCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineCommand.swift; path = App/CoreService/CommandLineCommand.swift; sourceTree = "<group>"; };
 		EE56E7D11CEE497E00620520 /* GraphicalUserInterfaceCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicalUserInterfaceCommand.swift; path = App/CoreService/GraphicalUserInterfaceCommand.swift; sourceTree = "<group>"; };
 		EE56E7D21CEE497E00620520 /* CommandLineListCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLineListCommand.swift; path = App/CoreService/CommandLineListCommand.swift; sourceTree = "<group>"; };
 		EE56E7D31CEE497E00620520 /* WebAppCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppCommand.swift; path = App/CoreService/WebAppCommand.swift; sourceTree = "<group>"; };
 		EE56E7D41CEE497E00620520 /* DesignGuideCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignGuideCommand.swift; path = App/CoreService/DesignGuideCommand.swift; sourceTree = "<group>"; };
-		EE56E7DA1CEE49A400620520 /* DesignSourceModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignSourceModelManager.swift; path = App/Model/DesignSourceModelManager.swift; sourceTree = "<group>"; };
-		EE56E7DC1CEE49A400620520 /* TargetModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TargetModelManager.swift; path = App/Model/TargetModelManager.swift; sourceTree = "<group>"; };
 		EE56E7DD1CEE49A400620520 /* ModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelProtocols.swift; path = App/Model/ModelProtocols.swift; sourceTree = "<group>"; };
 		EE56E7E21CEE49DB00620520 /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Command.swift; path = App/Core/Command.swift; sourceTree = "<group>"; };
-		EE9439971CEC4D320085E864 /* NucleasesDetailsCLIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleasesDetailsCLIView.swift; path = App/View/CLIView/NucleasesDetailsCLIView.swift; sourceTree = "<group>"; };
+		EE89886B1D2FA66E00124B64 /* SourceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SourceViewModel.swift; path = App/ViewModel/SourceViewModel.swift; sourceTree = "<group>"; };
+		EE89886F1D2FA76B00124B64 /* TargetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TargetViewModel.swift; path = App/ViewModel/TargetViewModel.swift; sourceTree = "<group>"; };
+		EE9439971CEC4D320085E864 /* NucleasesCollectionCLIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleasesCollectionCLIView.swift; path = App/View/CLIView/NucleasesCollectionCLIView.swift; sourceTree = "<group>"; };
 		EE95E72E1D2D95A10096A2CB /* NucleaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NucleaseViewModel.swift; path = App/ViewModel/NucleaseViewModel.swift; sourceTree = "<group>"; };
 		EE95E7321D2D95DA0096A2CB /* PamVievModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PamVievModel.swift; path = App/ViewModel/PamVievModel.swift; sourceTree = "<group>"; };
 		EEA0A69E1D2D975200A8123C /* PresenterProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresenterProtocols.swift; path = App/Presenter/PresenterProtocols.swift; sourceTree = "<group>"; };
@@ -158,7 +158,6 @@
 		EEAA3D0B1CEA550D0095FE06 /* DataAccessProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataAccessProtocols.swift; path = App/DataAccess/DataAccessProtocols.swift; sourceTree = "<group>"; };
 		EEAC63561C9AF9CD00164943 /* DesignGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAC63771C9AFF4100164943 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		EEBACDBC1CEC7198000463BC /* GuideRNAListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuideRNAListView.swift; path = App/View/CLIView/GuideRNAListView.swift; sourceTree = "<group>"; };
 		EEEAAD261CEEDEDA00122BE4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EEF43B831D26992500FFCB1F /* BioSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BioSwift.xcodeproj; path = ../BioSwift/BioSwift.xcodeproj; sourceTree = "<group>"; };
 		EEF43B8C1D26992A00FFCB1F /* SwiftCLI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftCLI.xcodeproj; path = ../FrameWorks/SwiftCLI/Support/SwiftCLI.xcodeproj; sourceTree = "<group>"; };
@@ -213,8 +212,9 @@
 			children = (
 				EE95E72E1D2D95A10096A2CB /* NucleaseViewModel.swift */,
 				EE95E7321D2D95DA0096A2CB /* PamVievModel.swift */,
-				EE56E7DA1CEE49A400620520 /* DesignSourceModelManager.swift */,
-				EE56E7DC1CEE49A400620520 /* TargetModelManager.swift */,
+				EE5113ED1D8780C000C7B995 /* GuideViewModel.swift */,
+				EE89886F1D2FA76B00124B64 /* TargetViewModel.swift */,
+				EE89886B1D2FA66E00124B64 /* SourceViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -234,10 +234,10 @@
 		EE04FB041CE8CBF5005BC1B1 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				EE1E7D0E1D2D94840039F637 /* DesignManagerPresenter.swift */,
+				EE5154C71D32BD1300CAB6FB /* NucleaseCollectionPresenter.swift */,
 				EE1E7D0B1D2D92550039F637 /* AnyPresenter.swift */,
 				EEA0A69E1D2D975200A8123C /* PresenterProtocols.swift */,
-				EE1E7D0D1D2D94840039F637 /* NucleaseDetailsPresenter.swift */,
-				EE1E7D0E1D2D94840039F637 /* DesignGuidePresenter.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -257,8 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				EE56E7D01CEE497E00620520 /* CommandLineCommand.swift */,
-				EE56E7D11CEE497E00620520 /* GraphicalUserInterfaceCommand.swift */,
 				EE56E7D21CEE497E00620520 /* CommandLineListCommand.swift */,
+				EE56E7D11CEE497E00620520 /* GraphicalUserInterfaceCommand.swift */,
 				EE56E7D31CEE497E00620520 /* WebAppCommand.swift */,
 				EE56E7D41CEE497E00620520 /* DesignGuideCommand.swift */,
 			);
@@ -281,9 +281,8 @@
 		EE04FB291CE8CCB3005BC1B1 /* CLIView */ = {
 			isa = PBXGroup;
 			children = (
-				EE1E7CFE1D2CF8DF0039F637 /* PamDetailsCLIView.swift */,
-				EE9439971CEC4D320085E864 /* NucleasesDetailsCLIView.swift */,
-				EEBACDBC1CEC7198000463BC /* GuideRNAListView.swift */,
+				EE5113EB1D877F9E00C7B995 /* DesignGuideView.swift */,
+				EE9439971CEC4D320085E864 /* NucleasesCollectionCLIView.swift */,
 			);
 			name = CLIView;
 			sourceTree = "<group>";
@@ -329,7 +328,6 @@
 		EE16996C1D2E192700F4E6B3 /* PlayGrounds */ = {
 			isa = PBXGroup;
 			children = (
-				EE16996D1D2E30C000F4E6B3 /* Sandbox.playground */,
 				EE1699691D2E18F300F4E6B3 /* MVP-VM.playground */,
 			);
 			name = PlayGrounds;
@@ -512,33 +510,33 @@
 				EE04FAFF1CE8CBCD005BC1B1 /* ApplicationController.swift in Sources */,
 				EEAA3D0C1CEA550D0095FE06 /* DataAccessProtocols.swift in Sources */,
 				EE56E7D61CEE497E00620520 /* GraphicalUserInterfaceCommand.swift in Sources */,
-				EE56E7DE1CEE49A400620520 /* DesignSourceModelManager.swift in Sources */,
-				EEBACDBD1CEC7198000463BC /* GuideRNAListView.swift in Sources */,
 				EE56E7D71CEE497E00620520 /* CommandLineListCommand.swift in Sources */,
 				EE04FB101CE8CC5C005BC1B1 /* Extensions.swift in Sources */,
 				EE56E7E11CEE49A400620520 /* ModelProtocols.swift in Sources */,
 				EE04FB5B1CE8D9CB005BC1B1 /* SqliteConnection.swift in Sources */,
 				EE56E7CF1CEE18CA00620520 /* DesignGuideEnvironmentService.swift in Sources */,
-				EE1E7D111D2D94840039F637 /* DesignGuidePresenter.swift in Sources */,
+				EE1E7D111D2D94840039F637 /* DesignManagerPresenter.swift in Sources */,
 				EE04FB0F1CE8CC5C005BC1B1 /* CoreProtocols.swift in Sources */,
 				EE95E7331D2D95DA0096A2CB /* PamVievModel.swift in Sources */,
-				EE1E7D101D2D94840039F637 /* NucleaseDetailsPresenter.swift in Sources */,
 				EEAA3D0A1CEA54A00095FE06 /* AnyRepository.swift in Sources */,
-				EE1E7CFF1D2CF8DF0039F637 /* PamDetailsCLIView.swift in Sources */,
+				EE5113EC1D877F9E00C7B995 /* DesignGuideView.swift in Sources */,
 				EE56E7E31CEE49DB00620520 /* Command.swift in Sources */,
+				EE5154C81D32BD1300CAB6FB /* NucleaseCollectionPresenter.swift in Sources */,
+				EE8988701D2FA76B00124B64 /* TargetViewModel.swift in Sources */,
 				EE04FB551CE8CEFA005BC1B1 /* ViewProtocols.swift in Sources */,
 				EE56E7D91CEE497E00620520 /* DesignGuideCommand.swift in Sources */,
 				EE04FB0E1CE8CC5C005BC1B1 /* ApplicationDefaultsConfiguration.swift in Sources */,
+				EE89886C1D2FA66E00124B64 /* SourceViewModel.swift in Sources */,
 				EE04FB631CE8D9EA005BC1B1 /* CamembertModel.swift in Sources */,
-				EE9439981CEC4D320085E864 /* NucleasesDetailsCLIView.swift in Sources */,
+				EE9439981CEC4D320085E864 /* NucleasesCollectionCLIView.swift in Sources */,
 				EEA0A69F1D2D975200A8123C /* PresenterProtocols.swift in Sources */,
-				EE56E7E01CEE49A400620520 /* TargetModelManager.swift in Sources */,
 				EE04FB641CE8D9EA005BC1B1 /* Camembert.swift in Sources */,
 				EE04FB651CE8D9EA005BC1B1 /* ExtensionsClass.swift in Sources */,
 				EEAC63791C9AFF4D00164943 /* main.swift in Sources */,
 				EE95E72F1D2D95A10096A2CB /* NucleaseViewModel.swift in Sources */,
 				EE27BEA51D2ACDB300F9A6D8 /* SwiftEventBus.swift in Sources */,
 				EE56E7D51CEE497E00620520 /* CommandLineCommand.swift in Sources */,
+				EE5113EE1D8780C000C7B995 /* GuideViewModel.swift in Sources */,
 				EE1E7D0C1D2D92550039F637 /* AnyPresenter.swift in Sources */,
 				EE04FB6A1CE8DE8E005BC1B1 /* DesignGuideTables.swift in Sources */,
 				EE04FB111CE8CC5C005BC1B1 /* SwiftyUserDefaults.swift in Sources */,

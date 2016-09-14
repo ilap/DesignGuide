@@ -23,12 +23,22 @@
 public class NucleaseViewModel {
     
     var model: Nuclease
+
     var pamDao: AnyRepository<PAM>
     var pamViewModels: [PamViewModel?] = []
 
     var name: String {
         get {
             return model.name
+        }
+        set {
+            model.name = newValue
+        }
+    }
+    
+    var spacerLength: Int {
+        get {
+            return model.spacer_length
         }
     }
     
@@ -37,12 +47,13 @@ public class NucleaseViewModel {
         self.pamDao = pamDao
         loadPams()
     }
-    
+
     private func loadPams() {
         pamViewModels = []
+
+        let pams: [PAM] = pamDao.getByValues(["nuclease_id":model.id!])
         
-        let pams = pamDao.getByValue("nuclease_id", value: model.id!) as [PAM]
-        
+
         if !pams.isEmpty {
             for pam in pams {
                 pamViewModels.append(PamViewModel(model: pam))

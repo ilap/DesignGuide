@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import BioSwift
 
 public protocol ViewProtocol {
     func show() throws
@@ -26,10 +27,26 @@ public protocol ViewProtocol {
     //func showErrorMessage(erroMessage: String)
 }
 
-public protocol ListNucleasesViewProtocol: ViewProtocol {
+public protocol NucleaseViewProtocol: ViewProtocol {
     func showNucleases(nucleaseViewModelList: [NucleaseViewModel])
+    func showNucleaseDetails(nucleaseViewModel: NucleaseViewModel)
 }
+
+public protocol DesignGuideViewProtocol: ViewProtocol {
+    var source: String? { get set }
+    var target: Int? { get set }
+    var targetLength: Int? { get set }
+ 
+    func showGuides(guideViewModelList: [GuideViewModel?])
+    func updateDesignParameters(parameters: DesignParameterProtocol)
+}
+
+/*public protocol NucleaseDetailsViewProtocol: ViewProtocol {
+    var selectedNucleaseName: String? { get set }
+    func readUserInput(nucleaseViewModelList: [NucleaseViewModel]) -> NucleaseViewModel?
+}
+
 
 public protocol ListPamsViewProtocol: ViewProtocol {
     func showPams(pamViewModelList: [PamViewModel])
-}
+}*/

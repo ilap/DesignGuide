@@ -19,23 +19,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import BioSwift
 
-public class PamViewModel {
+//protocol DesignSourceModelProtocol {
+ //   var seqRecord: SeqRecord? { get set }
+//}
+
+public class SourceViewModel: DesignSourceModelProtocol {
+    
+    var seqRecord: SeqRecord?
+    
+    var context: DataContext
+    var model: DesignSourceProtocol!
+    
+    var targetDao: AnyRepository<DesignTarget>
+    var targetViewModels: [TargetViewModel?] = []
+    
     var name: String {
         get {
-            return model.sequence
+            return model.name
         }
     }
-
-    var survival: String {
-        get {
-            return String(model.survival * 100) + "%"
-        }
-    }
-    
-    var model: PAM
-    
-    init(model: PAM) {
+   
+    init(model: DesignSourceProtocol, context: DataContext, record: SeqRecord) {
         self.model = model
+        self.context = context
+        self.targetDao = AnyRepository<DesignTarget>(context: context)
+        self.seqRecord = record
     }
 }

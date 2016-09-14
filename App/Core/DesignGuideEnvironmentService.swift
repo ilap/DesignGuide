@@ -32,7 +32,7 @@ class DesignGuideOptions: DesignOptionsService {
         print("Target offset: \(options[.TargetOffset])")
         print("-----")
         print("Endonuclease: \(options[.Endonuclease])")
-        print("Used PAMs: \(options[.UsedPAMs])")
+        // FIXME: Implement later: print("Used PAMs: \(options[.UsedPAMs])")
         print("-----")
         print("Spacer length: \(options[.SpacerLength])")
         print("Seed length: \(options[.SeedLength])")

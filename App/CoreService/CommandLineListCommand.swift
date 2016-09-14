@@ -43,9 +43,11 @@ class CommandLineListCommand: DesignGuideCommand, OptionCommandType {
     }
     
     func setupOptions(_ options: Options) {
+        /* FIXME: Implement later:
         options.onFlags(["-e", "--experiments"], usage: "List experiments by users and date") {(flag) in
             self.service.options[.ListExperiment] = true
         }
+        */
         options.onFlags(["-n", "--nucleases"], usage: "List nucleases with known PAMs") {(flag) in
             self.service.options[.ListNucleaseWithPAMs] = true
         }
@@ -62,8 +64,8 @@ class CommandLineListCommand: DesignGuideCommand, OptionCommandType {
         let dao = AnyRepository<Nuclease>(context: context)
         let pamDao = AnyRepository<PAM>(context: context)
         
-        let presenter = NucleaseDetailPresenter(dao: dao, pamDao: pamDao, options: service)
-        let view = NucleasesDetailsCLIView(presenter: presenter)
+        let presenter = NucleaseCollectionPresenter(dao: dao, pamDao: pamDao)
+        let view = NucleasesCollectionCLIView(presenter: presenter, optionService: service)
         
         view.show()
     }

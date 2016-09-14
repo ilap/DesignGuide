@@ -13,7 +13,10 @@
 ///
 /// MVP Styles: **Encapsulated Presenter** or **View** styles and the **Opserving Presenter** Style
 /// Reference(s): https://lostechies.com/derekgreer/2008/11/23/model-view-presenter-styles/
-///
+/// In MVVM you're calling a command on the viewmodel
+/// In MVC you're calling an action on a controller
+/// In MVP you're calling a method on the presenter.
+/// In MVPVM you're calling ???
 /// Master-Detail Implementation using ViewModels: Similar impelemntation
 /// Reference(s): http://codereview.stackexchange.com/questions/71459/creating-list-viewmodels-in-the-correct-way
 ///
@@ -67,6 +70,10 @@ public class AnyPresenter<T>: PresenterProtocol {
     }
 }
 
+/**
+ View should implements "Passive View" through interface or
+ Supervising controller using events
+ */
 public class AnyView<T>: ViewProtocol {
     
     var presenter: AnyPresenter<T>
@@ -198,7 +205,7 @@ class ContactViewModel {
             let date = dateFormatter.date(from: person.birthDate)
             let interval = date?.timeIntervalSinceNow ?? 0
             
-            let age = Int( abs(interval) / (365*24*3600))
+            let age = Int(abs(interval) / (365*24*3600))
             return age
         }
     }

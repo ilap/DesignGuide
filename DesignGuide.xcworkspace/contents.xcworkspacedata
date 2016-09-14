@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../BioSwift/BioSwift.xcodeproj">
+      location = "group:DesignGuide.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:../FrameWorks/SwiftCLI/Support/SwiftCLI.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:DesignGuide.xcodeproj">
+      location = "group:../BioSwift/BioSwift.xcodeproj">
    </FileRef>
 </Workspace>

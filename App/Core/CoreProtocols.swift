@@ -46,17 +46,17 @@ public enum DesignOption: String  {
 
     case Endonuclease = "Cas9/Cpf1 enzyme."
 
-    case UsedPAMs = "Used PAMs of the chosen endonuclease"
+    // FIXME: Implement later: case UsedPAMs = "Used PAMs of the chosen endonuclease"
 
     case SpacerLength = "Spacer length."
     case SeedLength = "Seed length."
 
-    case ApplicationType = "Guide RNA application type e.g. KO, KI, Activation or Repression"
+    // FIXME: Implement later: case ApplicationType = "Guide RNA application type e.g. KO, KI, Activation or Repression"
 
     ///
     /// CLI List parameters
     ///
-    case ListExperiment = "List available experiments:"
+    // FIXME: Implement later: case ListExperiment = "List available experiments:"
     case ListNucleaseWithPAMs = "Available nucleases with PAMs and PAM's affinity."
 
     var defaultValue: Int {
@@ -85,10 +85,16 @@ public protocol DesignOptionsService {
     var options: [DesignOption:Any] { get set }
 }
 
-enum DesignBusEvent: String {
-    case ListNucleaseRequest = "ListNucleaseRequest"
+enum DesignBusEventType: String {
+    case NucleaseChanged = "NucleaseChanged"
+    case NucleaseSelected = "NucleaseSelected"
+    case NucleaseUpdateRequest = "NucleaseUpdateRequest"
     case ListNuclease = "ListNuclease"
     case ListPAMRequest = "ListPAMRequest"
     case ListPAM = "ListPAM"
+    case ShowNucleaseDetailsRequest = "ShowNucleaseDetailsRequest"
+    case ShowNucleaseDetails = "ShowNucleaseDetails"
+    case DesignGuideRequest = "DesignGuideRequest"
+    case UpdateDesignGuideParameters = "UpdateDesignGuideParameters"
 }
 

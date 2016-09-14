@@ -2,7 +2,7 @@
  The MIT License (MIT)
  
  Copyright (c) 2015 César Ferreira
- Copyright (c) 2015 Pal Dorogi - Implemented in Swift 3.0
+ Copyright (c) 2016 Pal Dorogi - Implemented in Swift 3.0
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -46,55 +46,52 @@ public class SwiftEventBus {
     ////////////////////////////////////
     
     public class func post(name: String) {
-        print("XXXXX: \(Notification.Name(rawValue: name))")
-        NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: nil)
     }
     
     public class func post(name: String, sender: AnyObject?) {
-        NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: sender)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender)
     }
     
     public class func post(name: String, sender: NSObject?) {
-        NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: sender)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender)
     }
     
     public class func post(name: String, userInfo: [NSObject : AnyObject]?) {
-        NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: nil, userInfo: userInfo)
-        //NotificationCenter.default().post(<#T##notification: Notification##Notification#>)
-            //.defaultCenter().postNotificationName(name, object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: nil, userInfo: userInfo)
     }
     
     public class func post(name: String, sender: AnyObject?, userInfo: [NSObject : AnyObject]?) {
-        NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: sender, userInfo: userInfo)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender, userInfo: userInfo)
     }
     
     public class func postToMainThread(name: String) {
         DispatchQueue.main.async() {
-            NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: nil)
         }
     }
     
     public class func postToMainThread(name: String, sender: AnyObject?) {
         DispatchQueue.main.async() {
-            NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: sender)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender)
         }
     }
     
     public class func postToMainThread(name: String, sender: NSObject?) {
         DispatchQueue.main.async() {
-            NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: sender)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender)
         }
     }
     
     public class func postToMainThread(name: String, userInfo: [NSObject : AnyObject]?) {
         DispatchQueue.main.async() {
-            NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: nil, userInfo: userInfo)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: nil, userInfo: userInfo)
         }
     }
     
     public class func postToMainThread(name: String, sender: AnyObject?, userInfo: [NSObject : AnyObject]?) {
         DispatchQueue.main.async() {
-            NotificationCenter.default().post(name: Notification.Name(rawValue: name), object: sender, userInfo: userInfo)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender, userInfo: userInfo)
         }
     }
     
@@ -110,7 +107,7 @@ public class SwiftEventBus {
         // let observer = NotificationCenter.default().addObserver(forName: name, object: sender, queue: queue, usingBlock: handler)
 
         ///let observer = NotificationCenter.defaultCenter().addObserverForName(name, object: sender, queue: queue, usingBlock: handler)
-        let observer = NotificationCenter.default().addObserver(forName: Notification.Name(rawValue: name), object: sender, queue: queue, using: handler)
+        let observer = NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: name), object: sender, queue: queue, using: handler)
         let namedObserver = NamedObserver(observer: observer, name: name)
         
         Static.queue.sync() {
@@ -125,11 +122,11 @@ public class SwiftEventBus {
     }
     
     public class func onMainThread(target: AnyObject, name: String, handler: ((Notification!) -> Void)) -> NSObjectProtocol {
-        return SwiftEventBus.on(target: target, name: name, sender: nil, queue: OperationQueue.main(), handler: handler)
+        return SwiftEventBus.on(target: target, name: name, sender: nil, queue: OperationQueue.main, handler: handler)
     }
     
     public class func onMainThread(target: AnyObject, name: String, sender: AnyObject?, handler: ((Notification!) -> Void)) -> NSObjectProtocol {
-        return SwiftEventBus.on(target: target, name: name, sender: sender, queue: OperationQueue.main(), handler: handler)
+        return SwiftEventBus.on(target: target, name: name, sender: sender, queue: OperationQueue.main, handler: handler)
     }
     
     public class func onBackgroundThread(target: AnyObject, name: String, handler: ((Notification!) -> Void)) -> NSObjectProtocol {
@@ -146,7 +143,7 @@ public class SwiftEventBus {
     
     public class func unregister(target: AnyObject) {
         let id = UInt(ObjectIdentifier(target))
-        let center = NotificationCenter.default()
+        let center = NotificationCenter.default
         
         Static.queue.sync() {
             if let namedObservers = Static.instance.cache.removeValue(forKey: id) {
@@ -159,7 +156,7 @@ public class SwiftEventBus {
     
     public class func unregister(target: AnyObject, name: String) {
         let id = UInt(ObjectIdentifier(target))
-        let center = NotificationCenter.default()
+        let center = NotificationCenter.default
         
         Static.queue.sync() {
             if let namedObservers = Static.instance.cache[id] {

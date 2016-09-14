@@ -21,7 +21,4 @@
 
 
 let result =  ApplicatonController.run()
-
-print("Done")
-
 exit(result)

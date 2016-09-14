@@ -19,23 +19,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import BioSwift
 
-public class PamViewModel {
-    var name: String {
-        get {
-            return model.sequence
-        }
-    }
+public class GuideViewModel {
 
-    var survival: String {
+    var model: RNAOnTarget
+    var pam: String {
         get {
-            return String(model.survival * 100) + "%"
+            return model.speciesName!
         }
     }
     
-    var model: PAM
-    
-    init(model: PAM) {
+    init(model: RNAOnTarget) {
         self.model = model
     }
 }

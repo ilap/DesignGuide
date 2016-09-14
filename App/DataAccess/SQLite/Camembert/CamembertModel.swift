@@ -8,10 +8,10 @@
 
 import Foundation
 
-class CamembertModel : NSObject {
+public class CamembertModel : NSObject {
     
     private var nameTable :String! = nil
-    var id :Int? = nil
+    public var id :Int? = nil
     
     func setId(_ id :Int) {
         self.id = id
@@ -158,7 +158,7 @@ class CamembertModel : NSObject {
         return opResult;
     }
     
-    func remove() -> OperationResult{
+    func remove() -> OperationResult {
         if self.id == nil {
             return OperationResult.error_NoRecordFoundWithID;
         }

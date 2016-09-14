@@ -47,15 +47,20 @@
 public class AnyView<T>: ViewProtocol {
     
     var presenter: AnyPresenter<T>
-    
-    required public init(presenter: AnyPresenter<T>) {
+    var optionService: DesignOptionsService
+
+    required public init(presenter: AnyPresenter<T>, optionService: DesignOptionsService) {
         self.presenter = presenter
+        self.optionService = optionService
         if self is T {
             self.presenter.view = self as? T
         } else {
             //FIXME: Throw an error
             assertionFailure("\(#file):\(#line) Type error")
         }
+        
+        // Notify the presenter that the View is initialised.
+        presenter.onViewInitialised()
     }
     
     public func show() {

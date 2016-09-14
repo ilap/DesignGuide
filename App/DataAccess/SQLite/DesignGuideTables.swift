@@ -69,17 +69,20 @@ class PAM: CamembertModel, PAMProtocol, DataServiceProtocol {
     }
 
     func delete() {
-        self.remove()
+        let _ = super.remove()
     }
     
     func save() {
-        self.push()
+        let _ = self.push()
     }
 
     required override init() {
         super.init()
     }
-
+    
+    func remove() {
+        let _ = super.remove()
+    }
 }
 
 
@@ -142,7 +145,11 @@ class Nuclease: CamembertModel, NucleaseProtocol, DataServiceProtocol  {
     }
     
     func save() {
-        self.push()
+        let _ = self.push()
+    }
+    
+    func remove() {
+        let _ = super.remove()
     }
 }
 
@@ -154,17 +161,17 @@ class DesignSource: CamembertModel, DataServiceProtocol, DesignSourceProtocol {
     var sequence_length: INTEGER = -1
     var sequence_hash: INTEGER = 0
     
-    class func findAll() -> [DesignSource] {
+    public class func findAll() -> [DesignSource] {
         return DesignSource.select(selectRequest: Select.selectAll( OrderOperator.ascending, ""))! as! [DesignSource]
         
     }
 
-    class func findByValue(_ column: String, value: Any) -> [DesignSource] {
+    public class func findByValue(_ column: String, value: Any) -> [DesignSource] {
         let records = DesignSource.select(selectRequest:  Select.where(column, .equalsTo, value, .ascending, "1"))! as! [DesignSource]
         return records
     }
-
-    class func findByValues(_ queries: [String:Any]) -> [DesignSource] {
+    
+    public class func findByValues(_ queries: [String:Any]) -> [DesignSource] {
 
         let className = String(self)
         let prefix = "SELECT * FROM \(className) WHERE "
@@ -187,20 +194,29 @@ class DesignSource: CamembertModel, DataServiceProtocol, DesignSourceProtocol {
         return records
     }
 
-    class func findHash(_ hash: Int) -> [DesignSource] {
+    public class func findHash(_ hash: Int) -> [DesignSource] {
         return DesignSource.select(selectRequest:  Select.where("sequence_hash", .equalsTo, hash, .ascending, "1"))! as! [DesignSource]
     }
     
-    func copySequenceToDatabase(_ fromPath: String, createNewFile: Bool) throws {
+    public func copySequenceToDatabase(_ fromPath: String, createNewFile: Bool) throws {
         
+        let file_name = String(UInt(bitPattern:self.sequence_hash), radix:16).uppercased() + ".fasta"
         
-        if self.path == "", let path = Defaults[.databasePath] , let blobPath = Defaults[.blobFilesPath] {
-            self.path = path + "/" + blobPath
+        if self.path == "" {
+            self.path = file_name
         }
         
-        let toPath = self.path + "/" + String(UInt(bitPattern:self.sequence_hash), radix:16).uppercased() + ".fasta"
+        var toPath = ""
         
-        let fileManager = FileManager.default()
+        if let blobPath = Defaults[.blobFilesPath] {
+            toPath = blobPath + "/" + file_name
+        } else {
+            throw ModelError.error ("FILE ERROR: Cannot copy \"\(fromPath)\" to \"\(toPath)\"")
+        }
+        
+        //debugPrint("DEBUG: Copy \"\(fromPath)\" to \"\(toPath)\"")
+        
+        let fileManager = FileManager.default
         
         if fileManager.fileExists(atPath: toPath) {
             debugPrint("DATABASE ERROR: \"\(toPath)\" \(DataAccess.access.DbPath)")
@@ -218,11 +234,16 @@ class DesignSource: CamembertModel, DataServiceProtocol, DesignSourceProtocol {
         }
     }
 
-    required override init() {
+    public required override init() {
         super.init()
     }
-    func save() {
-        self.push()
+    
+    public func save() {
+        let _ = self.push()
+    }
+    
+    public func remove() {
+        let _ = super.remove()
     }
 }
 
@@ -273,10 +294,14 @@ class DesignApplication: CamembertModel, DataServiceProtocol {
     required override init() {
         super.init()
     }
+    
     func save() {
-        self.push()
+        let _ = self.push()
     }
-
+    
+    func remove() {
+        let _ = super.remove()
+    }
 }
 
 
@@ -333,12 +358,15 @@ class DesignTarget: CamembertModel, DesignTargetProtocol, DataServiceProtocol {
     required override init() {
         super.init()
     }
+    
     func save() {
-        self.push()
+        let _ = self.push()
     }
-
+    
+    func remove() {
+        let _ = super.remove()
+    }
 }
-
 
 ///
 /// On and Off Target tables
@@ -391,7 +419,11 @@ class OnTarget: CamembertModel, RNATargetProtocol, DataServiceProtocol {
     }
 
     func save() {
-        self.push()
+        let _ = self.push()
+    }
+    
+    func remove() {
+        let _ = super.remove()
     }
 }
 
@@ -442,7 +474,11 @@ class OffTarget: CamembertModel, DataServiceProtocol {
     }
 
     func save() {
-        self.push()
+        let _ = self.push()
+    }
+    
+    func remove() {
+        let _ = super.remove()
     }
 }
 
@@ -490,8 +526,13 @@ class User: CamembertModel, DataServiceProtocol {
     required override init() {
         super.init()
     }
+    
     func save() {
-        self.push()
+        let _ = self.push()
+    }
+    
+    func remove() {
+        let _ = super.remove()
     }
 }
 
@@ -537,10 +578,14 @@ class Experiment: CamembertModel, DataServiceProtocol {
     required override init() {
         super.init()
     }
+    
     func save() {
-        self.push()
+        let _ = self.push()
     }
-
+    
+    func remove() {
+        let _ = super.remove()
+    }
 }
 
 class ExperimentGuideRNA: CamembertModel, DataServiceProtocol {
@@ -584,8 +629,13 @@ class ExperimentGuideRNA: CamembertModel, DataServiceProtocol {
     required override init() {
         super.init()
     }
+    
     func save() {
-        self.push()
+        let _ = self.push()
+    }
+    
+    func remove() {
+        let _ = super.remove()
     }
 }
 

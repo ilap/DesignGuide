@@ -23,40 +23,41 @@
 /// MVP Communication between presenters
 /// http://stackoverflow.com/questions/9761546/mvp-communication-between-presenters
 ///
-class NucleasesDetailsCLIView: AnyView<ListNucleasesViewProtocol>, ListNucleasesViewProtocol {
-        
-    required init(presenter: AnyPresenter<ListNucleasesViewProtocol>) {
-        super.init(presenter: presenter)
-        
-        initialiseEventBus()
-    }
+class NucleasesCollectionCLIView: AnyView<NucleaseViewProtocol>, NucleaseViewProtocol {
     
-    private func initialiseEventBus() {
-        SwiftEventBus.onBackgroundThread(target: self, name: DesignBusEvent.ListNuclease.rawValue) { _ in
-            print ("Thread kicked off");
-        }
+   required init(presenter: AnyPresenter<NucleaseViewProtocol>,
+                 optionService: DesignOptionsService) {
+        super.init(presenter: presenter, optionService: optionService)
     }
     
     override func show() {
-        // Kick the event.
-        SwiftEventBus.post(name: DesignBusEvent.ListNucleaseRequest.rawValue)
-    }
-    
-    override func showMessage(message: String) {
-        print("Message: \(message)")
+        // Kick the list request event on show.
+        SwiftEventBus.post(name: DesignBusEventType.NucleaseUpdateRequest.rawValue)
     }
     
     func showNucleases(nucleaseViewModelList: [NucleaseViewModel]) {
-        
+    
+        print("Abailable nucleases and their PAM(s) efficiency:\n")
         for viewModel in nucleaseViewModelList {
             
             var str = ""
             for pamViewModel in viewModel.pamViewModels {
                 
-                //print(pamViewModel!.name + "(" + (pamViewModel?.survival)! + ")")
                 str += pamViewModel!.name + "(" + (pamViewModel?.survival)! + ") "
             }
             print("\(viewModel.name):\t\(str)")
         }
+    }
+    
+    func showNucleaseDetails(nucleaseViewModel: NucleaseViewModel) {
+        
+        print("Details of \"\(nucleaseViewModel.name)\"")
+        
+        var str = ""
+        for pamViewModel in nucleaseViewModel.pamViewModels {
+            
+            str += pamViewModel!.name + "(" + (pamViewModel?.survival)! + ") \n"
+        }
+        print("\(nucleaseViewModel.name):\n\(str)")
     }
 }

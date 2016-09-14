@@ -20,16 +20,24 @@
  */
 
 
-public class NucleaseDetailPresenter: AnyPresenter<ListNucleasesViewProtocol> {
+public class NucleaseCollectionPresenter: AnyPresenter<NucleaseViewProtocol> {
     
     var nucleaseViewModelList: [NucleaseViewModel]!
-
+    
+    var selectedNuclease: NucleaseViewModel? {
+        didSet {
+            if let _ = selectedNuclease {
+            //    view?.showNucleaseDetails(nucleaseViewModel: selectedNuclease!)
+                SwiftEventBus.post(name: DesignBusEventType.NucleaseChanged.rawValue,
+                               sender: selectedNuclease)
+            }
+        }
+    }
+    
     let dao: AnyRepository<Nuclease>
     let pamDao: AnyRepository<PAM>
-    let options: DesignOptionsService
     
-    init (dao: AnyRepository<Nuclease>, pamDao: AnyRepository<PAM>, options: DesignOptionsService) {
-        self.options = options
+    init (dao: AnyRepository<Nuclease>, pamDao: AnyRepository<PAM>) {
         self.dao = dao
         self.pamDao = pamDao
         
@@ -38,17 +46,28 @@ public class NucleaseDetailPresenter: AnyPresenter<ListNucleasesViewProtocol> {
     }
     
     private func initEventBus() {
-        SwiftEventBus.onBackgroundThread(target: self, name: DesignBusEvent.ListNucleaseRequest.rawValue) { _ in
+        SwiftEventBus.onBackgroundThread(target: self, name: DesignBusEventType.NucleaseUpdateRequest.rawValue) { _ in
             self.update()
-            SwiftEventBus.post(name: DesignBusEvent.ListNuclease.rawValue)
+        }
+        
+        SwiftEventBus.onBackgroundThread(target: self, name: DesignBusEventType.NucleaseSelected.rawValue) { result in
+            self.setSelectedByName(name: result.object as! String)
         }
     }
 
-    func update() {
+    override public func onViewInitialised() {
         resolveViewModelArray()
+    }
+    
+    func update() {
+        // Update the data from model
+        resolveViewModelArray()
+        
+        // Update the view.
         view?.showNucleases(nucleaseViewModelList: nucleaseViewModelList)
     }
     
+
     func resolveViewModelArray() {
         nucleaseViewModelList = []
         if let nucleases: [Nuclease] = dao.getAll() {
@@ -56,5 +75,15 @@ public class NucleaseDetailPresenter: AnyPresenter<ListNucleasesViewProtocol> {
                 nucleaseViewModelList.append(NucleaseViewModel(model: nuclease, pamDao: pamDao))
             }
         }
+    }
+    
+   public func setSelectedByName(name: String) -> NucleaseViewModel? {
+        //XXX: ilap debugPrint("SetseletctByName: \(name)")
+        if let nuclease =  nucleaseViewModelList.filter({ $0.name == name }).first {
+            selectedNuclease = nuclease
+             return selectedNuclease
+        }
+        assertionFailure("The selected Nuclease (\(name)) cannot be found in the database!")
+        return nil
     }
 }
