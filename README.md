@@ -46,7 +46,7 @@ $ git clone https://github.com/jakeheis/SwiftCLI
 3. Convert the cloned SwitCLI Framework to Swiwt 3.0 (Xcode 8 asks automatically).
 4. Clean and build (at least twice) the BioSwift 1st and then the SwiftClI
 5. Lastly, build the DesignGuide, no any error should be experienced during the build.
-6. If the build successed, copy the DesignGuide.app from the build directory to /usr/local/bin or similar 
+6. If the build is succeeded, copy the DesignGuide.app from the build directory to /usr/local/bin or similar 
 7. Run the DesignGuide.
 
 Example
