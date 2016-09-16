@@ -43,12 +43,65 @@ import Foundation
  Source: http://www.codeproject.com/KB/architecture/MVPVMWindowsForms.aspx
 
  */
-class View/*: IView*/ {
+
+
+import Foundation
+
+var ons = [["0", 0.4], ["A", 0.7], ["B", 0.7], ["C", 0.7], ["D", 0.7], ["E", 0.7], ["F", 0.4], ["G", 0.4], ["H", 0.4]]
+var offs = [["B",0.1], ["B", 0.1], ["D", 0.1], ["D", 0.1], ["E", 0.1]]
+
+var idx = 0
+var sum_score = 0.0
+var len = ons.count - 1
+
+for off in offs {
     
+    while idx < len && ons[idx][0] != off[0] {
+        if sum_score == 0.0 {
+            ons[idx][1] = 1.0
+        } else {
+            ons[idx][1] = sum_score * (ons[idx][1] as! Double)
+            sum_score = 0.0
+        }
+        print("WW: \(ons[idx][0]):\(off[0])")
+        idx += 1
+    }
+    
+    sum_score = sum_score + (off[1] as! Double)
+    print("--: \(ons[idx][0]):\(off[0]): \(ons)")
+}
+print("SSS \(idx) \(len)")
+if idx < len {
+    for i in idx...len {
+        print("XXXXX: \(idx)")
+        ons[i][1] = 1.0
+    }
 }
 
+print("IDX: \(ons)")
+print(ons)
 
-let v = View()
+/*
+ var off_seq = off[0]
+ //print("I: \(off[0]):\(off[1])")
+ if on[0] != off_seq {
+ 
+ ons[idx][1] = sum_score
+ sum_score = 0.0
+ 
+ 
+ 
+ 
+ //on = ons[idx]
+ print("I: \(on_score)")
+ on_score  = 1.0
+ } else {
+ let o = off[1] as! Double
+ sum_score = sum_score + o
+ print("Sum  \(sum_score)")
+ }
+*/
+
 
 
 

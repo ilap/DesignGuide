@@ -26,9 +26,22 @@ public enum ModelError: ErrorProtocol {
     case fileError(String)
     case databaseError(String)
     case parameterError(String)
-    case emptyError
-}
 
+    public var description: String {
+        get {
+            switch (self) {
+            case .error(let message):
+                return message
+            case .fileError(let message):
+                return message
+            case .databaseError(let message):
+                return message
+            case .parameterError(let message):
+                return message
+            }
+        }
+    }
+}
 protocol DesignableManagerModel {
     var sourceSequence: [CamembertModel:SeqRecord] { get }
 }

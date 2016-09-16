@@ -37,15 +37,16 @@ class NucleasesCollectionCLIView: AnyView<NucleaseViewProtocol>, NucleaseViewPro
     
     func showNucleases(nucleaseViewModelList: [NucleaseViewModel]) {
     
-        print("Abailable nucleases and their PAM(s) efficiency:\n")
-        for viewModel in nucleaseViewModelList {
+        print("Available nucleases and their PAM(s) efficiency:\n")
+        for nuclease in nucleaseViewModelList {
             
-            var str = ""
-            for pamViewModel in viewModel.pamViewModels {
-                
-                str += pamViewModel!.name + "(" + (pamViewModel?.survival)! + ") "
-            }
-            print("\(viewModel.name):\t\(str)")
+            let pams = nuclease.pamViewModels.map {
+                ($0?.name)! + " (" + ($0?.survival)! + ")"
+                }.joined(separator: ", ")
+            
+            let padded = nuclease.name.padding(toLength: 15, withPad: " ", startingAt: 0)
+
+            print("Nuclease: \(padded) - \(pams)")
         }
     }
     

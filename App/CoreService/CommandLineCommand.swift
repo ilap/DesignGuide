@@ -50,16 +50,15 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
 
         }
         
-        options.onKeys(["-t", "--target"], usage: "Start position. The sequence file or a gene name (if the source genome/file is annotated) as target parameter has not implemented yet)).", valueSignature: "target location") {(key, value) in self
+        options.onKeys(["-t", "--target"], usage: "Start position. The sequence file or a gene name (if the source genome/file is annotated) as target parameter has not implemented yet)).", valueSignature: "location") {(key, value) in self
             // Always must be String
             self.service.options[.Target] = value
-
         }
         
         options.onKeys(["-T", "--target-length"], usage: "Only valid if the target is a location e.g. start position.", valueSignature: "length") {(key, value) in self
 
             guard let length = Int(value) else {
-                self.errorMessage = "ERROR: Target length (-T) must be integer."
+                self.errorMessage = "ERROR: Target length (-T) must be a positive integer."
                 return
             }
 
@@ -67,7 +66,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
 
                  self.service.options[.TargetLength] = length
             } else {
-                self.errorMessage = "ERROR: Target length (-T) must be positive number!"
+                self.errorMessage = "ERROR: Target length (-T) must be greater than 0!"
             }
 
         }
@@ -155,7 +154,6 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
     
     
     internal func validateRuntimeParameters () throws {
-
         if let _ = self.errorMessage {
             throw CLIError.error(self.errorMessage!)
         }
@@ -172,8 +170,8 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
 
         // FIXME: Get rid of this
         let t = Int(target as! String)
-        if t == nil {
-            throw CLIError.error("ERROR: Currently, target can be only a location (integer number) ")
+        if t == nil || t < 0 {
+            throw CLIError.error("ERROR: Currently, target can be only a location (positive integer number) ")
         }
 
         guard let _ = self.service.options[.TargetLength],
@@ -197,6 +195,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         
         let presenter = DesignManagerPresenter(context: context, service: service)
         let view = DesignGuideView(presenter: presenter, optionService: service)
+
         
         view.show()
 

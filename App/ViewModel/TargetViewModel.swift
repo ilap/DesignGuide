@@ -36,7 +36,6 @@ public class TargetViewModel {
         }
     }
 
-    
     var location: Int {
         get {
             return model.location
@@ -62,12 +61,10 @@ public class TargetViewModel {
     }
 
     public func loadGuides(guides: [VisitableProtocol?]) {
-        //XXX: ilap print("LOADING..........")
         guideViewModels = []
         if !guides.isEmpty {
             for guide  in guides  {
-                let a = guide as! RNAOnTarget
-                //XXX: ilap print("Adding guide: \(a.sequence)\n")
+                let a = guide as! RNATarget
                 guideViewModels.append(GuideViewModel(model: a))
             }
         }

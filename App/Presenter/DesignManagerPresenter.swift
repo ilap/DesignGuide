@@ -27,24 +27,25 @@ protocol DesignSourceModelProtocol {
 
 class DefaultDesignParameters: DesignParameterProtocol {
     var seedLength: Int = 0
-    var spacerLength: Int = 17
+    var spacerLength: Int = 20
     var senseCutOffset: Int? = nil
     var antiSenseCutOffset: Int? = nil
     var targetOffset: Int = 0
     var pamLength: Int = 0
+    var maxMismtach: Int = 5
 }
 
-public class DesignManagerPresenter: AnyPresenter<DesignGuideViewProtocol>, VisitorProtocol {
+public class DesignManagerPresenter: AnyPresenter<DesignGuideViewProtocol> {
     // Visitor patterns
     public var message: String = ""
     
-    public var sourceViewModels: [SourceViewModel]!
+    public var sourceViewModels: [SourceViewModel?]!
     public var guideViewModels: [GuideViewModel?]!
     
     /// Design Guide Parameters.
     public var parameters: DesignParameterProtocol?
     
-    var nucleaseViewModel: NucleaseViewModel?
+    var nucleaseViewModel: NucleaseViewModel? = nil
 
     let context: DataContext
 
@@ -62,7 +63,11 @@ public class DesignManagerPresenter: AnyPresenter<DesignGuideViewProtocol>, Visi
         }
         
         SwiftEventBus.onBackgroundThread(target: self, name: DesignBusEventType.DesignGuideRequest.rawValue) { _ in
-            self.runDesign()
+            do {
+                try self.runDesign()
+            } catch let error {
+                debugPrint("DesignGuide Error: \(error)")
+            }
         }
         
         SwiftEventBus.onBackgroundThread(target: self, name: DesignBusEventType.NucleaseChanged.rawValue) { result in
@@ -74,47 +79,60 @@ public class DesignManagerPresenter: AnyPresenter<DesignGuideViewProtocol>, Visi
         self.initEventBus()
     }
     
-    func runDesign() {
-        resolveViewModelArray()
+    func runDesign() throws {
         
-        
+
+        do {
+            try resolveViewModelArray()
+            try view?.showDesignDetails(sourceViewModelList: sourceViewModels, parameters: parameters!,
+                                nuclease: nucleaseViewModel)
+            
+        } catch let error as ModelError {
+
+            print("DesignGuide error: \(error)")
+            return
+        }
+
         for sourceViewModel in sourceViewModels {
             
-            let ds = DesignSourceAdapter(sourceViewModel: sourceViewModel, designParameters: parameters!)
+            let ds = DesignSourceAdapter(sourceViewModel: sourceViewModel!, designParameters: parameters!)
             let all_pams = nucleaseViewModel?.pamViewModels.map({
                 $0?.model as PAMProtocol?
             })
    
             parameters?.pamLength = (all_pams?[0]?.sequence.characters.count)!
 
-            let source = sourceViewModel.model as DesignSourceProtocol
-            let target = sourceViewModel.targetViewModels.first??.model
-            
-            // FIXME: Alwasy use the 1st the Optimal PAM
-            let ontargets = ds.getOntargets(usedPams: [all_pams?[0]])
+            let source = (sourceViewModel?.model)! as DesignSourceProtocol
+            //let target = sourceViewModel?.targetViewModels.first??.model
+            for targetViewModel in (sourceViewModel?.targetViewModels)! {
+                
+                let target = targetViewModel?.model
+                // FIXME: Alwasy use the 1st the Optimal PAM
+                let ontargets = ds.getOntargets(usedPams: [all_pams?[0]])
 
-            
-            let scoreTask = CasOffinderScoreFunction(sequenceFile: Defaults[.blobFilesPath]! + "/" + source.path,
-                                                    // source: source,
-                                                     target: target,
-                                                     ontargets: ontargets!,
-                                                     pams: all_pams!,
-                                                     parameters: parameters)
-            
-            let scoreTaskMediator = TaskMediator(task: scoreTask)
-            
-            scoreTaskMediator.runTasks()
-            
-            let targetViewModel = sourceViewModel.targetViewModels.first!
-            targetViewModel?.loadGuides(guides: ontargets!)
-            
-            view?.showGuides(guideViewModelList: (targetViewModel?.guideViewModels)!)
+                if ontargets.isEmpty != true {
+                
+                    let scoreTask = CasOffinderScoreFunction(sequenceFile: Defaults[.blobFilesPath]! + "/" + source.path,
+                                                            // source: source,
+                                                             target: target,
+                                                             ontargets: ontargets,
+                                                             pams: all_pams!,
+                                                             parameters: parameters)
+                    
+                    let scoreTaskMediator = TaskMediator(task: scoreTask)
+                    
+                    scoreTaskMediator.runTasks()
+                }
+                //let targetViewModel = sourceViewModel?.targetViewModels.first!
+                targetViewModel?.loadGuides(guides: ontargets)
+            }
+            // Let the view now that data is avaialable...
+            view?.showSourceGuides(sourceViewModel: sourceViewModel)
         }
     }
     
     private func resolveDesignSources(path: String?, target: Int, targetLength: Int, targetOffset: Int) throws {
 
-        //XXX: ilap debugPrint("Resolving DesignSources:" + #function + ": Path: \(path)\n")
         guard let _ = path else { return }
 
         
@@ -160,7 +178,6 @@ public class DesignManagerPresenter: AnyPresenter<DesignGuideViewProtocol>, Visi
         let hash = seqRecord.seq.sequence.hash
         let results = DesignSource.findHash(hash)
         
-        ///XXX: ilap /print("RESULST: \(results)")
         if results.isEmpty {
             return nil
         } else if results.count > 1 {
@@ -173,7 +190,6 @@ public class DesignManagerPresenter: AnyPresenter<DesignGuideViewProtocol>, Visi
     }
     
     private func validateAndRetrieveTarget(viewModel: SourceViewModel, target: Int, length: Int, offset: Int) {
-        //XXX: ilap debugPrint("Validate & retrieve Targets: \(target) \(length) \(offset)" )
 
         let source = viewModel.model
         let start = target - offset
@@ -200,10 +216,10 @@ public class DesignManagerPresenter: AnyPresenter<DesignGuideViewProtocol>, Visi
                                                 "length":length,
                                                 "offset":offset!])
         
+        
         assert(result.count <= 1, "DATABASE ERROR: More than one targets found")
         
         if result.isEmpty {
-            //XXX: print("RESULT IS EMPTY")
             
             let target = DesignTarget()
             target.design_source_id = sourceId
@@ -227,38 +243,16 @@ public class DesignManagerPresenter: AnyPresenter<DesignGuideViewProtocol>, Visi
         
     }
     
-    func resolveViewModelArray() {
+    func resolveViewModelArray() throws {
         sourceViewModels = []
-        
-        for sequenceFile in try! BioSwiftFileUtil().getFilesFromPath((view?.source!)!) {
+
+        for sequenceFile in try BioSwiftFileUtil().getFilesFromPath((view?.source!)!) {
             
             try! resolveDesignSources(path: sequenceFile, target: (view?.target)!,
                                       targetLength: (view?.targetLength)!,
                                       targetOffset: (parameters?.targetOffset)!)
         }
     }
-    
-    public func visit(headerPart: VisitableProtocol) {
-    }
-    
-    public func visit(bodyPart: VisitableProtocol) {
-        if bodyPart is RNAOnTarget {
-            let ontarget = bodyPart as! RNAOnTarget
-            print(">" + ontarget.sequence! + "-" + String(ontarget.location) + "-" + String(ontarget.length))
-            
-            // FIXME: The "7" shoudl come form parameter
-            //message = ontarget.sequence! + pam + " 5"
-        }
-    }
-    
-    public func visit(footerPart: VisitableProtocol) {
-
-    }
-    
-    public func visit(parent: VisitableProtocol) {
-
-    }
-
 }
 
 
@@ -278,23 +272,22 @@ public class DesignSourceAdapter {
 
         let record = sourceViewModel.seqRecord
         self.crisprUtil = CrisprUtil(record: record!, parameters: designParameters)
-        //XXX: ilap //print("RECIRD \(record?.id) \(record?.seq[0...10]) \(record?.length)")
     
     }
     
-    public func getOntargets(usedPams: [PAMProtocol?]) -> [VisitableProtocol?]? {
+    public func getOntargets(usedPams: [PAMProtocol?]) -> [VisitableProtocol?] {
         var result: [VisitableProtocol?] = []
         
         self.pams = usedPams
         
-        //print ("AAAAAA: " + #function + ": pams \(pams) \n \(pams.map { $0?.sequence})")
         for target in self.sourceViewModel.targetViewModels {
             let start = (target?.location)! - (target?.offset)!
             let end = start + (target?.length)! + 2 * (target?.offset)!
-            //print (#function + ": pams \(pams) \n \(pams.map { $0?.sequence}): start \(start) end \(end)")
             
-            let ontargets = crisprUtil.getPAMOnTargets(pams, start: start, end: end)
-            result += ontargets!
+            if let ontargets = crisprUtil.getPAMOnTargets(pams, start: start, end: end) {
+                // No guide candidates in the selected Target.
+                result += ontargets
+            }
         }
         
         return result

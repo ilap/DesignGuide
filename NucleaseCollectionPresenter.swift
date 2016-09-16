@@ -78,12 +78,12 @@ public class NucleaseCollectionPresenter: AnyPresenter<NucleaseViewProtocol> {
     }
     
    public func setSelectedByName(name: String) -> NucleaseViewModel? {
-        //XXX: ilap debugPrint("SetseletctByName: \(name)")
+    
         if let nuclease =  nucleaseViewModelList.filter({ $0.name == name }).first {
             selectedNuclease = nuclease
              return selectedNuclease
         }
-        assertionFailure("The selected Nuclease (\(name)) cannot be found in the database!")
+
         return nil
     }
 }

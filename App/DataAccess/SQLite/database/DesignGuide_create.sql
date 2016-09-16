@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2016-07-06 18:01:33.241
+-- Last modification date: 2016-09-15 01:19:02.441
 
 -- tables
 -- Table: DesignApplication
@@ -37,7 +37,7 @@ CREATE TABLE DesignTarget (
     "offset" integer NOT NULL,
     type text NOT NULL DEFAULT L,
     descr text,
-    CONSTRAINT ModelTarget_ak UNIQUE (location, length, design_source_id),
+    CONSTRAINT ModelTarget_ak UNIQUE (location, length, design_source_id, "offset"),
     CONSTRAINT ModelTarget_ak_name UNIQUE (name, design_source_id),
     CONSTRAINT ModelExperiment_ModelOrganism FOREIGN KEY (design_source_id)
     REFERENCES DesignSource (id),
@@ -55,7 +55,7 @@ CREATE TABLE Experiment (
     descr text,
     CONSTRAINT UserExperiment_ak UNIQUE (user_id, title, date),
     CONSTRAINT UserExperiment_User FOREIGN KEY (user_id)
-    REFERENCES "User" (id)
+    REFERENCES User (id)
     ON DELETE CASCADE 
     ON UPDATE CASCADE
 );
@@ -154,6 +154,7 @@ CREATE TABLE PAM (
     ON UPDATE CASCADE
 );
 
+-- http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4540238/
 -- wtCas9
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 1, 1, "NGG", 0.68);
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES ( 2, 1, "NAG", 0.0132);
@@ -215,7 +216,7 @@ INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (27, 14, "TTN", 0.
 INSERT INTO PAM (id, nuclease_id, sequence, survival)  VALUES (28, 15, "TTN", 0.70);;
 
 -- Table: User
-CREATE TABLE "User" (
+CREATE TABLE User (
     id integer NOT NULL CONSTRAINT User_pk PRIMARY KEY,
     login text NOT NULL,
     first_name text NOT NULL,

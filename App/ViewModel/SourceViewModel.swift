@@ -35,12 +35,8 @@ public class SourceViewModel: DesignSourceModelProtocol {
     var targetDao: AnyRepository<DesignTarget>
     var targetViewModels: [TargetViewModel?] = []
     
-    var name: String {
-        get {
-            return model.name
-        }
-    }
-   
+    var name: String { get{ return model.name }}
+    
     init(model: DesignSourceProtocol, context: DataContext, record: SeqRecord) {
         self.model = model
         self.context = context

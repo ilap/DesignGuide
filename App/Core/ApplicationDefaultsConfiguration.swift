@@ -27,8 +27,8 @@ extension DefaultsKeys {
     static let blobFilesPath = DefaultsKey<String?>("blobFilesPath")
 }
 
-class ApplicatioinDefaultsConfiguration {
-    static let sharedInstance = ApplicatioinDefaultsConfiguration()
+class ApplicationDefaultsConfiguration {
+    static let sharedInstance = ApplicationDefaultsConfiguration()
     
     private init() {
     }

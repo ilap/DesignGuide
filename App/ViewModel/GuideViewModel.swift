@@ -23,14 +23,13 @@ import BioSwift
 
 public class GuideViewModel {
 
-    var model: RNAOnTarget
-    var pam: String {
-        get {
-            return model.speciesName!
-        }
-    }
+    var model: RNATarget
+
+    var guide: String? { get { return model.sequence }}
+    var score: Double? { get { return model.score }}
+    var pam: String { get { return model.sourceName! }}
     
-    init(model: RNAOnTarget) {
+    init(model: RNATarget) {
         self.model = model
     }
 }

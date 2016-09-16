@@ -28,9 +28,10 @@ public class ApplicatonController {
     private static func setup() {
         // TODO: Use dependency injection instead
         // Singleton for initialising the Settings application level
-        ApplicatioinDefaultsConfiguration.setDefaults()
+        ApplicationDefaultsConfiguration.setDefaults()
 
         let envService = DesignGuideOptions()
+
 
         let defaultCommand = CommandLineCommand(service: envService)
         //let defaultCommand = CommandLineListCommand(service: envService)

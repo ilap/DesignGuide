@@ -62,6 +62,7 @@ class DesignGuideView : AnyView<DesignGuideViewProtocol>, DesignGuideViewProtoco
         // if it's not defined then it's always 0
         parameters.targetOffset = optionService.options[.TargetOffset] as! Int? ?? parameters.targetOffset
     
+
         SwiftEventBus.post(name: DesignBusEventType.NucleaseSelected.rawValue,
                         sender: self.nuclease)
         SwiftEventBus.post(name: DesignBusEventType.DesignGuideRequest.rawValue)
@@ -69,37 +70,91 @@ class DesignGuideView : AnyView<DesignGuideViewProtocol>, DesignGuideViewProtoco
     }
     
     override func show() {
-        //XXX: ilap debugPrint("MVP-VM: " +  #function  )
         // Kick the update event first and then fire the request event.
         SwiftEventBus.post(name: DesignBusEventType.UpdateDesignGuideParameters.rawValue)
     }
     
-    func showGuides(guideViewModelList: [GuideViewModel?]) {
+    func showSourceGuides(sourceViewModel: SourceViewModel?) {
 
-        print("Designed guideRNA(s):\n")
-        let g = (guideViewModelList[0]?.model)! as RNAOnTarget
-        let str = String(repeating: "|" as Character, count: (g.sequence?.characters.count)!)
+        //let targetViewModel = sourceViewModel?.targetViewModels.first!
+        //targetViewModel?.loadGuides(guides: ontargets)
+        
+        print("Designed guideRNA(s) for species \"\((sourceViewModel?.name)!)\":")
 
-        for guide in guideViewModelList {
-            let i = (guide?.model)! as RNAOnTarget
-            var s = i.sequence
-            var ss = "*"
-            var c = i.complement
-            var cc = " "
+        for targetViewModel in (sourceViewModel?.targetViewModels)! {
             
-            if i.strand == "-" {
-                s = i.complement
-                c = i.sequence
-                ss = " "
-                cc = "*"
+            var sep = ""
+            if let first_guide = targetViewModel?.guideViewModels.first {
+               sep = String(repeating: "|" as Character, count: (first_guide?.guide?.characters.count)!)
+            } else {
+                let start = (targetViewModel?.location)! - (targetViewModel?.offset)!
+                let end = (targetViewModel?.location)! + (targetViewModel?.length)! + (targetViewModel?.offset)!
+                
+                print("No any \"guide RNA\" candidates in the region \"\(start)-\(end)\" genome region .\n")
+                continue
             }
-            print("")
-            print("+:\t\t\t\t\(ss)\(s!)")
-            let prec = String(format: "%.3f%", i.score!)
-            print("\(prec):\(i.location!)\t\t \(str)\t\(i.speciesName!)")
-            print("-:\t\t\t\t\(cc)\(c!)")
-            print("")
+            var rank = 1
+            // let g = (guideViewModelList[0]?.model)! as RNATarget
+            for guide in (targetViewModel?.guideViewModels.sorted(isOrderedBefore: {
+                $0?.score > $1?.score
+            }))! {
+                let i = (guide?.model)! as RNATarget
+                
+                var pseq = i.sequence!
+                var nseq = i.complement!
+                var gseq = pseq
 
+                var ptail = "*"
+                var ntail = " "
+                
+                let pam_len = i.pam?.characters.count
+                let padded = String(i.pam!).padding(toLength: 10, withPad: " ", startingAt: 0)
+
+                let prec = String(format: "%03.03f%", i.score!*100)
+                
+                if i.strand == "-" {
+                    let a = pseq
+                    pseq = nseq
+                    nseq = a
+                    ptail = " "
+                    ntail = "*"
+                    gseq = String(nseq.characters.reversed())
+                }
+                
+                print("5'+\(pseq)+3'\(ptail)")
+                print("   \(sep)    gRNA:\(gseq):\(i.strand!):\(prec)%:\(i.location!):\(i.sourceName!)")
+                print("3'-\(nseq)-5'\(ntail)")
+                print("")
+                rank += 1
+
+            }
         }
+    }
+    
+    func showDesignDetails(sourceViewModelList: [SourceViewModel?],
+                           parameters: DesignParameterProtocol,
+                           nuclease: NucleaseViewModel?) throws {
+        
+        guard let _ = nuclease else {
+            throw  BioSwiftError.fileError("DATABASE ERROR: the selected nuclease is not available in the database!")
+    
+        }
+        print("Designing \"guide RNA(s)\" for the following species:")
+        
+        for sourceViewModel in sourceViewModelList {
+            let species = sourceViewModel?.name
+            print("Source: \(species!)")
+        }
+        print("\nDesign Parameters:")
+        print("Protospacer length: \(parameters.spacerLength)")
+        let pams = nuclease?.pamViewModels.map {
+           ($0?.name)! + " (" + ($0?.survival)! + ")"
+        }.joined(separator: ", ")
+        
+        let padded = String((nuclease?.name)! + ":").padding(toLength: 10, withPad: " ", startingAt: 0)
+        
+        print("Nuclease: \((nuclease?.name)!) - \(pams!)")
+        
+        print("It takes a while to finish the design, please be patient.\n")
     }
 }

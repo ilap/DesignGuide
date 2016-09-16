@@ -33,20 +33,14 @@ public protocol NucleaseViewProtocol: ViewProtocol {
 }
 
 public protocol DesignGuideViewProtocol: ViewProtocol {
+    
     var source: String? { get set }
     var target: Int? { get set }
     var targetLength: Int? { get set }
  
-    func showGuides(guideViewModelList: [GuideViewModel?])
+    func showDesignDetails(sourceViewModelList: [SourceViewModel?],
+                           parameters: DesignParameterProtocol,
+                           nuclease: NucleaseViewModel?) throws
+    func showSourceGuides(sourceViewModel: SourceViewModel?)
     func updateDesignParameters(parameters: DesignParameterProtocol)
 }
-
-/*public protocol NucleaseDetailsViewProtocol: ViewProtocol {
-    var selectedNucleaseName: String? { get set }
-    func readUserInput(nucleaseViewModelList: [NucleaseViewModel]) -> NucleaseViewModel?
-}
-
-
-public protocol ListPamsViewProtocol: ViewProtocol {
-    func showPams(pamViewModelList: [PamViewModel])
-}*/

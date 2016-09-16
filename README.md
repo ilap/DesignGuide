@@ -1,4 +1,4 @@
-Guide RNA Design Tool for bacterial species -  README file
+DesignGuide - Guide RNA Design Tool for bacterial species -  README file
 ==========================================================
 
 This tool is developed by Apple's Swift language.
@@ -24,6 +24,9 @@ The other requirements are the following:
 
 Dependencies
 ============
+
+- BioSwift -  An implementation of BioPython like framework in Swift. It is required for DesignGuide.
+https://github.com/ilap/BioSwift.git
 
 Frameworks
 ----------
