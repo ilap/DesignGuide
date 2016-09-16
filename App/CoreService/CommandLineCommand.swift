@@ -44,13 +44,13 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
     
     func setupOptions(_ options: Options) {
         
-        options.onKeys(["-s", "--source"], usage: "Directory includes sequence file(s) or a sequence file") {(key, value) in self
+        options.onKeys(["-s", "--source"], usage: "Directory includes sequence file(s) or a sequence file.") {(key, value) in self
 
             self.service.options[.Source] = value
 
         }
         
-        options.onKeys(["-t", "--target"], usage: "Start position. The sequence file or a gene name (if the source genome/file is annotated) as target parameter has not implemented yet)).", valueSignature: "location") {(key, value) in self
+        options.onKeys(["-t", "--target"], usage: "Start position. The sequence file or a gene name (if the source genome/file is annotated) as target parameter has not implemented yet).", valueSignature: "location") {(key, value) in self
             // Always must be String
             self.service.options[.Target] = value
         }
@@ -71,7 +71,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
 
         }
         
-        options.onKeys(["-e", "--endonuclease"], usage: "Available endonucleases - default is \"wtCas9\", use \"list -n\" command for obtaining supported Cas9/Cpf1 variants", valueSignature: "endonuclease" ) {(key, value) in self
+        options.onKeys(["-e", "--endonuclease"], usage: "Available endonucleases - default is \"wtCas9\", use \"list -n\" command for obtaining supported Cas9/Cpf1 variants.", valueSignature: "endonuclease" ) {(key, value) in self
 
             self.service.options[.Endonuclease] = value
 
@@ -87,7 +87,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
         }
         */
         
-        options.onKeys(["-L", "--spacer-length"], usage: "RNA Spacer length - default is 17", valueSignature: "10-100") {(key, value) in self
+        options.onKeys(["-L", "--spacer-length"], usage: "RNA Spacer length - default is 20.", valueSignature: "10-100") {(key, value) in self
             
             guard let spacer_length = Int(value) else {
                 self.errorMessage = "ERROR: Spacer length (-L) must be integer."
@@ -102,7 +102,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             }
         }
         
-        options.onKeys(["-l", "--seed-length"], usage: "Seed length - default is 10", valueSignature: "0-100") {(key, value) in self
+        options.onKeys(["-l", "--seed-length"], usage: "Seed length - default is 10 (currently not used).", valueSignature: "0-100") {(key, value) in self
 
             guard let seedLength = Int(value) else  {
                 self.errorMessage = "ERROR: Seed length (-l) must be integer."
@@ -117,7 +117,7 @@ class CommandLineCommand: DesignGuideCommand, OptionCommandType {
             }
         }
         
-        options.onKeys(["-o", "--target-offset"], usage: "Extend target sequence size in the genome for design RNA on each sides of the target sequnce - default is 0", valueSignature: "0-10000") {(key, value) in self
+        options.onKeys(["-o", "--target-offset"], usage: "Extend target sequence size in the genome for design RNA on each sides of the target sequnce - default is 0.", valueSignature: "0-10000") {(key, value) in self
             
             guard let offset = Int(value) else {
                 self.errorMessage = "ERROR: The target offset (\(value)) value is nut a number!"

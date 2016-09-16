@@ -122,12 +122,12 @@ Nuclease: LbCpf1          - TTN (70.0%)
 $ ./DesignGuide  cli -h
 Usage:  cli [options]
 
--L, --spacer-length <10-100>             RNA Spacer length - default is 17
+-L, --spacer-length <10-100>             RNA Spacer length - default is 20.
 -T, --target-length <length>             Only valid if the target is a location e.g. start position.
--e, --endonuclease <endonuclease>        Available endonucleases - default is "wtCas9", use "list -n" command for obtaining supported Cas9/Cpf1 variants
+-e, --endonuclease <endonuclease>        Available endonucleases - default is "wtCas9", use "list -n" command for obtaining supported Cas9/Cpf1 variants.
 -h, --help                               Show help information for this command
--l, --seed-length <0-100>                Seed length - default is 10
--o, --target-offset <0-10000>            Extend target sequence size in the genome for design RNA on each sides of the target sequnce - default is 0
--s, --source <value>                     Directory includes sequence file(s) or a sequence file
--t, --target <location>                  Start position. The sequence file or a gene name (if the source genome/file is annotated) as target parameter has not implemented yet)).
+-l, --seed-length <0-100>                Seed length - default is 10 (currently not used).
+-o, --target-offset <0-10000>            Extend target sequence size in the genome for design RNA on each sides of the target sequnce - default is 0.
+-s, --source <value>                     Directory includes sequence file(s) or a sequence file.
+-t, --target <location>                  Start position. The sequence file or a gene name (if the source genome/file is annotated) as target parameter has not implemented yet).
 ```
